@@ -4,3 +4,7 @@ bin/Debug/
 obj/Debug/
 
 *.exe
+
+\.vs/TelegramBotDemo/v14/\.suo
+
+*.pdb
