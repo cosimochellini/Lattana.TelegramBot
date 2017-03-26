@@ -61,7 +61,7 @@ namespace TelegramBotDemo
                 var casuale = new Random();
                 var next = casuale.Next(0, ContGiulio);
 
-                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, --next);
+                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, next);
                 return;
             }
 

@@ -16,6 +16,8 @@ namespace TelegramBotDemo
             sofferenza4Giulio[2] = "Piscina del morandi, soffro";
             sofferenza4Giulio[3] = "Vecchi tempi, soffro";
             sofferenza4Giulio[4] = "Devo fare 3 rampe di scale, soffro";
+            sofferenza4Giulio[5] = "Devo fare 4 rampe di scale, soffro troppo";
+
 
 
             bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id,sofferenza4Giulio[casuale] )).Wait();

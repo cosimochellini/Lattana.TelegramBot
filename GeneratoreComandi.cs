@@ -38,7 +38,6 @@ namespace TelegramBotDemo
             {
                 bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "No, ruocchino non lo raccatto")).Wait();
                 return;
-
             }
 
             if (comanando[0].Equals("raccogli") || comanando[1].Equals("Raccogli"))
@@ -73,37 +72,21 @@ namespace TelegramBotDemo
                      messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ")).Wait();
 
                     break;
+
+
+                case "Dormire":
+                case "dormire":
+                    bot.MakeRequestAsync(new SendMessage(
+                     messaggio.Chat.Id,
+                     "idiota, non sono mica spacobot")).Wait();
+
+                    bot.MakeRequestAsync(new SendMessage(
+                     messaggio.Chat.Id,
+                     "Io non dormo mai, al massimo riposo gli occhi")).Wait();
+                    break;
             }
         }
 
-        public void ComandoInfo(Message messaggio, TelegramBot bot)
-        {
-            bot.MakeRequestAsync(new SendMessage(
-                       messaggio.Chat.Id,
-                       "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta (0.6.2.1), ma migliorerò")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                     messaggio.Chat.Id,
-                        "Insulta [Qualcuno]")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                messaggio.Chat.Id,
-                        "Vai [Da qualche parte]")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                    messaggio.Chat.Id,
-                        "Lattana [Comando] [Qualcuno]")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                   messaggio.Chat.Id,
-                       "Proverbio")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                      "Bruto/Belo")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                      "Poherino?")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                      "Ricezione parole chiave tipo orso/bang/studdio")).Wait();
-
-        }
 
         public void ComandoLattana(string[] comanando, Message messaggio, TelegramBot bot)
         {
@@ -112,7 +95,7 @@ namespace TelegramBotDemo
             {
                 bot.MakeRequestAsync(new SendMessage(
                          messaggio.Chat.Id,
-                        messaggio.From.FirstName + "Perchè nomini il mio nome invano?")).Wait();
+                        messaggio.From.FirstName + " perchè nomini il mio nome invano?")).Wait();
                 return;
 
             }
@@ -249,6 +232,53 @@ namespace TelegramBotDemo
 
 
         }
+
+
+        public void ComandoInfo(Message messaggio, TelegramBot bot)
+        {
+            bot.MakeRequestAsync(new SendMessage(
+                       messaggio.Chat.Id,
+                       "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta (0.6.2.2), ma migliorerò")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                     messaggio.Chat.Id,
+                        "Insulta [Qualcuno]")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                messaggio.Chat.Id,
+                        "Vai [fancuno / dormire]")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                    messaggio.Chat.Id,
+                        "Lattana Accogli[Qualcuno]/Vaffanculo/Mostra")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                   messaggio.Chat.Id,
+                        "Proverbio")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                  messaggio.Chat.Id,
+                        "Bruto/Belo")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                  messaggio.Chat.Id,
+                        "Poherino?")).Wait();
+
+            bot.MakeRequestAsync(new SendMessage(
+                 messaggio.Chat.Id,
+                        "Paolo?")).Wait();
+
+            bot.MakeRequestAsync(new SendMessage(
+                messaggio.Chat.Id,
+                        "Fai soffrire Giulio")).Wait();
+
+
+
+            bot.MakeRequestAsync(new SendMessage(
+                messaggio.Chat.Id,
+                        "Raccogli/Raccatta [Qualcuno]")).Wait();
+
+
+            bot.MakeRequestAsync(new SendMessage(
+                  messaggio.Chat.Id,
+                        "Ricezione parole chiave tipo orso/bang/studdio")).Wait();
+
+        }
+
     }
 
 }

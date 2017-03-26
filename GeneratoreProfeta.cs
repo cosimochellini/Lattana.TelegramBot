@@ -8,14 +8,14 @@
             offesa[0] = "Lattana... non chiamarla come famiglia o casa, se non hai intenzione di comportarti come figlio e come servo";
             offesa[1] = "Chi lascia Lattana vecchia per Lattana nuova sa cosa lascia ma non sa cosa trova";
             offesa[2] = "Il giovane cammina più veloce dell'anziano, ma Lattana conoscie Lattana";
-            offesa[3] = "Lattana di sera, bel tempo di sera";
+            offesa[3] = "Lattana di sera, bel tempo si spera";
             offesa[4] = "Ciò che l'occhio ha visto, Lattana non dimentica";
             offesa[5] = "Lattana senza panuozzo è come un uccello senz'ali";
             offesa[6] = "Corri, disse il destino.    Non riflettere, disse l'istinto.     Rischia, disse la passione.    Panuozzo, disse Lattana";
             offesa[7] = "Le donne vanno e vengono, Lattana rimanre";
             offesa[8] = "Sia lode a Lattana, e sempre sia lodata";
             offesa[9] = "Tanto va lattana al lardo che ci lascia il rocchino";
-            offesa[10] = "Quando vai a Lattana, piangi due volta, quando arrivo e quando parti";
+            offesa[10] = "Quando vai a Lattana, piangi due volta, quando arrivi e quando parti";
             offesa[11] = "Poherinoooooooo?";
             offesa[12] = "A buonnattana non manca u' panuozzo";
             offesa[13] = "A buonnattana pochi rocchini";

@@ -5,13 +5,13 @@
         public string CreaOffesa(string nomeDaOffendere,int casuale)
         {
             var offesa = new string[20];
-            offesa[0] = nomeDaOffendere + " Sei talmente stupido che assomigli a federico";
-            offesa[1] = nomeDaOffendere + " Sei talmente ebreo che non so come ettore non ti abbia ancora bruciato vivo";
-            offesa[2] = nomeDaOffendere + " Sei come la minchia: sempre tra le palle";
-            offesa[3] = nomeDaOffendere + " Sei cosi scemo che guardi pure peppa pig"; 
-            offesa[4] = nomeDaOffendere + " Abbraccia la tazza del cesso e cantagli: non son degno di te"; 
+            offesa[0] = nomeDaOffendere + " sei talmente stupido che assomigli a federico";
+            offesa[1] = nomeDaOffendere + " sei talmente ebreo che non so come ettore non ti abbia ancora bruciato vivo";
+            offesa[2] = nomeDaOffendere + " sei come la minchia: sempre tra le palle";
+            offesa[3] = nomeDaOffendere + " sei cosi scemo che guardi pure peppa pig"; 
+            offesa[4] = nomeDaOffendere + " abbraccia la tazza del cesso e cantagli: non son degno di te"; 
             offesa[5] = " Dio sparse l'intelligenza attraverso la pioggia...peccato che quel giorno " +nomeDaOffendere + " aveva l'ombrello!!";
-            offesa[6] = nomeDaOffendere + " Ha un cervello così piccolo che quando due pensieri si incontrano devono fare manovra";
+            offesa[6] = nomeDaOffendere + " ha un cervello così piccolo che quando due pensieri si incontrano devono fare manovra";
             offesa[7] = nomeDaOffendere + ", " + nomeDaOffendere + ", " + nomeDaOffendere + ", " + nomeDaOffendere + " che nome dimmerda fattelo dire";
             offesa[8] = " Sapete perchè pestano spesso " + nomeDaOffendere + " (e rocchino), perchè porta fortuna";
             offesa[9] = nomeDaOffendere + " sei come il sole, inguardabile";
