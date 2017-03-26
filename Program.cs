@@ -15,8 +15,7 @@ namespace TelegramBotDemo
         private static bool _offese = true;
 
         private static readonly GeneratoreSwitch ManagerSwtich = new GeneratoreSwitch();
-
-
+        
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting your bot...");
