@@ -16,6 +16,7 @@ C:\Users\cosimo\Desktop\NetTelegramBotApi-master\TelegramBotDemo\bin\Debug\NetTe
 C:\Users\cosimo\Desktop\NetTelegramBotApi-master\TelegramBotDemo\bin\Debug\Newtonsoft.Json.dll
 C:\Users\cosimo\Desktop\NetTelegramBotApi-master\TelegramBotDemo\bin\Debug\Newtonsoft.Json.xml
 C:\Users\cosimo\Desktop\NetTelegramBotApi-master\TelegramBotDemo\obj\Debug\TelegramBotDemo.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Debug\TelegramBotDemo.exe.config
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Debug\TelegramBotDemo.exe
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Debug\TelegramBotDemo.pdb
@@ -23,3 +24,5 @@ C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Debug\TelegramBotDemo.exe
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Debug\TelegramBotDemo.pdb
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Debug\Newtonsoft.Json.xml
 C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Debug\TelegramBotDemo.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> master
