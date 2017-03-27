@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Configuration;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
 
 namespace TelegramBotDemo
 {
+
+
     public class GeneratoreComandi
+
     {
+        private static readonly string Versione = ConfigurationManager.AppSettings["Versione"];
+
         public void ComandoBitta(Message messaggio, TelegramBot bot, int contatorePaolo)
         {
             var casuale = new Random();
@@ -18,11 +24,21 @@ namespace TelegramBotDemo
 
         }
 
-        public void ComandoProfeta(Message messaggio, TelegramBot bot, int contatoreProfezia)
+        public void ComandoProfeta(Message messaggio, TelegramBot bot, int contatoreProfezia, int sceltaNonCasuale = 0)
         {
-            var casuale = new Random();
             var generatoreProfezia = new GeneratoreProfeta();
-            var profezia = generatoreProfezia.CreaProfezia(casuale.Next(0, contatoreProfezia));
+            int numero;
+            if (sceltaNonCasuale == 0)
+            {
+                var casuale = new Random();
+                numero = casuale.Next(0, contatoreProfezia);
+            }
+            else
+            {
+                numero = sceltaNonCasuale;
+            }
+
+            var profezia = generatoreProfezia.CreaProfezia(numero);
             bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, profezia)).Wait();
 
 
@@ -238,7 +254,7 @@ namespace TelegramBotDemo
         {
             bot.MakeRequestAsync(new SendMessage(
                        messaggio.Chat.Id,
-                       "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta (0.6.2.2), ma migliorerò")).Wait();
+                       "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta " + Versione + " , ma migliorerò")).Wait();
             bot.MakeRequestAsync(new SendMessage(
                      messaggio.Chat.Id,
                         "Insulta [Qualcuno]")).Wait();

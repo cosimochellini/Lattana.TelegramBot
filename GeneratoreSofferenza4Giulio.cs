@@ -9,7 +9,7 @@ namespace TelegramBotDemo
         public void creaSofferenza(Message messaggio, TelegramBot bot, int casuale)
         {
 
-            string[] sofferenza4Giulio = new string[5];
+            string[] sofferenza4Giulio = new string[10];
 
             sofferenza4Giulio[0] = "Silvia, soffro";
             sofferenza4Giulio[1] = "Jessica, soffro";
@@ -17,6 +17,12 @@ namespace TelegramBotDemo
             sofferenza4Giulio[3] = "Vecchi tempi, soffro";
             sofferenza4Giulio[4] = "Devo fare 3 rampe di scale, soffro";
             sofferenza4Giulio[5] = "Devo fare 4 rampe di scale, soffro troppo";
+            sofferenza4Giulio[6] = "Silvia, soffro";
+            sofferenza4Giulio[7] = "Patatine nel proprio piatto, soffro";
+            sofferenza4Giulio[8] = "Dual core, soffro";
+            sofferenza4Giulio[9] = "Silvia, soffro";
+            sofferenza4Giulio[10] = "Silvia, soffro";
+
 
 
 

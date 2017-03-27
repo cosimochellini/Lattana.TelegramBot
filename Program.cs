@@ -10,6 +10,7 @@ namespace TelegramBotDemo
     public static class Program
     {
         private static readonly string AccessToken = ConfigurationManager.AppSettings["AccessToken"];
+        private static readonly string Versione = ConfigurationManager.AppSettings["Versione"];
         private static readonly TelegramBot Bot = new TelegramBot(AccessToken);
         
         private static bool _offese = true;
@@ -19,6 +20,7 @@ namespace TelegramBotDemo
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting your bot...");
+            Console.WriteLine("Versione:" + Versione);
             Console.WriteLine();
             var t = Task.Run(() => RunBot(AccessToken));
             Console.ReadLine();
@@ -91,7 +93,8 @@ namespace TelegramBotDemo
 
                         if (update.Message != null)
                         {
-                            var from = update.Message.From;
+                           
+                        var from = update.Message.From;
                             Console.WriteLine("Msg from {0} {1} @ {2}", @from.FirstName, @from.LastName,
                                 @update.Message.Date);
 
