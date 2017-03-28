@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
+using TelegramBotDemo.Generatori;
 
 namespace TelegramBotDemo
 {

@@ -47,14 +47,14 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneratoreAudio.cs" />
-    <Compile Include="GeneratoreComandi.cs" />
-    <Compile Include="GeneratoreOffesa.cs" />
-    <Compile Include="GeneratorePaolo.cs" />
-    <Compile Include="GeneratoreProfeta.cs" />
-    <Compile Include="GeneratoreSofferenza.cs" />
-    <Compile Include="GeneratoreSofferenza4Giulio.cs" />
-    <Compile Include="GeneratoreSwitch.cs" />
+    <Compile Include="Generatori\GeneratoreAudio.cs" />
+    <Compile Include="Generatori\GeneratoreComandi.cs" />
+    <Compile Include="Generatori\GeneratoreOffesa.cs" />
+    <Compile Include="Generatori\GeneratorePaolo.cs" />
+    <Compile Include="Generatori\GeneratoreProfeta.cs" />
+    <Compile Include="Generatori\GeneratoreSofferenza.cs" />
+    <Compile Include="Generatori\GeneratoreSofferenza4Giulio.cs" />
+    <Compile Include="Generatori\GeneratoreSwitch.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
 
-namespace TelegramBotDemo
+namespace TelegramBotDemo.Generatori
 {
     internal class GeneratoreAudio
     {
@@ -12,7 +12,7 @@ namespace TelegramBotDemo
             if (comanando.Length == 1)
             {
                 var casuale = new Random();
-                int numero = casuale.Next(0, 113);
+                var numero = casuale.Next(0, 114);//modificato a 114
                 var audio = GeneraLinkAudio(numero);
                 var file = new FileToSend(audio);
                 bot.MakeRequestAsync(new SendVoice(messaggio.Chat.Id, file
@@ -31,10 +31,10 @@ namespace TelegramBotDemo
             }
 
         }
-
-        public string GeneraLinkAudio(int casuale)
+        //aggiunto un audio
+        private string GeneraLinkAudio(int casuale)
         {
-            var linkAudi = new string[114];
+            var linkAudi = new string[115];//modificato a 115
             linkAudi[0] = "http://nazista.altervista.org/audi/don%20matteo%2C%20donma%2C%20domma.mp3";
             linkAudi[1] = "http://nazista.altervista.org/audi/12345.mp3";
             linkAudi[2] = "http://nazista.altervista.org/audi/acciderbolina.mp3";
@@ -149,7 +149,7 @@ namespace TelegramBotDemo
             linkAudi[111] = "http://nazista.altervista.org/audi/wela4.mp3";
             linkAudi[112] = "http://nazista.altervista.org/audi/yes.mp3";
             linkAudi[113] = "http://nazista.altervista.org/audi/barum.mp3";
-
+            linkAudi[114] = "http://nazista.altervista.org/audi/essol%20pussy.mp3";//audio aggiunto
             return linkAudi[casuale];
         }
     }
