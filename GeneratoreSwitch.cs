@@ -19,7 +19,7 @@ namespace TelegramBotDemo
         private static readonly int ContSofferenza = 10;
         private static readonly int ContGiulio = 10;
 
-        public void SwitchFunzioni(Message messaggio, TelegramBot bot, bool offese)
+        public void SwitchFunzioni(Message messaggio, TelegramBot bot, bool offese, bool giano)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace TelegramBotDemo
             //controllo ,,
 
 
-            if (Switch(messaggio, comanando, bot, ContOffese, ContPaolo, ContPerle, offese))
+            if (Switch(messaggio, comanando, bot, ContOffese, ContPaolo, ContPerle, offese, giano))
                 return;
 
             foreach (var comando in comanando)
@@ -54,6 +54,29 @@ namespace TelegramBotDemo
                 return;
             }
 
+            if (comanando[0].Equals("Sito") && comanando[1].Equals("nazista"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Questo è il sito dove potete vedere tutte le info sui nostri progetti https://goo.gl/e8Lpu7")).Wait();
+
+                return;
+            }
+
+            if (comanando[0].Equals("Sticker") && comanando[1].Equals("normali"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "https://t.me/addstickers/caccavellaamano1")).Wait();
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "https://t.me/addstickers/caccavellaamano2")).Wait();
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "https://t.me/addstickers/caccavellaamano3")).Wait();
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "https://t.me/addstickers/VCCMNF")).Wait();
+
+                return;
+            }
+
+            if (comanando[0].Equals("Sticker") && comanando[1].Equals("porno"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "https://t.me/addstickers/caccavellaamano4")).Wait();
+
+                return;
+            }
 
 
             if (comanando[0].Equals("Fai") && comanando[1].Equals("soffrire") && comanando[2].Equals("Giulio"))
@@ -114,7 +137,7 @@ namespace TelegramBotDemo
             }
         }
 
-        private bool Switch(Message messaggio, string[] comanando, TelegramBot bot, int contatoreOffese, int contatorePaolo, int contatoreProfezia, bool offese)
+        private bool Switch(Message messaggio, string[] comanando, TelegramBot bot, int contatoreOffese, int contatorePaolo, int contatoreProfezia, bool offese, bool giano)
         {
 
             switch (comanando[0])    //Qui sotto una sola parola -------------------------------------------
@@ -129,6 +152,7 @@ namespace TelegramBotDemo
 
                     return true;
 
+               
                 case "paolo":
                 case "Paolo":
                 case "Bitta":
@@ -150,7 +174,16 @@ namespace TelegramBotDemo
                 case "/Info":
                 case "/help":
                 case "/Help":
-                    _managerComandi.ComandoInfo(messaggio, bot);
+                    if (giano)
+                    {
+                                            _managerComandi.ComandoInfo(messaggio, bot);
+
+                    }
+                    else
+                    {
+                    bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Mi dispiace ma il giano non capisce un cazzo")).Wait();
+
+                    }
                     return true;
 
 

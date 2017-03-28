@@ -21,7 +21,6 @@ namespace TelegramBotDemo
             sofferenza4Giulio[7] = "Patatine nel proprio piatto, soffro";
             sofferenza4Giulio[8] = "Dual core, soffro";
             sofferenza4Giulio[9] = "Silvia, soffro";
-            sofferenza4Giulio[10] = "Silvia, soffro";
 
 
 

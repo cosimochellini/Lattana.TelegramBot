@@ -248,13 +248,23 @@ namespace TelegramBotDemo
 
 
         }
-
-
+        
         public void ComandoInfo(Message messaggio, TelegramBot bot)
         {
             bot.MakeRequestAsync(new SendMessage(
                        messaggio.Chat.Id,
                        "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta " + Versione + " , ma migliorerò")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                    messaggio.Chat.Id,
+                       "GLI AUDIOOOOO ERA L'ORAAAAAA")).Wait();
+            bot.MakeRequestAsync(new SendMessage(
+                    messaggio.Chat.Id,
+                       "Sticker Nomrali/Porno")).Wait();
+
+            bot.MakeRequestAsync(new SendMessage(
+                    messaggio.Chat.Id,
+                       "Sito nazista")).Wait();
+
             bot.MakeRequestAsync(new SendMessage(
                      messaggio.Chat.Id,
                         "Insulta [Qualcuno]")).Wait();

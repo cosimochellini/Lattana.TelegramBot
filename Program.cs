@@ -12,11 +12,12 @@ namespace TelegramBotDemo
         private static readonly string AccessToken = ConfigurationManager.AppSettings["AccessToken"];
         private static readonly string Versione = ConfigurationManager.AppSettings["Versione"];
         private static readonly TelegramBot Bot = new TelegramBot(AccessToken);
-        
+
         private static bool _offese = true;
+        private static bool _giano = true;
 
         private static readonly GeneratoreSwitch ManagerSwtich = new GeneratoreSwitch();
-        
+
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting your bot...");
@@ -60,7 +61,6 @@ namespace TelegramBotDemo
                 {
                     offset = update.UpdateId + 1;
 
-
                     if (update.Message?.NewChatMember != null) //Controllo nuovo utente nuovo utente
                     {
                         if (update.Message.NewChatMember.Username == "LattanaBot")
@@ -82,6 +82,8 @@ namespace TelegramBotDemo
 
                     if (update.Message?.LeftChatMember != null)
                     {
+                        if (update.Message.LeftChatMember.FirstName == "Lattana")
+                            break;
                         Bot.MakeRequestAsync(new SendMessage(
                             update.Message.Chat.Id,
                             "Lattana punisce " + update.Message.LeftChatMember.FirstName + " per mano di " +
@@ -89,12 +91,12 @@ namespace TelegramBotDemo
                     }
                     else
                     {
-                        ManagerSwtich.SwitchFunzioni(update.Message, bot,  _offese);
+                        ManagerSwtich.SwitchFunzioni(update.Message, bot, _offese, _giano);
 
                         if (update.Message != null)
                         {
-                           
-                        var from = update.Message.From;
+
+                            var from = update.Message.From;
                             Console.WriteLine("Msg from {0} {1} @ {2}", @from.FirstName, @from.LastName,
                                 @update.Message.Date);
 
@@ -119,6 +121,48 @@ namespace TelegramBotDemo
                                 {
                                     _offese = !_offese;
                                 }
+
+                                if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "admin")
+                                {
+                                    _offese = !_offese;
+                                }
+
+                                if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "Giano")
+                                {
+                                    _giano = !_giano;
+                                }
+
+                                if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "giano")
+                                {
+                                    _giano = !_giano;
+                                }
+
+                                if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "Giano")
+                                {
+                                    Bot.MakeRequestAsync(new SendMessage(
+                                                              update.Message.Chat.Id,
+                                                               update.Message.From.FirstName + " Non mi sembra uguale a Cosimo, sbaglio?")).Wait();
+                                }
+
+                                if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "giano")
+                                {
+                                    Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,update.Message.From.FirstName + " Non mi sembra uguale a Cosimo, sbaglio?")).Wait();
+                                }
+
+
+
+                                if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "admin")
+                                {
+                                    Bot.MakeRequestAsync(new SendMessage(
+                           update.Message.Chat.Id,
+                           "Tranquillo " + update.Message.From.FirstName + ", ora tutti possono offendere di nuovo")).Wait();
+
+                                    Bot.MakeRequestAsync(new SendMessage(
+                           update.Message.Chat.Id,
+                           "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
+                                }
+
+
                                 if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "Admin")
                                 {
                                     Bot.MakeRequestAsync(new SendMessage(
@@ -165,14 +209,14 @@ namespace TelegramBotDemo
                 Bot.MakeRequestAsync(new SendMessage(
                     messaggio.Chat.Id,
                     "Maiala federico, i tuoi sticker brutti schifosi dimmerda hanno rotto telegram")).Wait();
-                }
+            }
 
             if (messaggio.Video != null)
             {
                 Bot.MakeRequestAsync(new SendMessage(
                     messaggio.Chat.Id,
                     "Maiala federico, i tuoi video dimmerda hanno rotto telegram")).Wait();
-                }
+            }
             if (messaggio.LeftChatMember != null)
             {
                 Bot.MakeRequestAsync(new SendMessage(
