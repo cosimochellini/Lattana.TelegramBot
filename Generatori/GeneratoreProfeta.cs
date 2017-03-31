@@ -1,10 +1,10 @@
-﻿namespace TelegramBotDemo
+﻿namespace TelegramBotDemo.Generatori
 {
     public class GeneratoreProfeta
     {
         public string CreaProfezia( int casuale)
         {
-            var offesa = new string[22];
+            var offesa = new string[24];
             offesa[0] = "Lattana... non chiamarla come famiglia o casa, se non hai intenzione di comportarti come figlio e come servo";
             offesa[1] = "Chi lascia Lattana vecchia per Lattana nuova sa cosa lascia ma non sa cosa trova";
             offesa[2] = "Il giovane cammina più veloce dell'anziano, ma Lattana conoscie Lattana";
@@ -27,6 +27,9 @@
             offesa[19] = "Di donne ce n'è tante al mondo ma di ttana ce n'è una sola lei li prende tutti belli e brutti";
             offesa[20] = "San giovanni non si chiama arturo";
             offesa[21] = "Il panuozzo batte dove il dente duole";
+            offesa[22] = "Lattana è ovunque e in ogniccosa";
+            offesa[23] = " snt'arturo non si chiama giovanni";
+
             return offesa[casuale];
         }
     }

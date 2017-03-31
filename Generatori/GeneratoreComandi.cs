@@ -3,6 +3,7 @@ using System.Configuration;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
+using TelegramBotDemo.Generatori;
 
 namespace TelegramBotDemo
 {
@@ -182,9 +183,19 @@ namespace TelegramBotDemo
                 bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "O meglio, te " + messaggio.From.FirstName + " non hai il privilegio di usare tutte le mie funzionalità")).Wait();
                 return;
             }
+            try
+            {
+                if (comanando[1] == "il" || comanando[1] == "la" || comanando[1] == "lo" || comanando[1] == "gli" || comanando[1] == "le")
+                    comanando[1] = comanando[2];
 
-            if (comanando[1] == "il" || comanando[1] == "la" || comanando[1] == "lo" || comanando[1] == "gli" || comanando[1] == "le")
-                comanando[1] = comanando[2];
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Eccezione il lo la");
+                Console.WriteLine("GestoreComandi riga 195");
+                return;
+            }
 
             switch (comanando[1])
             {
@@ -242,67 +253,52 @@ namespace TelegramBotDemo
             //Qua verranno tutte le offese più generiche
             var casuale = new Random();
 
+
             var generatore = new GeneratoreOffesa();
             var offesa = generatore.CreaOffesa(comanando[1], casuale.Next(0, contatoreOffese));
-            bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, offesa)).Wait();
+            try
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, offesa)).Wait();
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("L'utente ha bloccato il bot ( gestoreComandi)");
+                return;
+            }
 
 
         }
-        
+
         public void ComandoInfo(Message messaggio, TelegramBot bot)
         {
-            bot.MakeRequestAsync(new SendMessage(
-                       messaggio.Chat.Id,
-                       "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta " + Versione + " , ma migliorerò")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                    messaggio.Chat.Id,
-                       "GLI AUDIOOOOO ERA L'ORAAAAAA")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                    messaggio.Chat.Id,
-                       "Sticker Nomrali/Porno")).Wait();
+            try
+            {
 
-            bot.MakeRequestAsync(new SendMessage(
-                    messaggio.Chat.Id,
-                       "Sito nazista")).Wait();
+                bot.MakeRequestAsync(new SendMessage(
+                           messaggio.Chat.Id,
+                          "Ciao " + messaggio.From.FirstName + " ecco cosa so fare, per ora sono in beta " + Versione + " , ma migliorerò \n \r" +
+                          "GLI AUDIOOOOO ERA L'ORAAAAAA  \n \r" +
+                          "Sticker Nomrali/Porno \r\n" +
+                          "Sito nazista \r\n" +
+                          "Insulta [Qualcuno] \r\n" +
+                          "Vai [fancuno / dormire] \r\n" +
+                          "Lattana Accogli[Qualcuno]/Vaffanculo/Mostra \r\n" +
+                          "Proverbio \r\n" +
+                          "Bruto/Belo \r\n" +
+                          "Poherino? \r\n" +
+                          "Paolo/Bitta \r\n" +
+                          "Fai soffrire Giulio \r\n" +
+                          "Raccogli/Raccatta [Qualcuno] \r\n" +
+                          "Ricezione parole chiave tipo Orso/Bang/Suddio \r\n"
+                           )).Wait();
+            }
+            catch (Exception)
+            {
 
-            bot.MakeRequestAsync(new SendMessage(
-                     messaggio.Chat.Id,
-                        "Insulta [Qualcuno]")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                messaggio.Chat.Id,
-                        "Vai [fancuno / dormire]")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                    messaggio.Chat.Id,
-                        "Lattana Accogli[Qualcuno]/Vaffanculo/Mostra")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                   messaggio.Chat.Id,
-                        "Proverbio")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                        "Bruto/Belo")).Wait();
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                        "Poherino?")).Wait();
-
-            bot.MakeRequestAsync(new SendMessage(
-                 messaggio.Chat.Id,
-                        "Paolo?")).Wait();
-
-            bot.MakeRequestAsync(new SendMessage(
-                messaggio.Chat.Id,
-                        "Fai soffrire Giulio")).Wait();
-
-
-
-            bot.MakeRequestAsync(new SendMessage(
-                messaggio.Chat.Id,
-                        "Raccogli/Raccatta [Qualcuno]")).Wait();
-
-
-            bot.MakeRequestAsync(new SendMessage(
-                  messaggio.Chat.Id,
-                        "Ricezione parole chiave tipo orso/bang/studdio")).Wait();
-
+                Console.WriteLine("L'utente ha bloccato il bot ( gestoreComandi)");
+                return;
+            }
         }
 
     }
