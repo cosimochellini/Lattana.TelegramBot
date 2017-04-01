@@ -12,7 +12,7 @@ namespace TelegramBotDemo.Generatori
             if (comanando.Length == 1)
             {
                 var casuale = new Random();
-                var numero = casuale.Next(0, 114);//modificato a 114
+                var numero = casuale.Next(0, 116);//modificato a 114
                 var audio = GeneraLinkAudio(numero);
                 var file = new FileToSend(audio);
                 bot.MakeRequestAsync(new SendVoice(messaggio.Chat.Id, file

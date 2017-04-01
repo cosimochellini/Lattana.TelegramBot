@@ -50,6 +50,7 @@
     <Compile Include="Generatori\GeneratoreAudio.cs" />
     <Compile Include="Generatori\GeneratoreComandi.cs" />
     <Compile Include="Generatori\GeneratoreOffesa.cs" />
+    <Compile Include="Generatori\GeneratorePano.cs" />
     <Compile Include="Generatori\GeneratorePaolo.cs" />
     <Compile Include="Generatori\GeneratoreProfeta.cs" />
     <Compile Include="Generatori\GeneratoreSofferenza.cs" />

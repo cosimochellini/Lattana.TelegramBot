@@ -20,7 +20,7 @@ namespace TelegramBotDemo
 
 
             var paolo = new GeneratorePaolo();
-            var offesa = paolo.CreaPaolo(casuale.Next(0, contatorePaolo));
+            var offesa = paolo.CreaPaolo(casuale.Next(0, contatorePaolo + 1));
             bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, offesa)).Wait();
 
         }

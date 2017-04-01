@@ -11,13 +11,15 @@ namespace TelegramBotDemo.Generatori
         private readonly GeneratoreSofferenza _managerSofferenza = new GeneratoreSofferenza();
         private readonly GeneratoreComandi _managerComandi = new GeneratoreComandi();
         private readonly GeneratoreAudio _managerAudio = new GeneratoreAudio();
+        private readonly GeneratorePano _managerPano = new GeneratorePano();
         private readonly GeneratoreSofferenza4Giulio _managerSofferenza4Giulio = new GeneratoreSofferenza4Giulio();
 
-        private static readonly int ContOffese = 17;
-        private static readonly int ContPerle = 24;
-        private static readonly int ContPaolo = 23;
-        private static readonly int ContSofferenza = 10;
-        private static readonly int ContGiulio = 10;
+        private static readonly int ContOffese = 18;
+        private static readonly int ContPerle = 25;
+        private static readonly int ContPaolo = 24;
+        private static readonly int ContSofferenza = 11;
+        private static readonly int ContGiulio = 11;
+        private static readonly int ContPano = 12;
 
         public void SwitchFunzioni(Message messaggio, TelegramBot bot, bool offese, bool giano)
         {
@@ -284,6 +286,15 @@ namespace TelegramBotDemo.Generatori
                     bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, " bëlo")).Wait();
                     return true;
 
+                case "pano":
+                case "pano?":
+                case "panuozzo":
+                case "panuozzo?":
+                    bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, _managerPano.CreaPano(new Random().Next(0, ContPano)))).Wait();
+
+
+                    return true;
+
                 case "12345":
                 case "123":
                 case "primo":
@@ -348,7 +359,7 @@ namespace TelegramBotDemo.Generatori
 
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                    "http://nazista.altervista.org/audi/bruscolini"+ bruscoliniRandom.Next(1,2)+ ".mp3"))).Wait();
+                    "http://nazista.altervista.org/audi/bruscolini"+ bruscoliniRandom.Next(1,3)+ ".mp3"))).Wait();
                     return true;
 
                 case "Cazzo duro":
@@ -949,7 +960,7 @@ namespace TelegramBotDemo.Generatori
                 case "maialalala":
 
                     var random = new Random();
-                    var casuale = random.Next(1, 8);
+                    var casuale = random.Next(1, 9);
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                                           new FileToSend("http://nazista.altervista.org/audi/maiala" + casuale + ".mp3"))).Wait();
 
