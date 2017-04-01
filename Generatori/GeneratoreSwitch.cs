@@ -57,55 +57,9 @@ namespace TelegramBotDemo.Generatori
             }
 
 
-            //fine audio miei con spazi
-            if (comanando[0].Equals("Fai") && comanando[1].Equals("soffrire") && comanando[2].Equals("Giulio"))
-            {
-                var casuale = new Random();
-                var next = casuale.Next(0, ContGiulio);
 
-                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, next);
-                return;
-            }
-
-            if (comanando[0].Equals("Stasera") && comanando[1].Equals("non") && comanando[2].Equals("posso"))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return;
-            }
-
-            if (comanando[0].Equals("Stasera") && comanando[1].Equals("nonci"))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return;
-            }
-
-            if (comanando[0].Equals("io") && comanando[1].Equals("non") && comanando[2].Equals("posso"))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return;
-            }
-
-            if (comanando[0].Equals("Stasera") && comanando[1].Equals("non") && comanando[2].Equals("ci") && comanando[3].Equals("sono"))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return;
-            }
-
-
-            if (comanando[0].Equals("Non") && comanando[1].Equals("vengo"))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-                return;
-            }
-
-            if (comanando.Any(x => x.Contains("Briuto") || x.Contains("bruto") || x.Contains("Bruto")) && comanando.Any(x => x.Contains("non") || x.Contains("Non")))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "le belo")).Wait();
-            }
+           
+            
         }
 
         private bool Switch(Message messaggio, string[] comanando, TelegramBot bot, int contatoreOffese, int contatorePaolo, int contatoreProfezia, bool offese, bool giano)
@@ -476,8 +430,8 @@ namespace TelegramBotDemo.Generatori
 
                 case "ettore":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                      new FileToSend(
-                                          "http://nazista.altervista.org/audi/ettore%20ettore.mp3"))).Wait();
+                                     new FileToSend(
+                                         "http://nazista.altervista.org/audi/ettore.mp3"))).Wait();
                     return true;
 
                 case "mossa":
@@ -1006,32 +960,17 @@ namespace TelegramBotDemo.Generatori
             }
         }
 
-        private bool FraseContiene(string[] comando, string[] vettoreParole)
+        private bool FraseContiene(string[] comando, string[] vettoreParole, int numeroCondizioni = 0)
         {
-            var contatore = 0;
-            foreach (var parola in vettoreParole)
-            {
-                if (comando.Any(x => x.Equals(parola)))
-                {
-                    contatore++;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+
+            if (numeroCondizioni == 0)
+                numeroCondizioni = vettoreParole.Length;
 
 
-            if (contatore == vettoreParole.Length)
-            {
-                return true;
+            var contatore  = vettoreParole.Count(parola => comando.Any(x => x.Equals(parola)));
+            contatore++;
 
-            }
-            else
-            {
-
-            }
-            return false;
+            return contatore == numeroCondizioni;
         }
 
         private bool ListaAudioImmensa(string[] comando, TelegramBot bot, Message messaggio)
@@ -1043,6 +982,58 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
+
+            if (FraseContiene(comando, new[] { "fai", "soffire", "giulio", "guidotti" }, 3))
+            {
+                var casuale = new Random().Next(0, ContGiulio);
+
+                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, casuale);
+                return true;
+            }
+
+
+
+            if (FraseContiene(comando, new[] { "stasera", "nonci" }))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return true;
+            }
+
+            if (FraseContiene(comando, new[] { "non", "vengo" }))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return true;
+            }
+
+
+            if (FraseContiene(comando, new[] { "io", "non", "posso" }))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return true;
+            }
+
+            if (FraseContiene(comando, new[] { "stasera", "non", "ci", "sono" }))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return true;
+            }
+
+            if (FraseContiene(comando, new[] { "non", "briuto", "bruto", "brhuto" }))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "le belo")).Wait();
+                return true;
+            }
+
+            if (FraseContiene(comando, new[] {"stasera", "non", "posso", "vengo", "sono"}, 3))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+                return true;
+            }
+               
 
             if (FraseContiene(comando, new[] { "sito", "nazista" }))
             {
@@ -1087,7 +1078,7 @@ namespace TelegramBotDemo.Generatori
 
             }
 
-            if (FraseContiene(comando, new[] { "cazzo", "duro" }))
+            if (FraseContiene(comando, new[] { "cazzo", "duro", "ritto" }, 2))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
@@ -1119,14 +1110,7 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-            if (FraseContiene(comando, new[] { "cazzo", "ritto" }))
-            {
-                bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                      new FileToSend(
-                                          "http://nazista.altervista.org/audi/cazzo%20duro.mp3"))).Wait();
-                return true;
-            }
-
+           
             if (FraseContiene(comando, new[] { "faccie", "culo" }))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
@@ -1135,7 +1119,7 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-            if (FraseContiene(comando, new[] { "faccia", "culo" }))
+            if (FraseContiene(comando, new[] { "faccia",  "culo" }))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
@@ -1328,13 +1312,7 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-            if (FraseContiene(comando, new[] { "non", "sanno", "di", "nulla" }))
-            {
-                bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                      new FileToSend(
-                                          "http://nazista.altervista.org/audi/fanno%20cagare%20quelle%20immagini.mp3"))).Wait();
-                return true;
-            }
+          
             return false;
         }
 
