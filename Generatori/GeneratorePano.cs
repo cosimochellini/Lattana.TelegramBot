@@ -4,7 +4,7 @@
     {
         public string CreaPano(int casuale)
         {
-            var offesa = new string[11];
+            var offesa = new string[12];
             offesa[0] = "Macché pano, Giulio è già pieno!";
             offesa[1] = "Va bene, ma non nascondete le postate, altrimenti lattana rimane senza!";
             offesa[2] = "Va bene, ma non nascondete le postate, altrimenti Giulio lo dice a sua mamma!";
@@ -16,7 +16,9 @@
             offesa[8] = "Per me una margherita";
             offesa[9] = "A buonnattana non manca u' panuozzo";
             offesa[10] = "Il panuozzo batte dove il dente duole";
-           
+            offesa[11] = "Il panuozzo abbonda sulla bbocca della ttana";
+
+
             return offesa[casuale];
         }
     }

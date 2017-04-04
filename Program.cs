@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Configuration;
+using System.Speech.Recognition;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
 using TelegramBotDemo.Generatori;
+
 
 namespace TelegramBotDemo
 {
@@ -26,6 +28,7 @@ namespace TelegramBotDemo
             Console.WriteLine();
             var t = Task.Run(() => RunBot(AccessToken));
             Console.ReadLine();
+
         }
 
         private static void RunBot(string accessToken)
@@ -117,6 +120,14 @@ namespace TelegramBotDemo
                                     break;
                                 }
 
+
+                                if ((@from.FirstName == "Giulio" || @from.FirstName == "giulio") &&
+                                   (update.Message.Text == "p" || update.Message.Text == "P" ))
+                                {
+                                    PaioGiulio(update.Message);
+                                    break;
+                                }
+
                                 if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "Admin")
                                 {
                                     _offese = !_offese;
@@ -162,6 +173,17 @@ namespace TelegramBotDemo
             Bot.MakeRequestAsync(new SendMessage(
                 messaggio.Chat.Id,
                 "Voleva dire: Va Bene")).Wait();
+        }
+
+        private static void PaioGiulio(Message messaggio)
+        {
+            Bot.MakeRequestAsync(new SendMessage(
+                messaggio.Chat.Id,
+                "Scusate Giulio, gli fa fatica fare qualsiasi cosa")).Wait();
+
+            Bot.MakeRequestAsync(new SendMessage(
+                messaggio.Chat.Id,
+                "Voleva dire: paioled")).Wait();
         }
 
         //private static void MessaggioFederico(Message messaggio)

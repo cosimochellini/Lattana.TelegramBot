@@ -16,7 +16,7 @@ namespace TelegramBotDemo.Generatori
 
         private static readonly int ContOffese = 18;
         private static readonly int ContPerle = 25;
-        private static readonly int ContPaolo = 24;
+        private static readonly int ContPaolo = 25;
         private static readonly int ContSofferenza = 11;
         private static readonly int ContGiulio = 11;
         private static readonly int ContPano = 12;
@@ -57,9 +57,55 @@ namespace TelegramBotDemo.Generatori
             }
 
 
+            //fine audio miei con spazi
+            if (comanando[0].Equals("Fai") && comanando[1].Equals("soffrire") && comanando[2].Equals("Giulio"))
+            {
+                var casuale = new Random();
+                var next = casuale.Next(0, ContGiulio);
 
-           
-            
+                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, next);
+                return;
+            }
+
+            if (comanando[0].Equals("Stasera") && comanando[1].Equals("non") && comanando[2].Equals("posso"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return;
+            }
+
+            if (comanando[0].Equals("Stasera") && comanando[1].Equals("nonci"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return;
+            }
+
+            if (comanando[0].Equals("io") && comanando[1].Equals("non") && comanando[2].Equals("posso"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return;
+            }
+
+            if (comanando[0].Equals("Stasera") && comanando[1].Equals("non") && comanando[2].Equals("ci") && comanando[3].Equals("sono"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+
+                return;
+            }
+
+
+            if (comanando[0].Equals("Non") && comanando[1].Equals("vengo"))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
+                return;
+            }
+
+            if (comanando.Any(x => x.Contains("Briuto") || x.Contains("bruto") || x.Contains("Bruto")) && comanando.Any(x => x.Contains("non") || x.Contains("Non")))
+            {
+                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "le belo")).Wait();
+            }
         }
 
         private bool Switch(Message messaggio, string[] comanando, TelegramBot bot, int contatoreOffese, int contatorePaolo, int contatoreProfezia, bool offese, bool giano)
@@ -125,8 +171,6 @@ namespace TelegramBotDemo.Generatori
                     _managerComandi.ComandoProfeta(messaggio, bot, contatoreProfezia);
                     return true;
 
-
-                case "MW3":
                 case "mW3":
                 case "djruocco":
 
@@ -137,10 +181,8 @@ namespace TelegramBotDemo.Generatori
 
 
                 case "poherino":
-                case "Poherino?":
                 case "poherino?":
                 case "poerino?":
-                case "Poerino":
                 case "poerino":
                     bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Briuuuuuuuuutooooooooooooooooooooooo pooooheeeeeeeeriiiiiiiino no perché  siiiiiiii diiiice")).Wait();
                     return true;
@@ -150,23 +192,18 @@ namespace TelegramBotDemo.Generatori
                     return true;
 
                 case "yes":
-                case "Yes":
-                case "Yess":
                 case "yess":
-                case "Yesss":
-                case "yesss":// METTERLO NON NELLE FRASI APPARTE PER IL SI
+                case "yesss":
                 case "paio":
                 case "paioled":
                 case "SI":
                 case "si":
-                case "Si":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                    new FileToSend(
                                        "http://nazista.altervista.org/Audio/yes.ogg"))).Wait();
                     return true;
 
-                case "No":
-                case "no"://METTERLO NOn NELLE FRASI
+                case "no":
 
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                            new FileToSend(
@@ -187,21 +224,16 @@ namespace TelegramBotDemo.Generatori
                 case "bangh":
                 case "sparo":
                 case "banghino":
-                case "Banghino":
-                case "Beng":
                 case "beng":
                 case "bengh":
                 case "pum":
-                case "Pum":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/Audio/bang.ogg"))).Wait();
                     return true;
 
                 case "domma":
-                case "Domma":
                 case "donma":
-                case "Donma":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                          "http://nazista.altervista.org/audi/don%20matteo%2C%20donma%2C%20domma.mp3"))).Wait();
@@ -251,9 +283,8 @@ namespace TelegramBotDemo.Generatori
 
                 case "12345":
                 case "123":
+                case "1234":
                 case "primo":
-                case "Primo":
-                case "Uno":
                 case "uno":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
@@ -261,69 +292,54 @@ namespace TelegramBotDemo.Generatori
                     return true;
 
                 case "acciderbolina":
-                case "Acciderbolina":
                 case "accipicchia":
-                case "Accipicchia":
                 case "cavolo":
-                case "Cavolo":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/acciderbolina.mp3"))).Wait();
                     return true;
 
                 case "ahahah":
-                case "AHAHAH":
-                case "AHAHAHAH":
                 case "ahahahah":
-                case "AHAHAHAHAH":
                 case "ahahahahah":
+                case "hahaha":
+                case "hahahaha":
+                case "hahahahaha":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/ahahah.mp3"))).Wait();
                     return true;
 
                 case "gruppo":
-                case "Gruppo":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/altro%20gruppo.mp3"))).Wait();
                     return true;
 
                 case "bella":
-                case "Bella":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/bella.mp3"))).Wait();
                     return true;
 
                 case "brava":
-                case "Brava":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/brava%20brava.mp3"))).Wait();
                     return true;
 
                 case "bruscolini":
-                case "Bruscolini":
                 case "bruce":
-                case "Bruce":
                 case "brus":
-                case "Brus":
                     var bruscoliniRandom = new Random();
 
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                    "http://nazista.altervista.org/audi/bruscolini"+ bruscoliniRandom.Next(1,3)+ ".mp3"))).Wait();
+                    "http://nazista.altervista.org/audi/bruscolini" + bruscoliniRandom.Next(1, 3) + ".mp3"))).Wait();
                     return true;
 
-                case "Cazzo duro":
-                case "cazzo duro":
                 case "eccitato":
-                case "Eccitato":
                 case "godo":
-                case "Godo":
-                case "cazzo ritto":
-                case "Cazzo ritto":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/cazzo%20duro.mp3"))).Wait();
@@ -332,31 +348,21 @@ namespace TelegramBotDemo.Generatori
                 case "barum":
                 case "barlum":
                 case "arla":
-                case "Ruocco":
                 case "ruocco":
-                case "Rocco":
                 case "rocco":
                 case "rocchino":
-                case "Rocchino":
                 case "ruocchino":
-                case "Ruocchino":
-                case "Federico":
                 case "federico":
                 case "tocchino":
-                case "Tocchino":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/barum.mp3"))).Wait();
                     return true;
 
                 case "applausi":
-                case "Applausi":
                 case "bravo":
-                case "Bravo":
-                case "Complimenti":
                 case "complimenti":
                 case "congratulazioni":
-                case "Congratulazioni":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
                                           "http://nazista.altervista.org/audi/applausi.mp3"))).Wait();
@@ -403,9 +409,11 @@ namespace TelegramBotDemo.Generatori
                 case "piegolino":
                 case "diegolino":
                 case "landi":
+                    var rndm4 = new Random();
+
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                                          "http://nazista.altervista.org/audi/dieghino%20dai%20denti%20a%20sciabola.mp3"))).Wait();
+                                          "http://nazista.altervista.org/audi/dieghino" + rndm4.Next(1, 4) + ".mp3"))).Wait();
                     return true;
 
                 case "eee":
@@ -423,15 +431,17 @@ namespace TelegramBotDemo.Generatori
                     return true;
 
                 case "brutto":
+                    var rndm2 = new Random();
+
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                                          "http://nazista.altervista.org/audi/e%20questo%20brutto.mp3"))).Wait();
+                                          "http://nazista.altervista.org/audi/brutto" + rndm2.Next(1, 3) + ".mp3"))).Wait();
                     return true;
 
                 case "ettore":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                     new FileToSend(
-                                         "http://nazista.altervista.org/audi/ettore.mp3"))).Wait();
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/ettore.mp3"))).Wait();
                     return true;
 
                 case "mossa":
@@ -881,69 +891,192 @@ namespace TelegramBotDemo.Generatori
 
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                                          "http://nazista.altervista.org/audi/daun" + rndm.Next(1, 2) + ".mp3"))).Wait();
+                                          "http://nazista.altervista.org/audi/daun" + rndm.Next(1, 3) + ".mp3"))).Wait();
                     return true;
 
+                case "lista":
+                case "listone":
+                case "listaccia":
+                case "listuccia":
+                case "listona":
+                    var rndm1 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/lista" + rndm1.Next(1, 4) + ".mp3"))).Wait();
+                    return true;
+
+                case "arturo":
+                case "roma":
+                case "romanelli":
+                case "artu":
+                case "artuu":
+                case "artuuu":
+                case "artuuuu":
+                case "artuuuuu":
+                case "artuuuuuu":
+                case "artuuuuuuu":
+                case "artuuuuuuuu":
+                case "artuuuuuuuuu":
+                case "artuuuuuuuuuu":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/artuuu.ogg"))).Wait();
+                    return true;
+
+                case "guidotti":
+                case "stronzo":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/guidottistronzo.mp3"))).Wait();
+                    return true;
+
+                case "mmma":
+                case "mmmaaa":
+                case "mmmmmmaaaaa":
+                case "mmmmaaa":
+                case "mmmmaaaa":
+                case "mmmaa":
+                case "mmmmmmmaaaaaa":
+                case "mmmmmmmmmaaaaaaaa":
+                case "mmmmmmmmmmmmmaaaaaaaaaaa":
+                    var rndm7 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/mmma" + rndm7.Next(1, 6) + ".mp3"))).Wait();
+                    return true;
+
+                case "wela":
+                case "weela":
+                case "weelaa":
+                case "welaa":
+                case "weeelaaa":
+                case "weeelaaaa":
+                case "weeelaaaaa":
+                case "welaaaa":
+                case "weeelaaaaaa":
+                    var rndm8 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/wela" + rndm8.Next(1, 5) + ".mp3"))).Wait();
+                    return true;
+
+                case "pulito":
+                case "pulirsi":
+                case "lavati":
+                case "lavarsi":
+                case "lindo":
+                case "pulisciti":
+                case "bide":
+                case "bidet":
+                case "lavato":
+                    var rndm9 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/pulirsiculo" + rndm9.Next(1, 3) + ".mp3"))).Wait();
+                    return true;
+
+                case "piedi":
+                case "piede":
+                case "piedini":
+                case "piedine":
+                case "piedino":
+                case "feticista":
+                case "feticismo":
+                case "fetish":
+                    var rndm10 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/piedi" + rndm10.Next(1, 5) + ".mp3"))).Wait();
+                    return true;
+
+                case "gesu":
+                case "gesù":
+                case "cristo":
+                case "madonna":
+                case "inchiodare":
+                case "chiodi":
+                case "inchiodalo":
+                case "croce":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/inchiodaregesu.mp3"))).Wait();
+                    return true;
+
+                case "merda":
+                    var rndm3 = new Random();
+
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/merda" + rndm3.Next(1, 3) + ".mp3"))).Wait();
+                    return true;
+
+                case "soffro":
+                case "sofferenza":
+                case "soffri":
+                case "soffrono":
+                case "soffre":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/soffro.ogg"))).Wait();
+                    return true;
+
+                case "tullosai":
+                case "tullo":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/tullosai.ogg"))).Wait();
+                    return true;
                 //fine aggiunte mie
 
                 case "yes":
-                case "Yes":
-                case "Yess":
                 case "yess":
-                case "Yesss":
-                case "yesss":// METTERLO NON NELLE FRASI APPARTE PER IL SI
+                case "yesss":
                 case "paio":
-                case "Paio":
-                case "Paioled":
                 case "paioled":
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                    new FileToSend(
                                        "http://nazista.altervista.org/Audio/yes.ogg"))).Wait();
                     return true;
 
-                case "Balza":
                 case "balza":
                     _managerSofferenza.Sofferenza(messaggio, bot, contatoreSofferenza);
                     return true;
 
                 case "maiala":
-                case "Maiala":
-                case "Maialala":
-                case "maialala":
-                case "Maialalala":
-                case "maialalala":
-
                     var random = new Random();
-                    var casuale = random.Next(1, 9);
+                    var casuale = random.Next(1, 10);
                     bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                                           new FileToSend("http://nazista.altervista.org/audi/maiala" + casuale + ".mp3"))).Wait();
 
                     return true;
 
+                case "maialala":
+                case "maialalala":
+                    bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                 new FileToSend(
+                                     "http://nazista.altervista.org/audi/maialala.ogg"))).Wait();
+                    return true;
+
                 case "balzo":
-                case "Balzo":
                 case "bosco":
-                case "Bosco":
-                case "Salto":
                 case "salto":
                     bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
                     return true;
 
                 case "orso":
-                case "Orso":
-                case "Bear":
                 case "bear":
                 case "letargo":
-                case "Letargo":
                 case "orsaggine":
-                case "Orsaggine":
                     bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Dai " + messaggio.From.FirstName + ", lascia stare Gabriele, è periodo di letargo per gli orsi bruni")).Wait();
                     return true;
 
 
                 case "studdio":
-                case "Studdio":
-                case "Studio":
                 case "studio":
                 case "biblio":
                 case "bibblio":
@@ -967,7 +1100,7 @@ namespace TelegramBotDemo.Generatori
                 numeroCondizioni = vettoreParole.Length;
 
 
-            var contatore  = vettoreParole.Count(parola => comando.Any(x => x.Equals(parola)));
+            var contatore = vettoreParole.Count(parola => comando.Any(x => x.Equals(parola)));
             contatore++;
 
             return contatore == numeroCondizioni;
@@ -982,58 +1115,13 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-
-            if (FraseContiene(comando, new[] { "fai", "soffire", "giulio", "guidotti" }, 3))
+            if (FraseContiene(comando, new[] { "cazzo", "duro", "ritto" }, 2))
             {
-                var casuale = new Random().Next(0, ContGiulio);
-
-                _managerSofferenza4Giulio.creaSofferenza(messaggio, bot, casuale);
+                bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/cazzo%20duro.mp3"))).Wait();
                 return true;
             }
-
-
-
-            if (FraseContiene(comando, new[] { "stasera", "nonci" }))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return true;
-            }
-
-            if (FraseContiene(comando, new[] { "non", "vengo" }))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return true;
-            }
-
-
-            if (FraseContiene(comando, new[] { "io", "non", "posso" }))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return true;
-            }
-
-            if (FraseContiene(comando, new[] { "stasera", "non", "ci", "sono" }))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-
-                return true;
-            }
-
-            if (FraseContiene(comando, new[] { "non", "briuto", "bruto", "brhuto" }))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "le belo")).Wait();
-                return true;
-            }
-
-            if (FraseContiene(comando, new[] {"stasera", "non", "posso", "vengo", "sono"}, 3))
-            {
-                bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?")).Wait();
-                return true;
-            }
-               
 
             if (FraseContiene(comando, new[] { "sito", "nazista" }))
             {
@@ -1078,7 +1166,7 @@ namespace TelegramBotDemo.Generatori
 
             }
 
-            if (FraseContiene(comando, new[] { "cazzo", "duro", "ritto" }, 2))
+            if (FraseContiene(comando, new[] { "cazzo", "duro" }))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
@@ -1110,7 +1198,14 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-           
+            if (FraseContiene(comando, new[] { "cazzo", "ritto" }))
+            {
+                bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/cazzo%20duro.mp3"))).Wait();
+                return true;
+            }
+
             if (FraseContiene(comando, new[] { "faccie", "culo" }))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
@@ -1119,7 +1214,7 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-            if (FraseContiene(comando, new[] { "faccia",  "culo" }))
+            if (FraseContiene(comando, new[] { "faccia", "culo" }))
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
@@ -1185,17 +1280,21 @@ namespace TelegramBotDemo.Generatori
 
             if (FraseContiene(comando, new[] { "cazzo", "dici" }))
             {
+                var rndm5 = new Random();
+
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                      new FileToSend(
-                                          "http://nazista.altervista.org/audi/mi%20cascano%20le%20braccia.mp3"))).Wait();
+                                  new FileToSend(
+                                      "http://nazista.altervista.org/audi/checazzodici" + rndm5.Next(1, 4) + ".mp3"))).Wait();
                 return true;
             }
 
             if (FraseContiene(comando, new[] { "cazzo", "dicendo" }))
             {
+                var rndm6 = new Random();
+
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
-                                      new FileToSend(
-                                          "http://nazista.altervista.org/audi/mi%20cascano%20le%20braccia.mp3"))).Wait();
+                                  new FileToSend(
+                                      "http://nazista.altervista.org/audi/checazzodici" + rndm6.Next(1, 4) + ".mp3"))).Wait();
                 return true;
             }
 
@@ -1203,7 +1302,7 @@ namespace TelegramBotDemo.Generatori
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                                          "http://nazista.altervista.org/audi/mi%20cascano%20le%20braccia.mp3"))).Wait();
+                                          "http://nazista.altervista.org/audi/checazzodici3.mp3"))).Wait();
                 return true;
             }
 
@@ -1211,7 +1310,7 @@ namespace TelegramBotDemo.Generatori
             {
                 bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
                                       new FileToSend(
-                                          "http://nazista.altervista.org/audi/mi%20cascano%20le%20braccia.mp3"))).Wait();
+                                          "http://nazista.altervista.org/audi/checazzodici3.mp3"))).Wait();
                 return true;
             }
 
@@ -1312,7 +1411,13 @@ namespace TelegramBotDemo.Generatori
                 return true;
             }
 
-          
+            if (FraseContiene(comando, new[] { "non", "sanno", "di", "nulla" }))
+            {
+                bot.MakeRequestAsync(new SendAudio(messaggio.Chat.Id,
+                                      new FileToSend(
+                                          "http://nazista.altervista.org/audi/fanno%20cagare%20quelle%20immagini.mp3"))).Wait();
+                return true;
+            }
             return false;
         }
 
