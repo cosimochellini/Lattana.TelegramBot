@@ -47,6 +47,9 @@ namespace TelegramBotDemo
 
         public void ComandoRaccogli(string[] comanando, Message messaggio, TelegramBot bot)
         {
+            if (comanando.Length == 1)
+                return;
+
             if (comanando[1] == "il" || comanando[1] == "la" || comanando[1] == "lo" || comanando[1] == "gli" || comanando[1] == "le")
                 comanando[1] = comanando[2];
 
