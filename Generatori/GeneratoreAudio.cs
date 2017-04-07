@@ -150,7 +150,7 @@ namespace TelegramBotDemo.Generatori
             linkAudi[112] = "http://nazista.altervista.org/audi/yes.mp3";
             linkAudi[113] = "http://nazista.altervista.org/audi/barum.mp3";
             linkAudi[114] = "http://nazista.altervista.org/audi/essol%20pussy.mp3";//audio aggiunto
-            return linkAudi[casuale];
+            return linkAudi[casuale-1];
         }
     }
 }
