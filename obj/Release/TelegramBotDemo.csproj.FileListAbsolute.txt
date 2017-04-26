@@ -1,0 +1,11 @@
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\TelegramBotDemo.exe.config
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\TelegramBotDemo.exe
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\TelegramBotDemo.pdb
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\NetTelegramBotApi.dll
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\Newtonsoft.Json.dll
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\RestSharp.dll
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\Newtonsoft.Json.xml
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\bin\Release\RestSharp.xml
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Release\TelegramBotDemo.exe
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Release\TelegramBotDemo.pdb
+C:\Users\cosimo\Desktop\GK-Lattana\Lattana\obj\Release\TelegramBotDemo.csprojResolveAssemblyReference.cache

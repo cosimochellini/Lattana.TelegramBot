@@ -1,8 +1,8 @@
-﻿namespace TelegramBotDemo
+﻿namespace TelegramBotDemo.Generatori
 {
-    class GeneratorePaolo
+    public static class GeneratorePaolo
     {
-        public string CreaPaolo(int casuale)
+        public static string CreaPaolo(int casuale)
         {
             var offesa = new string[25];
             offesa[0] = "Chi fa da se... fa da se!";

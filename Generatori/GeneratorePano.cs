@@ -1,8 +1,8 @@
 ﻿namespace TelegramBotDemo.Generatori
 {
-    public class GeneratorePano
+    public static class GeneratorePano
     {
-        public string CreaPano(int casuale)
+        public static string CreaPano(int casuale)
         {
             var offesa = new string[12];
             offesa[0] = "Macché pano, Giulio è già pieno!";
@@ -17,8 +17,7 @@
             offesa[9] = "A buonnattana non manca u' panuozzo";
             offesa[10] = "Il panuozzo batte dove il dente duole";
             offesa[11] = "Il panuozzo abbonda sulla bbocca della ttana";
-
-
+            
             return offesa[casuale];
         }
     }

@@ -3,11 +3,11 @@ using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
 
-namespace TelegramBotDemo
+namespace TelegramBotDemo.Generatori
 {
-    class GeneratoreSofferenza
+    public static class GeneratoreSofferenza
     {
-        public string GeneratoreSoffro(int casuale)
+        private static string GeneratoreSoffro(int casuale)
         {
             var offesa = new string[20];
             offesa[0] = "Che palle anche stasera sono tutta sola";
@@ -22,21 +22,14 @@ namespace TelegramBotDemo
             offesa[9] = "Ma porca merda, è 40 anni che non si fa nulla";
             offesa[10] = "Anche oggi calcetto?, che palle";
             offesa[10] = "Verrà il giorno, il giorno in cui si compirà la settimana perfetta";
-
-
             return offesa[casuale];
         }
 
 
-        public void Sofferenza(Message messaggio, TelegramBot bot, int contSofferenza)
+        public static void Sofferenza(Message messaggio, TelegramBot bot, int contSofferenza)
         {
-            var casuale = new Random();
-            var soffro = new GeneratoreSofferenza();
-            var messagio = soffro.GeneratoreSoffro(casuale.Next(0, contSofferenza));
-
-            bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, messagio)).Wait();
-
-
+            bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, GeneratoreSoffro(new Random().Next(0, contSofferenza)))).Wait();
+            
         }
 
     }

@@ -1,8 +1,8 @@
 ﻿namespace TelegramBotDemo.Generatori
 {
-    public class GeneratoreProfeta
+    public static class GeneratoreProfeta
     {
-        public string CreaProfezia( int casuale)
+        public static string CreaProfezia( int casuale)
         {
             var offesa = new string[24];
             offesa[0] = "Lattana... non chiamarla come famiglia o casa, se non hai intenzione di comportarti come figlio e come servo";

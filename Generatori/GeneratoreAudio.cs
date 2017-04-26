@@ -3,36 +3,20 @@ using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
 
+
 namespace TelegramBotDemo.Generatori
 {
-    internal class GeneratoreAudio
+    public static class GeneratoreAudio
     {
-        public void SwitchAudio(string[] comanando, Message messaggio, TelegramBot bot)
+        public static void SwitchAudio(string[] comanando, Message messaggio, TelegramBot bot)
         {
             if (comanando.Length == 1)
             {
-                var casuale = new Random();
-                var numero = casuale.Next(0, 116);//modificato a 114
-                var audio = GeneraLinkAudio(numero);
-                var file = new FileToSend(audio);
-                bot.MakeRequestAsync(new SendVoice(messaggio.Chat.Id, file
-                 )).Wait();
-                return;
+                bot.MakeRequestAsync(new SendVoice(messaggio.Chat.Id, new FileToSend(GeneraLinkAudio(new Random().Next(0, 116))))).Wait();
             }
-
-            switch (comanando[1])
-            {
-                case "info":
-                case "Info":
-                    bot.MakeRequestAsync(new SendMessage(
-              messaggio.Chat.Id,
-              "Qua verrà mandata la lista degli audio che potrai scrivere")).Wait();
-                    break;
-            }
-
         }
-        //aggiunto un audio
-        private string GeneraLinkAudio(int casuale)
+
+        private static string GeneraLinkAudio(int casuale)
         {
             var linkAudi = new string[115];//modificato a 115
             linkAudi[0] = "http://nazista.altervista.org/audi/don%20matteo%2C%20donma%2C%20domma.mp3";
@@ -149,8 +133,8 @@ namespace TelegramBotDemo.Generatori
             linkAudi[111] = "http://nazista.altervista.org/audi/wela4.mp3";
             linkAudi[112] = "http://nazista.altervista.org/audi/yes.mp3";
             linkAudi[113] = "http://nazista.altervista.org/audi/barum.mp3";
-            linkAudi[114] = "http://nazista.altervista.org/audi/essol%20pussy.mp3";//audio aggiunto
-            return linkAudi[casuale-1];
+            linkAudi[114] = "http://nazista.altervista.org/audi/essol%20pussy.mp3";
+            return linkAudi[casuale - 1];
         }
     }
 }

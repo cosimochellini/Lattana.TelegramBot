@@ -33,11 +33,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NetTelegramBotApi, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetTelegramBotApi.4.1.0\lib\net45\NetTelegramBotApi.dll</HintPath>
+      <HintPath>packages\NetTelegramBotApi.4.1.0\lib\net45\NetTelegramBotApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,7 +52,6 @@
     <Reference Include="System.Speech" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioManager.cs" />
     <Compile Include="Generatori\GeneratoreAudio.cs" />
     <Compile Include="Generatori\GeneratoreComandi.cs" />
     <Compile Include="Generatori\GeneratoreOffesa.cs" />
@@ -58,6 +61,9 @@
     <Compile Include="Generatori\GeneratoreSofferenza.cs" />
     <Compile Include="Generatori\GeneratoreSofferenza4Giulio.cs" />
     <Compile Include="Generatori\GeneratoreSwitch.cs" />
+    <Compile Include="Manager\IftttManager.cs" />
+    <Compile Include="Manager\StatManager.cs" />
+    <Compile Include="Models\UserStat.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
