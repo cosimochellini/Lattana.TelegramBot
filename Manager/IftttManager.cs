@@ -17,7 +17,7 @@ namespace TelegramBotDemo.Manager
             var webHooksParameters = new RestRequest(Method.GET);
             webHooksParameters.AddQueryParameter("value1", exception);
 
-            webReequest.Execute<ResponseStatus>(webHooksParameters);
+            //webReequest.Execute<ResponseStatus>(webHooksParameters);
         }
     }
 }

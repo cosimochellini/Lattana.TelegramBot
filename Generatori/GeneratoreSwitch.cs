@@ -834,7 +834,7 @@ namespace TelegramBotDemo.Generatori
                     return true;
 
                 case "orso":
-                case "bear":
+                case "bear": 
                 case "letargo":
                 case "orsaggine":
                     bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Dai " + messaggio.From.FirstName + ", lascia stare Gabriele, è periodo di letargo per gli orsi bruni")).Wait();
