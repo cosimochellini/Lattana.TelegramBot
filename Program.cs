@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
+using Telegram.Bot;
 using TelegramBotDemo.Generatori;
 using TelegramBotDemo.Manager;
 
@@ -15,6 +16,8 @@ namespace TelegramBotDemo
         private static readonly string AccessToken = ConfigurationManager.AppSettings["AccessToken"];
         private static readonly string Versione = ConfigurationManager.AppSettings["Versione"];
         private static readonly TelegramBot Bot = new TelegramBot(AccessToken);
+        private static readonly TelegramBotClient Boot = new TelegramBotClient(AccessToken);
+
 
         private static bool _offese = true;
 
@@ -56,65 +59,79 @@ namespace TelegramBotDemo
 
                 foreach (var update in updates)
                 {
-
                     if (!statManager.CheckUpdate(update))
                     {
                         IftttManager.SendException("L'update non è andato a buon fine");
                         Console.WriteLine("Update satatistiche non andato a buon fine");
                     }
-
                     offset = update.UpdateId + 1;
 
                     if (update.Message?.NewChatMember != null) //Controllo nuovo utente nuovo utente
                     {
                         if (update.Message.NewChatMember.Username == "LattanaBot")
                         {
-                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Ho deciso di scendere in terra, così mi sono mostrato a voi, sciocchi umani")).Wait();
+                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
+                                "Ho deciso di scendere in terra, così mi sono mostrato a voi, sciocchi umani")).Wait();
                         }
                         else
                         {
-                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Lattana da il benvenuto a " + update.Message.NewChatMember.FirstName + " poichè accoglie, ma gli ricorda che sa anche punnire")).Wait();
+                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,"Lattana da il benvenuto a " + update.Message.NewChatMember.FirstName + " poichè accoglie, ma gli ricorda che sa anche punnire")).Wait();
                         }
 
-                        break;
+                        break; 
                     }
-                    if (GeneratoreSwitch.SwitchFunzioni(update.Message, bot, _offese, statManager))
+                    if (!GeneratoreSwitch.SwitchFunzioni(update.Message, bot, _offese, statManager))
                         break;
 
-                    if (update.Message == null) continue;
-
-                    var from = update.Message.From;
-                    Console.WriteLine($"Msg from {@from.FirstName} {@from.LastName} @ {@update.Message.Date}");
-
-                    if (update.Message.Text == null) continue;
-
-                    if ((from.FirstName == "Giulio" || from.FirstName == "giulio") && (update.Message.Text == "b" || update.Message.Text == "B" || update.Message.Text == "Bon" || update.Message?.Text == "bon" || update.Message.Text.Contains("bon")))
+                    if (update.Message != null)
                     {
-                        MessaggiGiulio(update.Message);
-                        break;
-                    }
+                        var from = update.Message.From;
+                        Console.WriteLine($"Msg from {@from.FirstName} {@from.LastName} @ {@update.Message.Date}");
 
-                    if ((from.FirstName == "Giulio" || @from.FirstName == "giulio") && (update.Message.Text == "p"))
-                    {
-                        PaioGiulio(update.Message);
-                        break;
-                    }
+                        if (update.Message.Text != null)
+                        {
+                            if ((from.FirstName == "Giulio" || from.FirstName == "giulio") &&
+                                (update.Message.Text == "b" || update.Message.Text == "B" ||
+                                 update.Message.Text == "Bon" || update.Message?.Text == "bon" ||
+                                 update.Message.Text.Contains("bon")))
+                            {
+                                MessaggiGiulio(update.Message);
+                                break;
+                            }
 
-                    if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "Admin")
-                    {
-                        _offese = !_offese;
-                    }
+                            if ((from.FirstName == "Giulio" || @from.FirstName == "giulio") &&
+                                (update.Message.Text == "p"))
+                            {
+                                PaioGiulio(update.Message);
+                                break;
+                            }
 
-                    if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "admin")
-                    {
-                        Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Tranquillo " + update.Message.From.FirstName + ", ora tutti possono offendere di nuovo")).Wait();
+                            if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "Admin")
+                            {
+                                _offese = !_offese;
+                            }
+
+                            if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "admin")
+                            {
+                                Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
+                                    "Tranquillo " + update.Message.From.FirstName +
+                                    ", ora tutti possono offendere di nuovo")).Wait();
+                                Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
+                                    "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
+                            }
+                        }
+                        
+                        if (update.Message.Voice != null)
+                        {
+                            VoiceManager.FileIdToByteArray(update.Message.Voice.FileId, Boot, update.Message.Voice.FileId);
+                        }
+                        
+                        if (update.Message.From.FirstName == "Cosimo" || update.Message.Text != "Admin") continue;
+
+                        Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,"Tranquillo " + update.Message.From.FirstName + ", ora tutti possono offendere di nuovo"))
+                            .Wait();
                         Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
                     }
-
-                    if (update.Message.From.FirstName == "Cosimo" || update.Message.Text != "Admin") continue;
-
-                    Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Tranquillo " + update.Message.From.FirstName + ", ora tutti possono offendere di nuovo")).Wait();
-                    Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
                 }
             }
             // ReSharper disable once FunctionNeverReturns
