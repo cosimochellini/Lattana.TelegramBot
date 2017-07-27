@@ -1,153 +1,175 @@
-ï»¿using System;
+using System;
 using System.Configuration;
-using System.Threading.Tasks;
-using NetTelegramBotApi;
-using NetTelegramBotApi.Requests;
-using NetTelegramBotApi.Types;
-using Telegram.Bot;
-using TelegramBotDemo.Generatori;
-using TelegramBotDemo.Manager;
+using System.Diagnostics;
+using Telegram.Bot.Args;
+using Telegram.Bot.Examples.Echo.Generatore;
+using Telegram.Bot.Examples.Echo.Manager;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
-
-namespace TelegramBotDemo
+namespace Telegram.Bot.Examples.Echo
 {
     public static class Program
     {
         private static readonly string AccessToken = ConfigurationManager.AppSettings["AccessToken"];
-        private static readonly string Versione = ConfigurationManager.AppSettings["Versione"];
-        private static readonly TelegramBot Bot = new TelegramBot(AccessToken);
-        private static readonly TelegramBotClient Boot = new TelegramBotClient(AccessToken);
 
+        private static readonly StatManager StatManager = new StatManager();
 
-        private static bool _offese = true;
+        private static readonly TelegramBotClient Bot = new TelegramBotClient(AccessToken);
 
-        public static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Versione:" + Versione);
 
-            var statManager = new StatManager();
-            Task.Run(() => RunBot(AccessToken, statManager));
+            //Bot.OnCallbackQuery += BotOnCallbackQueryReceived;
+            Bot.OnMessage += BotOnMessageReceived;
+            Bot.OnMessageEdited += BotOnMessageReceived;
+            //Bot.OnInlineQuery += BotOnInlineQueryReceived;
+            //Bot.OnInlineResultChosen += BotOnChosenInlineResultReceived;
+            Bot.OnReceiveError += BotOnReceiveError; //todo controllare se è un problema di concorrenza tra client
+            try
+            {
+                var me = Bot.GetMeAsync().Result;
+                Console.Title = me.Username;
+
+            }
+            catch (Exception)
+            {
+                IftttManager.SendException("problemi connessiones");
+                throw;
+            }
+
+            Bot.StartReceiving();
             Console.ReadLine();
-
+            Bot.StopReceiving();
         }
 
-        private static void RunBot(string accessToken, StatManager statManager)
+        private static void BotOnReceiveError(object sender, ReceiveErrorEventArgs receiveErrorEventArgs)
         {
-            var bot = new TelegramBot(accessToken);
+            Debugger.Break();
+        }
 
-            //var me = bot.MakeRequestAsync(new GetMe()).Result;
+        private static void BotOnChosenInlineResultReceived(object sender, ChosenInlineResultEventArgs chosenInlineResultEventArgs)
+        {
+            Console.WriteLine($"Received choosen inline result: {chosenInlineResultEventArgs.ChosenInlineResult.ResultId}");
+        }
 
-            Console.WriteLine("This project uses nuget package, not 'live' project in solution (because 'live' project is vNext now)");
-            Console.WriteLine();
+        //private static async void BotOnInlineQueryReceived(object sender, InlineQueryEventArgs inlineQueryEventArgs)
+        //{
+        //    InlineQueryResult[] results = {
+        //        new InlineQueryResultLocation
+        //        {
+        //            Id = "1",
+        //            Latitude = 40.7058316f, // displayed result
+        //            Longitude = -74.2581888f,
+        //            Title = "New York",
+        //            InputMessageContent = new InputLocationMessageContent // message if result is selected
+        //            {
+        //                Latitude = 40.7058316f,
+        //                Longitude = -74.2581888f,
+        //            }
+        //        },
 
-            long offset = 0;
-            while (true)
+        //        new InlineQueryResultLocation
+        //        {
+        //            Id = "2",
+        //            Longitude = 52.507629f, // displayed result
+        //            Latitude = 13.1449577f,
+        //            Title = "Berlin",
+        //            InputMessageContent = new InputLocationMessageContent // message if result is selected
+        //            {
+        //                Longitude = 52.507629f,
+        //                Latitude = 13.1449577f
+        //            }
+        //        }
+        //    };
+
+        //    await Bot.AnswerInlineQueryAsync(inlineQueryEventArgs.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
+        //}
+
+        private static void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
+        {
+            var message = messageEventArgs.Message;
+
+
+            //if (message.Voice != null)
+            //{
+            //    //VoiceManager.FileIdToByteArray(message.Voice.FileId, Bot, message.Voice.FileId);
+            // var directory = Directory.GetCurrentDirectory();
+            //   //var daje= SpeechManager.Rec(Path.Combine(directory, "prova.ogg") , int.MaxValue, RecognitionConfig.Types.AudioEncoding.Flac);
+            //   //var daje= SpeechManager.SyncRecognize(Path.Combine(directory, "prova.ogg"));
+            //    SpeechManager.Roar(new string[2]);
+
+            //}
+
+            if (message == null || message.Type != MessageType.TextMessage) return;
+
+            if (message.Text != null && message.Text == "statcarica")
             {
-                Update[] updates;
-                try
+                var listaUser = StatManager.CaricaStistiche();
+                StatManager.SetListaUser(listaUser);
+            }
+
+            if (!StatManager.CheckUpdate(message))
+            {
+                IftttManager.SendException("L'update non è andato a buon fine");
+                Console.WriteLine("Update satatistiche non andato a buon fine");
+            }
+
+            if (message.NewChatMembers != null) //Controllo nuovo utente nuovo utente
+            {
+                if (message.NewChatMembers[0].Username == "LattanaBot")
                 {
-                    updates = bot.MakeRequestAsync(new GetUpdates() { Offset = offset }).Result;
+                    Bot.SendTextMessageAsync(message.Chat.Id, "Ho deciso di scendere in terra, così mi sono mostrato a voi, sciocchi umani");
                 }
-                catch (Exception)
+                else
                 {
-                    updates = null;
-                    IftttManager.SendException("Connessione lenta");
-                    Console.WriteLine("Ecceccione, accciderbolina");
-                }
-
-                if (updates == null) continue;
-
-                foreach (var update in updates)
-                {
-                    if (!statManager.CheckUpdate(update))
-                    {
-                        IftttManager.SendException("L'update non Ã¨ andato a buon fine");
-                        Console.WriteLine("Update satatistiche non andato a buon fine");
-                    }
-                    offset = update.UpdateId + 1;
-
-                    if (update.Message?.NewChatMember != null) //Controllo nuovo utente nuovo utente
-                    {
-                        if (update.Message.NewChatMember.Username == "LattanaBot")
-                        {
-                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
-                                "Ho deciso di scendere in terra, cosÃ¬ mi sono mostrato a voi, sciocchi umani")).Wait();
-                        }
-                        else
-                        {
-                            Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,"Lattana da il benvenuto a " + update.Message.NewChatMember.FirstName + " poichÃ¨ accoglie, ma gli ricorda che sa anche punnire")).Wait();
-                        }
-
-                        break; 
-                    }
-                    if (!GeneratoreSwitch.SwitchFunzioni(update.Message, bot, _offese, statManager))
-                        break;
-
-                    if (update.Message != null)
-                    {
-                        var from = update.Message.From;
-                        Console.WriteLine($"Msg from {@from.FirstName} {@from.LastName} @ {@update.Message.Date}");
-
-                        if (update.Message.Text != null)
-                        {
-                            if ((from.FirstName == "Giulio" || from.FirstName == "giulio") &&
-                                (update.Message.Text == "b" || update.Message.Text == "B" ||
-                                 update.Message.Text == "Bon" || update.Message?.Text == "bon" ||
-                                 update.Message.Text.Contains("bon")))
-                            {
-                                MessaggiGiulio(update.Message);
-                                break;
-                            }
-
-                            if ((from.FirstName == "Giulio" || @from.FirstName == "giulio") &&
-                                (update.Message.Text == "p"))
-                            {
-                                PaioGiulio(update.Message);
-                                break;
-                            }
-
-                            if (update.Message.From.FirstName == "Cosimo" && update.Message.Text == "Admin")
-                            {
-                                _offese = !_offese;
-                            }
-
-                            if (update.Message.From.FirstName != "Cosimo" && update.Message.Text == "admin")
-                            {
-                                Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
-                                    "Tranquillo " + update.Message.From.FirstName +
-                                    ", ora tutti possono offendere di nuovo")).Wait();
-                                Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,
-                                    "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
-                            }
-                        }
-                        
-                        if (update.Message.Voice != null)
-                        {
-                            VoiceManager.FileIdToByteArray(update.Message.Voice.FileId, Boot, update.Message.Voice.FileId);
-                        }
-                        
-                        if (update.Message.From.FirstName == "Cosimo" || update.Message.Text != "Admin") continue;
-
-                        Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id,"Tranquillo " + update.Message.From.FirstName + ", ora tutti possono offendere di nuovo"))
-                            .Wait();
-                        Bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "Aspetta, no scherzavo ahahahaah, coglione -.-")).Wait();
-                    }
+                    Bot.SendTextMessageAsync(message.Chat.Id, "Lattana da il benvenuto a " + message.NewChatMembers[0].FirstName + " poichè accoglie, ma gli ricorda che sa anche punnire");
                 }
             }
-            // ReSharper disable once FunctionNeverReturns
+
+            if (!GeneratoreSwitch.SwitchFunzioni(message, Bot, StatManager))
+                return;
+            
+
+            var from = message.From;
+            Console.WriteLine($"Msg from {from.FirstName} {from.LastName} @ {message.Date}  chat : {message.Chat.Title}");
+
+            if (message.Text != null)
+            {
+                if ((from.FirstName == "Giulio" || from.FirstName == "giulio") &&
+                    (message.Text == "b" || message.Text == "B" ||
+                     message.Text == "Bon" || message.Text == "bon" ||
+                     message.Text.Contains("bon")))
+                {
+                    MessaggiGiulio(message);
+                    return;
+                }
+
+                if ((from.FirstName == "Giulio" || @from.FirstName == "giulio") &&
+                    (message.Text == "p"))
+                {
+                    PaioGiulio(message);
+                }
+
+            }
         }
 
+        private static async void BotOnCallbackQueryReceived(object sender, CallbackQueryEventArgs callbackQueryEventArgs)
+        {
+            await Bot.AnswerCallbackQueryAsync(callbackQueryEventArgs.CallbackQuery.Id,
+                $"Received {callbackQueryEventArgs.CallbackQuery.Data}");
+        }
 
         private static void MessaggiGiulio(Message messaggio)
         {
-            Bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Scusate Giulio, gli fa fatica fare qualsiasi cosa")).Wait();
-            Bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Voleva dire: Va Bene")).Wait();
+            Bot.SendTextMessageAsync(messaggio.Chat.Id, "Scusate Giulio, gli fa fatica fare qualsiasi cosa");
+            Bot.SendTextMessageAsync(messaggio.Chat.Id, "Voleva dire: Va Bene");
         }
 
         private static void PaioGiulio(Message messaggio)
         {
-            Bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Scusate Giulio, gli fa fatica fare qualsiasi cosa")).Wait();
-            Bot.MakeRequestAsync(new SendMessage(messaggio.Chat.Id, "Voleva dire: paioled")).Wait();
+            Bot.SendTextMessageAsync(messaggio.Chat.Id, "Scusate Giulio, gli fa fatica fare qualsiasi cosa");
+            Bot.SendTextMessageAsync(messaggio.Chat.Id, "Voleva dire: paioled");
         }
     }
 }

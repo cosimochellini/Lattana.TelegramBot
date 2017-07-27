@@ -1,89 +1,181 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using NetTelegramBotApi.Types;
-using TelegramBotDemo.Models;
+using Telegram.Bot.Examples.Echo.Models;
+using Telegram.Bot.Types;
 
-namespace TelegramBotDemo.Manager
+namespace Telegram.Bot.Examples.Echo.Manager
 {
     public class StatManager
     {
-        private readonly List<UserStat> _listaUser = new List<UserStat>();
+        private List<UserStat> _listaUser = CaricaStistiche();
 
-
-        public bool CheckUpdate(Update update)
+        public bool CheckUpdate(Message message)
         {
-            if (update.Message.From.Username == "Lattana")
+            if (message.From.Username == "Lattana")
                 return true;
 
-            if (update.Message.Audio != null || update.Message.Voice != null)
+            if (message.Audio != null || message.Voice != null)
             {
-                IncrementaAudio(update);
-                return true;
-            }
-
-            if (update.Message.Text != null)
-            {
-                IncrementaTesto(update);
+                IncrementaAudio(message);
                 return true;
             }
 
-            if (update.Message.Photo != null)
+            if (message.Text != null)
             {
-                IncrementaImmagini(update);
+                IncrementaTesto(message);
                 return true;
             }
 
-            if (update.Message.Sticker != null)
+            if (message.Photo != null)
             {
-                IncrementaSticker(update);
+                IncrementaImmagini(message);
+                return true;
+            }
+
+            if (message.Sticker != null)
+            {
+                IncrementaSticker(message);
                 return true;
 
             }
             return false;
         }
 
-        private void IncrementaSticker(Update update)
+        private void IncrementaSticker(Message message)
         {
-            ControllaUser(update);
-            _listaUser.Single(x => x.Nome.Equals(update.Message.From.FirstName.ToLower()) && x.Cognome.Equals(update.Message.From.LastName.ToLower())).ContSticker++;
+            ControllaUser(message);
+            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals(message.From.LastName.ToLower())).ContSticker++;
         }
 
-        public List<UserStat> GetListaUser()
+        public IEnumerable<UserStat> GetListaUser()
         {
             return _listaUser;
         }
 
-        private void IncrementaTesto(Update update)
+        public void SetListaUser(List<UserStat> listaUserStats)
         {
-            ControllaUser(update);
-            _listaUser.Single(x => x.Nome.Equals(update.Message.From.FirstName.ToLower()) && x.Cognome.Equals(update.Message.From.LastName.ToLower())).ContText++;
+            _listaUser = listaUserStats;
         }
 
-        private void IncrementaImmagini(Update update)
+        private void IncrementaTesto(Message message)
         {
-            ControllaUser(update);
-            _listaUser.Single(x => x.Nome.Equals(update.Message.From.FirstName.ToLower()) && x.Cognome.Equals(update.Message.From.LastName.ToLower())).ContImg++;
+            ControllaUser(message);
+            try
+            {
+                _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContText += 1;
+            }
+            catch (Exception)
+            {
+
+                IftttManager.SendException($"L'utente {message.From.FirstName} ha la mamma molto maiala, non ha il cognome");
+            }
         }
 
-        private void IncrementaAudio(Update update)
+        private void IncrementaImmagini(Message message)
         {
-            ControllaUser(update);
-            _listaUser.Single(x => x.Nome.Equals(update.Message.From.FirstName.ToLower()) && x.Cognome.Equals(update.Message.From.LastName.ToLower())).ContAudio++;
+            ControllaUser(message);
+            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContImg += 1;
+
         }
 
-        private void ControllaUser(Update update)
+        private void IncrementaAudio(Message message)
         {
-            if (!_listaUser.Any(x => x.Nome.Equals(update.Message.From.FirstName.ToLower()) && x.Cognome.Equals(update.Message.From.LastName.ToLower())))
+            ControllaUser(message);
+            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContAudio += 1;
+
+        }
+
+        private void ControllaUser(Message message)
+        {
+            if (!_listaUser.Any(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())))
             {
                 _listaUser.Add(new UserStat
                 {
-                    Nome = update.Message.From.FirstName.ToLower(),
-                    Cognome = update.Message.From.LastName.ToLower(),
-                    Id = update.Message.From.Id
+                    Nome = message.From.FirstName?.ToLower() ?? "",
+                    Cognome = message.From.LastName?.ToLower() ?? "",
+                    Id = message.From.Id,
+                    Username = message.From.Username?.ToLower() ?? ""
                 });
+
             }
 
         }
+
+        public int GetUserIdByName(string name)
+        {
+            try
+            {
+
+                var user = _listaUser.Single(x => x.Nome.Equals(name));
+                return Convert.ToInt32(user.Id);
+
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public int GetUserIdBySurname(string surname)
+        {
+            try
+            {
+                var user = _listaUser.Single(x => x.Cognome.Equals(surname));
+                return Convert.ToInt32(user.Id);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public int GetUserIdByNameSurname(string name, string surname)
+        {
+            try
+            {
+
+                var user = _listaUser.Single(x => x.Nome.Equals(name) && x.Cognome.Equals(surname));
+                return Convert.ToInt32(user.Id);
+
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public int GetUserIdByUsername(string username)
+        {
+            try
+            {
+                var user = _listaUser.Single(x => x.Username.Equals(username));
+                return Convert.ToInt32(user.Id);
+
+            }
+            catch (Exception)
+            {
+
+                return -1;
+            }
+
+        }
+
+        public bool SalvaStatistiche()
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            JsonManager.WriteToJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"), _listaUser);
+            return true;
+        }
+
+        public static List<UserStat> CaricaStistiche()
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            return JsonManager.ReadFromJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"));
+        }
+
 
     }
 }

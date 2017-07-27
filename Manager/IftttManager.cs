@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using RestSharp;
 
-namespace TelegramBotDemo.Manager
+namespace Telegram.Bot.Examples.Echo.Manager
 {
     public static class IftttManager
     {
@@ -17,7 +17,7 @@ namespace TelegramBotDemo.Manager
             var webHooksParameters = new RestRequest(Method.GET);
             webHooksParameters.AddQueryParameter("value1", exception);
 
-            //webReequest.Execute<ResponseStatus>(webHooksParameters);
+            webReequest.Execute<ResponseStatus>(webHooksParameters);
         }
     }
 }
