@@ -846,6 +846,28 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri($"{UrlBase}/Audio/mooseca.ogg")));
                 return true;
             }
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cecche", "lex" }, 2))
+            {
+                bot.SendTextMessageAsync(messaggio.Chat.Id, "Dura lex.");
+                return true;
+            }
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dura", "lex" }, 2))
+            {
+                bot.SendTextMessageAsync(messaggio.Chat.Id, "Cecche lex.");
+                return true;
+            }
+
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dio", "città", "immensità" }, 2))
+            {
+                bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri($"{UrlBase}/audi/dioCitta.ogg")));
+                return true;
+            }
+
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "pooh", "puh", "pu", "poo" }, 1))
+            {
+                bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri($"{UrlBase}/audi/dioCitta.ogg")));
+                return true;
+            }
 
             if (GeneratoreSwitch.FraseContiene(comando, new[] { "seghe", "porno", "ettore", "disperazione" }, 2))
             {
@@ -859,13 +881,18 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 return true;
             }
 
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ennio", "morricone", "si", "vola", "130", "centotrenta", "autostrada" }, 2))
+            {
+                bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri($"{UrlBase}/audi/siVola.ogg")));
+                return true;
+            }
+
+
             if (GeneratoreSwitch.FraseContiene(comando, new[] { "fai", "soffrire", "giulio" }))
             {
                 GeneratoreSofferenza4Giulio.CreaSofferenza(messaggio, bot, new Random().Next(0, contGiulio));
                 return true;
             }
-
-
 
             if (GeneratoreSwitch.FraseContiene(comando, new[] { "stasera", "non", "posso" }))
             {
@@ -1149,7 +1176,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "camera", "caffè"}))
+            if (GeneratoreSwitch.FraseContiene(comando, new[] { "camera", "caffè" }))
             {
                 bot.SendVideoNoteAsync(messaggio.Chat.Id, new FileToSend(new Uri($"{UrlBase}/VideoNote/sega.mp4")));
                 return true;
