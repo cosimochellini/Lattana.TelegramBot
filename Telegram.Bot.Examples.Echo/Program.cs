@@ -12,25 +12,18 @@ namespace Telegram.Bot.Examples.Echo
     public static class Program
     {
         private static readonly string AccessToken = ConfigurationManager.AppSettings["AccessToken"];
-
         private static readonly StatManager StatManager = new StatManager();
-
         private static readonly TelegramBotClient Bot = new TelegramBotClient(AccessToken);
-
         private static void Main()
         {
 
-            //Bot.OnCallbackQuery += BotOnCallbackQueryReceived;
             Bot.OnMessage += BotOnMessageReceived;
             Bot.OnMessageEdited += BotOnMessageReceived;
-            //Bot.OnInlineQuery += BotOnInlineQueryReceived;
-            //Bot.OnInlineResultChosen += BotOnChosenInlineResultReceived;
             Bot.OnReceiveError += BotOnReceiveError; 
             try
             {
                 var me = Bot.GetMeAsync().Result;
                 Console.Title = me.Username;
-
             }
             catch (Exception)
             {
@@ -53,53 +46,9 @@ namespace Telegram.Bot.Examples.Echo
             Console.WriteLine($"Received choosen inline result: {chosenInlineResultEventArgs.ChosenInlineResult.ResultId}");
         }
 
-        //private static async void BotOnInlineQueryReceived(object sender, InlineQueryEventArgs inlineQueryEventArgs)
-        //{
-        //    InlineQueryResult[] results = {
-        //        new InlineQueryResultLocation
-        //        {
-        //            Id = "1",
-        //            Latitude = 40.7058316f, // displayed result
-        //            Longitude = -74.2581888f,
-        //            Title = "New York",
-        //            InputMessageContent = new InputLocationMessageContent // message if result is selected
-        //            {
-        //                Latitude = 40.7058316f,
-        //                Longitude = -74.2581888f,
-        //            }
-        //        },
-
-        //        new InlineQueryResultLocation
-        //        {
-        //            Id = "2",
-        //            Longitude = 52.507629f, // displayed result
-        //            Latitude = 13.1449577f,
-        //            Title = "Berlin",
-        //            InputMessageContent = new InputLocationMessageContent // message if result is selected
-        //            {
-        //                Longitude = 52.507629f,
-        //                Latitude = 13.1449577f
-        //            }
-        //        }
-        //    };
-
-        //    await Bot.AnswerInlineQueryAsync(inlineQueryEventArgs.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
-        //}
-
         private static void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             var message = messageEventArgs.Message;
-
-
-            //if (message.Voice != null)
-            //{
-            //    //VoiceManager.FileIdToByteArray(message.Voice.FileId, Bot, message.Voice.FileId);
-            // var directory = Directory.GetCurrentDirectory();
-            //   //var daje= SpeechManager.Rec(Path.Combine(directory, "prova.ogg") , int.MaxValue, RecognitionConfig.Types.AudioEncoding.Flac);
-            //   //var daje= SpeechManager.SyncRecognize(Path.Combine(directory, "prova.ogg"));
-            //    SpeechManager.Roar(new string[2]);
-
-            //}
 
             if (message == null || message.Type != MessageType.TextMessage) return;
 
@@ -111,7 +60,7 @@ namespace Telegram.Bot.Examples.Echo
 
             if (!StatManager.CheckUpdate(message))
             {
-                IftttManager.SendException("L'update non è andato a buon fine");
+                IftttManager.SendException("L'update non Ã¨ andato a buon fine");
                 Console.WriteLine("Update satatistiche non andato a buon fine");
             }
 
@@ -119,11 +68,11 @@ namespace Telegram.Bot.Examples.Echo
             {
                 if (message.NewChatMembers[0].Username == "LattanaBot")
                 {
-                    Bot.SendTextMessageAsync(message.Chat.Id, "Ho deciso di scendere in terra, così mi sono mostrato a voi, sciocchi umani");
+                    Bot.SendTextMessageAsync(message.Chat.Id, "Ho deciso di scendere in terra, cosÃ¬ mi sono mostrato a voi, sciocchi umani");
                 }
                 else
                 {
-                    Bot.SendTextMessageAsync(message.Chat.Id, "Lattana da il benvenuto a " + message.NewChatMembers[0].FirstName + " poichè accoglie, ma gli ricorda che sa anche punnire");
+                    Bot.SendTextMessageAsync(message.Chat.Id, "Lattana da il benvenuto a " + message.NewChatMembers[0].FirstName + " poichÃ¨ accoglie, ma gli ricorda che sa anche punnire");
                 }
             }
 
@@ -150,7 +99,6 @@ namespace Telegram.Bot.Examples.Echo
                 {
                     PaioGiulio(message);
                 }
-
             }
         }
 
