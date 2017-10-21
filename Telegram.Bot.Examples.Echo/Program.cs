@@ -49,9 +49,7 @@ namespace Telegram.Bot.Examples.Echo
         private static void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             var message = messageEventArgs.Message;
-
             if (message == null || message.Type != MessageType.TextMessage) return;
-
             if (message.Text != null && message.Text == "statcarica")
             {
                 var listaUser = StatManager.CaricaStistiche();
@@ -77,9 +75,7 @@ namespace Telegram.Bot.Examples.Echo
             }
 
             if (!GeneratoreSwitch.SwitchFunzioni(message, Bot, StatManager))
-                return;
-            
-
+                return;          
             var from = message.From;
             Console.WriteLine($"Msg from {from.FirstName} {from.LastName} @ {message.Date}  chat : {message.Chat.Title}");
 
