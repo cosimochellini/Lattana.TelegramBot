@@ -11,14 +11,14 @@ namespace Telegram.Bot.Examples.Echo.Generatore
         {
             if (comanando.Length == 1)
             {
-                bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri(GeneraLinkAudio(new Random().Next(0, 116), 0, bot, messaggio))));
+                bot.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(new Random().Next(0, 116), 0, bot, messaggio));
             }
             else
             {
                 try
                 {
                     var numeroSelezionato = Convert.ToInt32(comanando[1]) + 1 - 1;
-                    bot.SendVoiceAsync(messaggio.Chat.Id, new FileToSend(new Uri(GeneraLinkAudio(99, numeroSelezionato, bot, messaggio))));
+                    bot.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(99, numeroSelezionato, bot, messaggio));
                 }
                 catch (Exception)
                 {

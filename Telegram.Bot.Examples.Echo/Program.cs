@@ -45,7 +45,7 @@ namespace Telegram.Bot.Examples.Echo
         {
             var message = messageEventArgs.Message;
 
-            if (message == null || message.Type != MessageType.TextMessage) return;
+            if (message == null || message.Type != MessageType.Text) return;
 
             if (message.Text != null && message.Text == "statcarica")
             {
