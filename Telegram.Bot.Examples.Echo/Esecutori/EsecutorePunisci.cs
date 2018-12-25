@@ -32,7 +32,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                     return;
 
                 case 4:
-                    user = statManager.GetUserIdByNameSurname(comando[2], comando[3]);
+                    statManager.GetUserIdByNameSurname(comando[2], comando[3]);
                     return;
             }
 

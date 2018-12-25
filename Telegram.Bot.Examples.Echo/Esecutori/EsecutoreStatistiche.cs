@@ -118,13 +118,14 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             var listaUtenti = statManager.GetListaUser();
             UserStat utente;
 
+            var userStats = listaUtenti as UserStat[] ?? listaUtenti.ToArray();
             try
-            {
-                utente = listaUtenti.Single(x => x.Nome.Equals(comando[2]));
+            { 
+                utente = userStats.Single(x => x.Nome.Equals(comando[2]));
             }
             catch (Exception)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {listaUtenti.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
+                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {userStats.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
                 return;
             }
 
