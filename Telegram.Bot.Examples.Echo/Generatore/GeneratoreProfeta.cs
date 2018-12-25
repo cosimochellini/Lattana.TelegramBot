@@ -38,8 +38,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
             return offesa[casuale];
         }
 
-
-        public static void ComandoProfeta(Message messaggio, TelegramBotClient bot, int contatoreProfezia, int sceltaNonCasuale = 0)
+        public static void ComandoProfeta(Message messaggio, int contatoreProfezia, int sceltaNonCasuale = 0)
         {
             int numero;
             if (sceltaNonCasuale == 0)
@@ -52,10 +51,8 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 numero = sceltaNonCasuale;
             }
 
-            bot.SendTextMessageAsync(messaggio.Chat.Id, CreaProfezia(numero - 1));
-
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaProfezia(numero - 1));
 
         }
-
     }
 }

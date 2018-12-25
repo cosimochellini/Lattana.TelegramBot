@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
@@ -9,69 +8,69 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 {
     public static class EsecutoreStatistiche
     {
-        public static void ComandoStatistiche(Message messaggio, string[] comando, TelegramBotClient bot, StatManager statManager)
+        public static void ComandoStatistiche(Message messaggio, string[] comando)
         {
             switch (comando[1])
             {
                 case "audio":
                 case "audi":
                 case "vocali":
-                    StatisticheAudio(statManager, bot, messaggio);
+                    StatisticheAudio(messaggio);
                     break;
 
                 case "foto":
                 case "immagini":
                 case "photo":
-                    StatisticheFoto(statManager, bot, messaggio);
+                    StatisticheFoto(messaggio);
                     break;
 
                 case "messaggi":
                 case "testo":
                 case "testi":
-                    StatisticheMessaggi(statManager, bot, messaggio);
+                    StatisticheMessaggi(messaggio);
                     break;
             }
         }
 
-        private static void StatisticheAudio(StatManager statManager, ITelegramBotClient bot, Message messaggio)
+        private static void StatisticheAudio(Message messaggio)
         {
-            var arrangedAudio = statManager.GetListaUser().OrderByDescending(x => x.ContAudio).ToList();
+            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContAudio).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero audio inviati \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° audio: {utente.ContAudio} \r \n");
-            bot.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
-        private static void StatisticheMessaggi(StatManager statManager, ITelegramBotClient bot, Message messaggio)
+        private static void StatisticheMessaggi(Message messaggio)
         {
-            var arrangedAudio = statManager.GetListaUser().OrderByDescending(x => x.ContText).ToList();
+            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContText).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero messaggi inviati \r \n  \r \n", (current, utente) => current + $"-  {utente.Nome} {utente.Cognome} : {utente.ContText} \r \n");
-            bot.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
-        private static void StatisticheFoto(StatManager statManager, ITelegramBotClient bot, Message messaggio)
+        private static void StatisticheFoto(Message messaggio)
         {
-            var arrangedAudio = statManager.GetListaUser().OrderByDescending(x => x.ContImg).ToList();
+            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContImg).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero foto inviate \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° foto: {utente.ContImg} \r \n");
-            bot.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
-        internal static void ComandoAnalizza(string[] comando, Message messaggio, TelegramBotClient bot, StatManager statManager)
+        internal static void ComandoAnalizza(string[] comando, Message messaggio)
         {
 
             if (comando.Length == 1)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, devi inserire il nome di qualcuno da analizzare");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, devi inserire il nome di qualcuno da analizzare");
                 return;
             }
 
             if (comando.Length > 3)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai inserito troppi termini nel comando");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai inserito troppi termini nel comando");
                 return;
             }
 
             if (comando.Length == 2)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai non hai inseriro abbastanza termini nel comando");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai non hai inseriro abbastanza termini nel comando");
             }
 
             if (comando.Length == 3)
@@ -79,14 +78,14 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                 switch (comando[1])
                 {
                     case "nome":
-                        AnalizzaPerNome(statManager, messaggio, bot, comando);
+                        AnalizzaPerNome(messaggio, comando);
                         return;
 
                     case "username":
-                        AnalizzaPerUsername(statManager, messaggio, bot, comando);
+                        AnalizzaPerUsername(messaggio, comando);
                         return;
                     default:
-                        bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la sintassi corretta è analizza nome/username [nome/username]");
+                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la sintassi corretta è analizza nome/username [nome/username]");
                         return;
 
                 }
@@ -94,14 +93,14 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             }
         }
 
-        private static void SendReportUser(UserStat utente, ITelegramBotClient bot, Message messaggio)
+        private static void SendReportUser(UserStat utente, Message messaggio)
         {
             var messaggiTotali = utente.ContAudio + utente.ContText + utente.ContImg + utente.ContSticker;
             var percentualeMessaggi = (float)utente.ContText / messaggiTotali;
             var percentualeAudio = (float)utente.ContAudio / messaggiTotali;
             var percentualeImmagini = (float)utente.ContImg / messaggiTotali;
             var percentualeSticker = (float)utente.ContSticker / messaggiTotali;
-            bot.SendTextMessageAsync(messaggio.Chat.Id, "Analisi utente \r \n \r \n" +
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Analisi utente \r \n \r \n" +
                                                                     $" Nome : {utente.Nome} \r \n" +
                                                                     $" Cognome : {utente.Cognome} \r \n" +
                                                                     $" Id : {utente.Id} \r \n" +
@@ -113,30 +112,30 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
         }
 
-        private static void AnalizzaPerNome(StatManager statManager, Message messaggio, ITelegramBotClient bot, IReadOnlyList<string> comando)
+        private static void AnalizzaPerNome(Message messaggio, IReadOnlyList<string> comando)
         {
-            var listaUtenti = statManager.GetListaUser();
+            var listaUtenti = Models.Bot.StatManager.GetListaUser();
             UserStat utente;
 
             var userStats = listaUtenti as UserStat[] ?? listaUtenti.ToArray();
             try
-            { 
+            {
                 utente = userStats.Single(x => x.Nome.Equals(comando[2]));
             }
             catch (Exception)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {userStats.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {userStats.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
                 return;
             }
 
-            SendReportUser(utente, bot, messaggio);
+            SendReportUser(utente, messaggio);
 
         }
 
-        private static void AnalizzaPerUsername(StatManager statManager, Message messaggio, ITelegramBotClient bot, IReadOnlyList<string> comando)
+        private static void AnalizzaPerUsername(Message messaggio, IReadOnlyList<string> comando)
         {
 
-            var listaUtenti = statManager.GetListaUser();
+            var listaUtenti = Models.Bot.StatManager.GetListaUser();
             UserStat utente;
 
             try
@@ -145,11 +144,11 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             }
             catch (Exception)
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato");
                 return;
             }
 
-            SendReportUser(utente, bot, messaggio);
+            SendReportUser(utente, messaggio);
 
         }
 

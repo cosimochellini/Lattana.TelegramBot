@@ -7,30 +7,29 @@ namespace Telegram.Bot.Examples.Echo.Generatore
     {
         private const string UrlBase = "http://nazista.altervista.org";
 
-        public static void SwitchAudio(string[] comanando, Message messaggio, TelegramBotClient bot)
+        public static void SwitchAudio(string[] comanando, Message messaggio)
         {
             if (comanando.Length == 1)
             {
-                bot.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(new Random().Next(0, 116), 0, bot, messaggio));
+                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(new Random().Next(0, 116), 0, messaggio));
             }
             else
             {
                 try
                 {
                     var numeroSelezionato = Convert.ToInt32(comanando[1]) + 1 - 1;
-                    bot.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(99, numeroSelezionato, bot, messaggio));
+                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(99, numeroSelezionato, messaggio));
                 }
                 catch (Exception)
                 {
 
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
                 }
             }
         }
 
-        private static string GeneraLinkAudio(int casuale, int selezioneVolontaria, TelegramBotClient bot, Message messaggio)
+        private static string GeneraLinkAudio(int casuale, int selezioneVolontaria, Message messaggio)
         {
-            if (bot == null) throw new ArgumentNullException(nameof(bot));
             var linkAudi = new string[115];//modificato a 115
             linkAudi[0] = $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3";
             linkAudi[1] = $"{UrlBase}/audi/12345.mp3";
@@ -148,13 +147,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
             linkAudi[113] = $"{UrlBase}/audi/barum.mp3";
             linkAudi[114] = $"{UrlBase}/audi/essol%20pussy.mp3";
 
-            if (selezioneVolontaria > 114)
-            {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
-                return "";
-            }
+            if (selezioneVolontaria <= 114)
+                return selezioneVolontaria == 0 ? linkAudi[casuale - 1] : linkAudi[selezioneVolontaria];
 
-            return selezioneVolontaria == 0 ? linkAudi[casuale - 1] : linkAudi[selezioneVolontaria];
+
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
+            return "";
         }
     }
 }

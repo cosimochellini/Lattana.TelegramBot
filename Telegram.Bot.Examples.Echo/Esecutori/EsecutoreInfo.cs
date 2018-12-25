@@ -7,13 +7,13 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 {
     public static class EsecutoreInfo
     {
-        public static void ComandoInfo(Message messaggio, TelegramBotClient bot)
+        public static void ComandoInfo(Message messaggio)
         {
            var versione = ConfigurationManager.AppSettings["Versione"];
             
             try
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id,
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
                          "Versione: " + versione + " (RC) \r\n" +
                           "Sito progetto \r\n" +
                           "Proverbio \r\n" +

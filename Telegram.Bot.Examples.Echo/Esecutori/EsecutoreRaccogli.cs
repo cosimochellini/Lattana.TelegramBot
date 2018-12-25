@@ -5,7 +5,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
     public static class EsecutoreRaccogli
     {
 
-        public static void ComandoRaccogli(string[] comanando, Message messaggio, TelegramBotClient bot)
+        public static void ComandoRaccogli(string[] comanando, Message messaggio)
         {
             if (comanando.Length == 1 && messaggio.From.FirstName != "Cosimmo")
                 return;
@@ -16,17 +16,17 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             if (comanando[1].Equals("federico") || comanando[1].Equals("Federico") || comanando[1].Equals("ruocchino") ||
                 comanando[1].Equals("rocchino") || comanando[1].Equals("tocchino") || comanando[1].Equals("ruocco"))
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, "No, ruocchino non lo raccatto");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "No, ruocchino non lo raccatto");
                 return;
             }
 
             if (comanando[0].Equals("raccogli") || comanando[1].Equals("Raccogli"))
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccattare??");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccattare??");
             }
             else
             {
-                bot.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccogliere??");
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccogliere??");
             }
         }
 

@@ -35,9 +35,9 @@ namespace Telegram.Bot.Examples.Echo.Generatore
             return offesa[casuale];
         }
 
-        public static void ComandoBitta(Message messaggio, TelegramBotClient bot, int contatorePaolo)
+        public static void ComandoBitta(Message messaggio, int contatorePaolo)
         {
-            bot.SendTextMessageAsync(messaggio.Chat.Id, CreaPaolo(new Random().Next(0, contatorePaolo + 1)));
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaPaolo(new Random().Next(0, contatorePaolo + 1)));
         }
     }
 }

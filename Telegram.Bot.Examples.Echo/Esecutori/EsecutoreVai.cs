@@ -5,7 +5,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
     public static class EsecutoreVai
     {
 
-        public static void ComandoVai(string[] comanando, Message messaggio, TelegramBotClient bot)
+        public static void ComandoVai(string[] comanando, Message messaggio)
         {
             if (comanando.Length <= 2)
                 return;
@@ -17,14 +17,14 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             {
                 case "fanculo":
                 case "Fanculo":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
                     break;
 
                 case "Dormire":
                 case "dormire":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "idiota, non sono mica spacobot");
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Io non dormo mai, al massimo riposo gli occhi");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "idiota, non sono mica spacobot");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Io non dormo mai, al massimo riposo gli occhi");
                     break;
             }
         }

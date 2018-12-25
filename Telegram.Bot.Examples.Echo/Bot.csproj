@@ -104,6 +104,7 @@
     <Compile Include="Manager\JsonManager.cs" />
     <Compile Include="Manager\StatManager.cs" />
     <Compile Include="Models\ArrayCaratteriIndesiderati.cs" />
+    <Compile Include="Models\Bot.cs" />
     <Compile Include="Models\UserStat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

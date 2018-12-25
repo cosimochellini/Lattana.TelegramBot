@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
@@ -15,7 +14,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
         private const int ContGiulio = 9;
         private const int ContPano = 13;
 
-        public static bool SwitchFunzioni(Message messaggio, TelegramBotClient bot, StatManager statManager)
+        public static bool SwitchFunzioni(Message messaggio)
         {
 
             if (messaggio.Text == null)
@@ -23,13 +22,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
 
             var comando = PurificaStringa(messaggio.Text);
 
-            if (AnalizzatoreFrase.ListaAudioImmensa(comando, bot, messaggio, ContGiulio))
+            if (AnalizzatoreFrase.ListaAudioImmensa(comando, messaggio, ContGiulio))
                 return true;
 
-            if (AnalizzatoreFrase.Switch(messaggio, comando, bot, ContOffese, ContPaolo, ContPerle, statManager))    //controllo sulla prima parola
+            if (AnalizzatoreFrase.Switch(messaggio, comando, ContOffese, ContPaolo, ContPerle))    //controllo sulla prima parola
                 return true;
 
-            if (comando.Any(x => AnalizzatoreFrase.Contiene(messaggio, x, bot, ContSofferenza, ContPano)))
+            if (comando.Any(x => AnalizzatoreFrase.Contiene(messaggio, x, ContSofferenza, ContPano)))
             {
                 return true;
             }
@@ -45,11 +44,6 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 numeroCondizioni = vettoreParole.Length;
 
             var contatore = vettoreParole.Count(parola => comando.Any(x => x.Equals(parola)));
-
-            //foreach (var parola in vettoreParole)
-            //{
-            //    if (comando.Any(x => x.Equals(parola))) contatore++;
-            //}
 
             return contatore >= numeroCondizioni;
         }

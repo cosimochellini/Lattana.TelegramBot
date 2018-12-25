@@ -31,7 +31,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
         }
 
 
-        public static void ComandoInsulta(string[] comanando, Message messaggio, TelegramBotClient bot, int contatoreOffese)
+        public static void ComandoInsulta(string[] comanando, Message messaggio, int contatoreOffese)
         {
             try
             {
@@ -52,13 +52,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "cosimo":
                 case "chello":
                 case "kelinic":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Uno con il nome a cazzo tipo " + messaggio.From.FirstName + " farebbe meglio a stare zitto");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Uno con il nome a cazzo tipo " + messaggio.From.FirstName + " farebbe meglio a stare zitto");
                     return;
                 case "giulio":
                 case "guidotti":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Non mi sembra il caso di offendere giulio, è già messo male per conto suo");
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "E poi lui abita dentro di me, non ho voglia di sentirlo soffrire");
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Come se lui non soffrisse abbastanza");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Non mi sembra il caso di offendere giulio, è già messo male per conto suo");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "E poi lui abita dentro di me, non ho voglia di sentirlo soffrire");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Come se lui non soffrisse abbastanza");
                     return;
 
                 case "ruocco":
@@ -66,7 +66,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "ruocchino":
                 case "federico":
                 case "tocchino":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Con grande piacere");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Con grande piacere");
                     break;
 
                 case "lattana":
@@ -74,12 +74,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "tana":
                 case "lattanabot":
                 case "lattanaBot":
-                    bot.SendTextMessageAsync(messaggio.Chat.Id, "Hahahaha " + messaggio.From.FirstName + " sei veramente un cretino");
+                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Hahahaha " + messaggio.From.FirstName + " sei veramente un cretino");
                     return;
 
             }
 
-            bot.SendTextMessageAsync(messaggio.Chat.Id, CreaOffesa(comanando[1], new Random().Next(0, contatoreOffese)));
+            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaOffesa(comanando[1], new Random().Next(0, contatoreOffese)));
         }
 
 
