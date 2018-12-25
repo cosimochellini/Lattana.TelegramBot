@@ -56,7 +56,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
 
         private static string[] PurificaStringa(string strindaDaPurificare)
         {
-            strindaDaPurificare = ArrayCaratteriInderiderati.PurificaStringa(strindaDaPurificare);
+            strindaDaPurificare = ArrayCaratteriIndesiderati.PurificaStringa(strindaDaPurificare);
 
             var arrayPurificato = strindaDaPurificare.Split(Convert.ToChar(" ")).Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
