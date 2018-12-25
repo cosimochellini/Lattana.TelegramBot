@@ -41,11 +41,6 @@ namespace Telegram.Bot.Examples.Echo
             Debugger.Break();
         }
 
-        private static void BotOnChosenInlineResultReceived(object sender, ChosenInlineResultEventArgs chosenInlineResultEventArgs)
-        {
-            Console.WriteLine($"Received choosen inline result: {chosenInlineResultEventArgs.ChosenInlineResult.ResultId}");
-        }
-
         private static void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             var message = messageEventArgs.Message;
@@ -102,13 +97,7 @@ namespace Telegram.Bot.Examples.Echo
             }
         }
 
-        private static async void BotOnCallbackQueryReceived(object sender, CallbackQueryEventArgs callbackQueryEventArgs)
-        {
-            await Bot.AnswerCallbackQueryAsync(callbackQueryEventArgs.CallbackQuery.Id,
-                $"Received {callbackQueryEventArgs.CallbackQuery.Data}");
-        }
-
-        private static void MessaggiGiulio(Message messaggio)
+       private static void MessaggiGiulio(Message messaggio)
         {
             Bot.SendTextMessageAsync(messaggio.Chat.Id, "Scusate Giulio, gli fa fatica fare qualsiasi cosa");
             Bot.SendTextMessageAsync(messaggio.Chat.Id, "Voleva dire: Va Bene");
