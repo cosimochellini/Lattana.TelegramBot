@@ -173,7 +173,8 @@ namespace Telegram.Bot.Examples.Echo.Manager
         public static List<UserStat> CaricaStistiche()
         {
             var currentDirectory = Directory.GetCurrentDirectory();
-            return JsonManager.ReadFromJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"));
+            var userList = JsonManager.ReadFromJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"));
+            return userList ?? new List<UserStat>();
         }
 
 
