@@ -10,14 +10,14 @@ namespace Telegram.Bot.Examples.Echo.Manager
 {
     public static class StatManager
     {
-        public static List<UserStat> Items = CaricaStistiche();
-
         private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
 
         private static readonly string FolderPath = Path.Combine(CurrentDirectory, "Data");
 
-        private static readonly string JsonPath = Path.Combine(CurrentDirectory, "Data", "statInfo.json");
+        private static readonly string JsonPath = Path.Combine(FolderPath, "statInfo.json");
 
+        public static List<UserStat> Items = CaricaStistiche();
+        
         public static bool CheckUpdate(Message message)
         {
             if (message.From.Username == "Lattana")
