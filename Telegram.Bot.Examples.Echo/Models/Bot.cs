@@ -22,6 +22,7 @@ namespace Telegram.Bot.Examples.Echo.Models
             Istance.OnMessage += BotOnMessageReceived;
             Istance.OnMessageEdited += BotOnMessageReceived;
             Istance.OnReceiveError += BotOnReceiveError;
+            
             try
             {
                 var me = Istance.GetMeAsync().Result;

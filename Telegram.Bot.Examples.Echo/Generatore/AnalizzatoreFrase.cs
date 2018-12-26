@@ -11,10 +11,9 @@ namespace Telegram.Bot.Examples.Echo.Generatore
 
         public static bool Switch(Message messaggio, string[] comando, int contatoreOffese, int contatorePaolo, int contatoreProfezia)
         {
-            var preghiera =
-                "Lattana nostra, che sei in via Lungo l'Affrico 4, sia santificato il tuo nome, venga  il tuo regno," +
-                " sia fatta la tua volontà, come in gruppo Cecche così in gruppo Silvia.     Dacci oggi il nostro pano quotidiano," +
-                " e rimetti a noi i nostri cocuzzi, come noi rimettiamo le offerte per lattana, e non ci indurre in sofferenza, ma liberaci dal Mani e la Silvia.   Amen.";
+            const string preghiera = "Lattana nostra, che sei in via Lungo l'Affrico 4, sia santificato il tuo nome, venga  il tuo regno," +
+                                     " sia fatta la tua volontà, come in gruppo Cecche così in gruppo Silvia.     Dacci oggi il nostro pano quotidiano," +
+                                     " e rimetti a noi i nostri cocuzzi, come noi rimettiamo le offerte per lattana, e non ci indurre in sofferenza, ma liberaci dal Mani e la Silvia.   Amen.";
 
             switch (comando[0])
             {
