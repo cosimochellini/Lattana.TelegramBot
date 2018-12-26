@@ -23,6 +23,8 @@ namespace Telegram.Bot.Examples.Echo.Manager
             if (message.From.Username == "Lattana")
                 return true;
 
+            SalvaStatistiche();
+
             if (message.Audio != null || message.Voice != null)
             {
                 IncrementaAudio(message);
@@ -47,7 +49,6 @@ namespace Telegram.Bot.Examples.Echo.Manager
                 return true;
 
             }
-            //StatManager.
 
             return false;
         }
