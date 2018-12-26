@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Telegram.Bot.Examples.Echo.Generatore;
+using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Types;
 
 namespace Telegram.Bot.Examples.Echo.Esecutori
@@ -31,7 +32,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                     return;
 
                 case 4:
-                    Models.Bot.StatManager.GetUserIdByNameSurname(comando[2], comando[3]);
+                    StatManager.GetUserIdByNameSurname(comando[2], comando[3]);
                     return;
             }
 
@@ -56,13 +57,13 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             switch (comando[1])
             {
                 case "nome":
-                    user = Models.Bot.StatManager.GetUserIdByName(comando[2]);
+                    user = StatManager.GetUserIdByName(comando[2]);
                     return user;
                 case "cognome":
-                    user = Models.Bot.StatManager.GetUserIdBySurname(comando[2]);
+                    user = StatManager.GetUserIdBySurname(comando[2]);
                     return user;
                 case "username":
-                    user = Models.Bot.StatManager.GetUserIdByUsername(comando[2]);
+                    user = StatManager.GetUserIdByUsername(comando[2]);
                     return user;
                 case "nomecognome":
                     Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "con nomecognome devi inserire sia il nome che il cognome da cercare");

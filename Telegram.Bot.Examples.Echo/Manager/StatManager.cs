@@ -8,9 +8,9 @@ using File = System.IO.File;
 
 namespace Telegram.Bot.Examples.Echo.Manager
 {
-    public class StatManager
+    public static class StatManager
     {
-        private List<UserStat> _listaUser = CaricaStistiche();
+        public static List<UserStat> Items = CaricaStistiche();
 
         private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
 
@@ -18,7 +18,7 @@ namespace Telegram.Bot.Examples.Echo.Manager
 
         private static readonly string JsonPath = Path.Combine(CurrentDirectory, "Data", "statInfo.json");
 
-        public bool CheckUpdate(Message message)
+        public static bool CheckUpdate(Message message)
         {
             if (message.From.Username == "Lattana")
                 return true;
@@ -47,31 +47,28 @@ namespace Telegram.Bot.Examples.Echo.Manager
                 return true;
 
             }
+            //StatManager.
+
             return false;
         }
 
-        private void IncrementaSticker(Message message)
+        private static void IncrementaSticker(Message message)
         {
             ControllaUser(message);
-            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals(message.From.LastName.ToLower())).ContSticker++;
+            Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals(message.From.LastName.ToLower())).ContSticker++;
         }
 
-        public IEnumerable<UserStat> GetListaUser()
+        public static void SetListaUser(List<UserStat> listaUserStats)
         {
-            return _listaUser;
+            Items = listaUserStats;
         }
 
-        public void SetListaUser(List<UserStat> listaUserStats)
-        {
-            _listaUser = listaUserStats;
-        }
-
-        private void IncrementaTesto(Message message)
+        private static void IncrementaTesto(Message message)
         {
             ControllaUser(message);
             try
             {
-                _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContText += 1;
+                Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContText += 1;
             }
             catch (Exception)
             {
@@ -80,25 +77,25 @@ namespace Telegram.Bot.Examples.Echo.Manager
             }
         }
 
-        private void IncrementaImmagini(Message message)
+        private static void IncrementaImmagini(Message message)
         {
             ControllaUser(message);
-            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContImg += 1;
+            Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContImg += 1;
 
         }
 
-        private void IncrementaAudio(Message message)
+        private static void IncrementaAudio(Message message)
         {
             ControllaUser(message);
-            _listaUser.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContAudio += 1;
+            Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())).ContAudio += 1;
 
         }
 
-        private void ControllaUser(Message message)
+        private static void ControllaUser(Message message)
         {
-            if (!_listaUser.Any(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())))
+            if (!Items.Any(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals((message.From.LastName ?? "").ToLower())))
             {
-                _listaUser.Add(new UserStat
+                Items.Add(new UserStat
                 {
                     Nome = message.From.FirstName?.ToLower() ?? "",
                     Cognome = message.From.LastName?.ToLower() ?? "",
@@ -110,12 +107,38 @@ namespace Telegram.Bot.Examples.Echo.Manager
 
         }
 
-        public int GetUserIdByName(string name)
+        public static int GetUserIdByName(string name)
+        {
+            try
+            {
+                var user = Items.Single(x => x.Nome.Equals(name));
+                return Convert.ToInt32(user.Id);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public static int GetUserIdBySurname(string surname)
+        {
+            try
+            {
+                var user = Items.Single(x => x.Cognome.Equals(surname));
+                return Convert.ToInt32(user.Id);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public static int GetUserIdByNameSurname(string name, string surname)
         {
             try
             {
 
-                var user = _listaUser.Single(x => x.Nome.Equals(name));
+                var user = Items.Single(x => x.Nome.Equals(name) && x.Cognome.Equals(surname));
                 return Convert.ToInt32(user.Id);
 
             }
@@ -125,39 +148,11 @@ namespace Telegram.Bot.Examples.Echo.Manager
             }
         }
 
-        public int GetUserIdBySurname(string surname)
+        public static int GetUserIdByUsername(string username)
         {
             try
             {
-                var user = _listaUser.Single(x => x.Cognome.Equals(surname));
-                return Convert.ToInt32(user.Id);
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-        }
-
-        public int GetUserIdByNameSurname(string name, string surname)
-        {
-            try
-            {
-
-                var user = _listaUser.Single(x => x.Nome.Equals(name) && x.Cognome.Equals(surname));
-                return Convert.ToInt32(user.Id);
-
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-        }
-
-        public int GetUserIdByUsername(string username)
-        {
-            try
-            {
-                var user = _listaUser.Single(x => x.Username.Equals(username));
+                var user = Items.Single(x => x.Username.Equals(username));
                 return Convert.ToInt32(user.Id);
 
             }
@@ -169,12 +164,12 @@ namespace Telegram.Bot.Examples.Echo.Manager
 
         }
 
-        public bool SalvaStatistiche()
+        public static bool SalvaStatistiche()
         {
             Directory.CreateDirectory(FolderPath);
             if (!File.Exists(JsonPath)) File.Create(JsonPath).Dispose();
 
-            JsonManager.WriteToJsonFile(JsonPath, _listaUser);
+            JsonManager.WriteToJsonFile(JsonPath, Items);
             return true;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
@@ -40,21 +41,21 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
         private static void StatisticheAudio(Message messaggio)
         {
-            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContAudio).ToList();
+            var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContAudio).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero audio inviati \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° audio: {utente.ContAudio} \r \n");
             Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
         private static void StatisticheMessaggi(Message messaggio)
         {
-            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContText).ToList();
+            var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContText).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero messaggi inviati \r \n  \r \n", (current, utente) => current + $"-  {utente.Nome} {utente.Cognome} : {utente.ContText} \r \n");
             Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
         private static void StatisticheFoto(Message messaggio)
         {
-            var arrangedAudio = Models.Bot.StatManager.GetListaUser().OrderByDescending(x => x.ContImg).ToList();
+            var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContImg).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero foto inviate \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° foto: {utente.ContImg} \r \n");
             Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
@@ -120,43 +121,31 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
         private static void AnalizzaPerNome(Message messaggio, IReadOnlyList<string> comando)
         {
-            var listaUtenti = Models.Bot.StatManager.GetListaUser();
-            UserStat utente;
-
-            var userStats = listaUtenti as UserStat[] ?? listaUtenti.ToArray();
             try
             {
-                utente = userStats.Single(x => x.Nome.Equals(comando[2]));
+                var utente = StatManager.Items.Single(x => x.Nome.Equals(comando[2]));
+                SendReportUser(utente, messaggio);
+
             }
             catch (Exception)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {userStats.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
-                return;
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
+                    $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {StatManager.Items.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
             }
-
-            SendReportUser(utente, messaggio);
 
         }
 
         private static void AnalizzaPerUsername(Message messaggio, IReadOnlyList<string> comando)
         {
-
-            var listaUtenti = Models.Bot.StatManager.GetListaUser();
-            UserStat utente;
-
             try
             {
-                utente = listaUtenti.Single(x => x.Nome.Equals(comando[1]));
+                var utente = StatManager.Items.Single(x => x.Nome.Equals(comando[1]));
+                SendReportUser(utente, messaggio);
             }
             catch (Exception)
             {
                 Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato");
-                return;
             }
-
-            SendReportUser(utente, messaggio);
-
         }
-
     }
 }

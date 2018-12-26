@@ -133,7 +133,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                     StatManager.CaricaStistiche();
                     return true;
                 case "statsalva":
-                    if (Models.Bot.StatManager.SalvaStatistiche())
+                    if (StatManager.SalvaStatistiche())
                         Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "salvataggio riuscito :D");
                     return true;
             }
