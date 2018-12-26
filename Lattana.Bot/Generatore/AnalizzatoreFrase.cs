@@ -841,7 +841,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
         public static bool ListaAudioImmensa(string[] comando, Message messaggio, int contGiulio)
         {
             if (GeneratoreSwitch.FraseContiene(comando, new[] { "enrico", "papi" }, 1))
-            {
+            {   
                 Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
                 return true;
             }
