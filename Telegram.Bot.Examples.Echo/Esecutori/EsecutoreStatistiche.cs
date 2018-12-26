@@ -10,6 +10,12 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
     {
         public static void ComandoStatistiche(Message messaggio, string[] comando)
         {
+            if (comando.Length < 2)
+            {
+                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "indicare che tipo di statistica, esempio : statistica audio, immagini, testo");
+                return;
+            }
+
             switch (comando[1])
             {
                 case "audio":

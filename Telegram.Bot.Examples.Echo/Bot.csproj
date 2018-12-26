@@ -102,9 +102,11 @@
     <Compile Include="Generatore\GeneratoreSwitch.cs" />
     <Compile Include="Manager\IftttManager.cs" />
     <Compile Include="Manager\JsonManager.cs" />
+    <Compile Include="Manager\ModulesManager.cs" />
     <Compile Include="Manager\StatManager.cs" />
     <Compile Include="Models\ArrayCaratteriIndesiderati.cs" />
     <Compile Include="Models\Bot.cs" />
+    <Compile Include="Models\Module.cs" />
     <Compile Include="Models\UserStat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

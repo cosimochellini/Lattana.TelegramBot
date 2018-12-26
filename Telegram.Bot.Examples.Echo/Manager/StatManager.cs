@@ -4,12 +4,19 @@ using System.IO;
 using System.Linq;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
+using File = System.IO.File;
 
 namespace Telegram.Bot.Examples.Echo.Manager
 {
     public class StatManager
     {
         private List<UserStat> _listaUser = CaricaStistiche();
+
+        private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
+
+        private static readonly string FolderPath = Path.Combine(CurrentDirectory, "Data");
+
+        private static readonly string JsonPath = Path.Combine(CurrentDirectory, "Data", "statInfo.json");
 
         public bool CheckUpdate(Message message)
         {
@@ -164,19 +171,22 @@ namespace Telegram.Bot.Examples.Echo.Manager
 
         public bool SalvaStatistiche()
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            Directory.CreateDirectory(FolderPath);
+            if (!File.Exists(JsonPath)) File.Create(JsonPath).Dispose();
 
-            JsonManager.WriteToJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"), _listaUser);
+            JsonManager.WriteToJsonFile(JsonPath, _listaUser);
             return true;
         }
 
         public static List<UserStat> CaricaStistiche()
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var userList = JsonManager.ReadFromJsonFile(Path.Combine(currentDirectory, "Data", "statInfo.json"));
+
+            Directory.CreateDirectory(FolderPath);
+            if (!File.Exists(JsonPath)) File.Create(JsonPath).Dispose();
+
+            var userList = JsonManager.ReadFromJsonFile(JsonPath);
             return userList ?? new List<UserStat>();
         }
-
 
     }
 }

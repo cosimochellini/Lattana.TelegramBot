@@ -16,7 +16,7 @@ namespace Telegram.Bot.Examples.Echo.Models
         public static readonly TelegramBotClient Istance = new TelegramBotClient(AccessToken);
 
         public static readonly StatManager StatManager = new StatManager();
-        
+      
         public static void LoadHook()
         {
             Istance.OnMessage += BotOnMessageReceived;
