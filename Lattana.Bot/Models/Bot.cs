@@ -20,7 +20,7 @@ namespace Telegram.Bot.Examples.Echo.Models
             Istance.OnMessage += BotOnMessageReceived;
             Istance.OnMessageEdited += BotOnMessageReceived;
             Istance.OnReceiveError += BotOnReceiveError;
-            
+
             try
             {
                 var me = Istance.GetMeAsync().Result;
@@ -32,7 +32,7 @@ namespace Telegram.Bot.Examples.Echo.Models
                 throw;
             }
         }
-        
+
         private static void BotOnReceiveError(object sender, ReceiveErrorEventArgs receiveErrorEventArgs)
         {
             Debugger.Break();
@@ -43,18 +43,6 @@ namespace Telegram.Bot.Examples.Echo.Models
             var message = messageEventArgs.Message;
 
             if (message == null || message.Type != MessageType.Text) return;
-
-            if (message.Text != null && message.Text == "statcarica")
-            {
-                var listaUser = StatManager.CaricaStistiche();
-                StatManager.SetListaUser(listaUser);
-            }
-
-            if (!StatManager.CheckUpdate(message))
-            {
-                IftttManager.SendException("L'update non è andato a buon fine");
-                Console.WriteLine("Update satatistiche non andato a buon fine");
-            }
 
             if (message.NewChatMembers != null) //Controllo nuovo utente nuovo utente
             {
@@ -70,7 +58,7 @@ namespace Telegram.Bot.Examples.Echo.Models
 
             if (!GeneratoreSwitch.SwitchFunzioni(message))
                 return;
-            
+
             var from = message.From;
             Console.WriteLine($"Msg from {from.FirstName} {from.LastName} @ {message.Date}  chat : {message.Chat.Title}");
 
@@ -90,6 +78,12 @@ namespace Telegram.Bot.Examples.Echo.Models
                 {
                     PaioGiulio(message);
                 }
+            }
+
+            if (!StatManager.CheckUpdate(message))
+            {
+                IftttManager.SendException("L'update non è andato a buon fine");
+                Console.WriteLine("Update satatistiche non andato a buon fine");
             }
         }
 

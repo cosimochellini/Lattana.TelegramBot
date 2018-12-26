@@ -59,11 +59,7 @@ namespace Telegram.Bot.Examples.Echo.Manager
             Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals(message.From.LastName.ToLower())).ContSticker++;
         }
 
-        public static void SetListaUser(List<UserStat> listaUserStats)
-        {
-            Items = listaUserStats;
-        }
-
+    
         private static void IncrementaTesto(Message message)
         {
             ControllaUser(message);
