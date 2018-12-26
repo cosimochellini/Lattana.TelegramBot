@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
-using Telegram.Bot.Examples.Echo.Models;
 
 namespace Telegram.Bot.Examples.Echo.Manager
 {
     public static class JsonManager
     {
-        public static void WriteToJsonFile(string filePath, List<UserStat> objectToWrite, bool append = false)
+        public static void WriteToJsonFile<T>(string filePath, T objectToWrite, bool append = false)
         {
             TextWriter writer = null;
             try
@@ -25,14 +25,14 @@ namespace Telegram.Bot.Examples.Echo.Manager
             }
         }
 
-        public static List<UserStat> ReadFromJsonFile(string filePath)
+        public static T ReadFromJsonFile<T>(string filePath)
         {
             TextReader reader = null;
             try
             {
                 reader = new StreamReader(filePath);
                 var fileContents = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<UserStat>>(fileContents);
+                return JsonConvert.DeserializeObject<T>(fileContents);
             }
             finally
             {
@@ -95,6 +95,15 @@ namespace Telegram.Bot.Examples.Echo.Manager
             }
 
             return objectOut;
+        }
+
+        public static IEnumerable<string> GetAllJson(string path)
+        {
+            var directory = new DirectoryInfo(path);
+
+            var files = directory.GetFiles("*.json");
+
+            return files.Select(file => file.Name);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
@@ -21,6 +22,9 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 return true;
 
             var comando = PurificaStringa(messaggio.Text);
+
+            if (ModulesManager.CheckModules(comando))
+                return true;
 
             if (AnalizzatoreFrase.ListaAudioImmensa(comando, messaggio, ContGiulio))
                 return true;

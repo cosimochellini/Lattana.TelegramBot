@@ -1,4 +1,5 @@
 using System;
+using Telegram.Bot.Examples.Echo.Manager;
 
 namespace Telegram.Bot.Examples.Echo
 {
@@ -8,6 +9,8 @@ namespace Telegram.Bot.Examples.Echo
         {
 
             Models.Bot.LoadHook();
+
+            ModulesManager.LoadModules();
 
             Models.Bot.Istance.StartReceiving();
 

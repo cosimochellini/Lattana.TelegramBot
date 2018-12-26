@@ -17,7 +17,7 @@ namespace Telegram.Bot.Examples.Echo.Manager
         private static readonly string JsonPath = Path.Combine(FolderPath, "statInfo.json");
 
         public static List<UserStat> Items = CaricaStistiche();
-        
+
         public static bool CheckUpdate(Message message)
         {
             if (message.From.Username == "Lattana")
@@ -59,7 +59,7 @@ namespace Telegram.Bot.Examples.Echo.Manager
             Items.Single(x => x.Nome.Equals(message.From.FirstName.ToLower()) && x.Cognome.Equals(message.From.LastName.ToLower())).ContSticker++;
         }
 
-    
+
         private static void IncrementaTesto(Message message)
         {
             ControllaUser(message);
@@ -176,8 +176,8 @@ namespace Telegram.Bot.Examples.Echo.Manager
             Directory.CreateDirectory(FolderPath);
             if (!File.Exists(JsonPath)) File.Create(JsonPath).Dispose();
 
-            var userList = JsonManager.ReadFromJsonFile(JsonPath);
-            return userList ?? new List<UserStat>();
+            return JsonManager.ReadFromJsonFile<List<UserStat>>(JsonPath) ?? new List<UserStat>();
+
         }
 
     }

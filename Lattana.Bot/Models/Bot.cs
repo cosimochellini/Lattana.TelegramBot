@@ -58,7 +58,7 @@ namespace Telegram.Bot.Examples.Echo.Models
 
             if (!GeneratoreSwitch.SwitchFunzioni(message))
                 return;
-
+            
             var from = message.From;
             Console.WriteLine($"Msg from {from.FirstName} {from.LastName} @ {message.Date}  chat : {message.Chat.Title}");
 
