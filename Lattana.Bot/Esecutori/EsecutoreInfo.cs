@@ -14,7 +14,7 @@ namespace Lattana.Bot.Esecutori
             try
             {
                 Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
-                         "Versione: " + versione + " (RC) \r\n" +
+                         "Versione: " + versione + " (Alfa) \r\n" +
                           "Sito progetto \r\n" +
                           "Proverbio \r\n" +
                           "Bruto/Belo \r\n" +
