@@ -1,10 +1,10 @@
 ﻿using System;
-using Telegram.Bot.Examples.Echo.Esecutori;
-using Telegram.Bot.Examples.Echo.Istance;
-using Telegram.Bot.Examples.Echo.Manager;
+using Lattana.Bot.Esecutori;
+using Lattana.Bot.Istance;
+using Lattana.Bot.Manager;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Generatore
+namespace Lattana.Bot.Generatore
 {
     public static class AnalizzatoreFrase
     {

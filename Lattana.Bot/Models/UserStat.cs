@@ -1,4 +1,4 @@
-﻿namespace Telegram.Bot.Examples.Echo.Models
+﻿namespace Lattana.Bot.Models
 {
     public class UserStat
     {

@@ -1,12 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
-namespace Telegram.Bot.Examples.Echo.Manager
+namespace Lattana.Bot.Manager
 {
     public static class JsonManager
     {

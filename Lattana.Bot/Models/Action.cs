@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Models
+namespace Lattana.Bot.Models
 {
     public class Action
     {

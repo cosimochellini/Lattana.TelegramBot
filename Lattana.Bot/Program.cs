@@ -1,7 +1,7 @@
 using System;
-using Telegram.Bot.Examples.Echo.Manager;
+using Lattana.Bot.Manager;
 
-namespace Telegram.Bot.Examples.Echo
+namespace Lattana.Bot
 {
     public static class Program
     {

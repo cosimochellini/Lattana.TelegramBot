@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Telegram.Bot.Examples.Echo.Istance;
-using Telegram.Bot.Examples.Echo.Models;
+using Lattana.Bot.Istance;
+using Lattana.Bot.Models;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Esecutori
+namespace Lattana.Bot.Esecutori
 {
     public static class EsecutoreStatistiche
     {

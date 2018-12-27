@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Telegram.Bot.Examples.Echo.Manager;
+using Lattana.Bot.Manager;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Generatore
+namespace Lattana.Bot.Generatore
 {
     public static class GeneratoreSwitch
     {

@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using RestSharp;
 
-namespace Telegram.Bot.Examples.Echo.Manager
+namespace Lattana.Bot.Manager
 {
     public static class IftttManager
     {

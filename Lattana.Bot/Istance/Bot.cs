@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Configuration;
-using System.Diagnostics;
+using Lattana.Bot.Generatore;
+using Lattana.Bot.Manager;
+using Telegram.Bot;
 using Telegram.Bot.Args;
-using Telegram.Bot.Examples.Echo.Generatore;
-using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Telegram.Bot.Examples.Echo.Istance
+namespace Lattana.Bot.Istance
 {
     public static class Bot
     {

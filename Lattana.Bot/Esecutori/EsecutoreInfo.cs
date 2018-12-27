@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Configuration;
-using Telegram.Bot.Examples.Echo.Manager;
+using Lattana.Bot.Manager;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Esecutori
+namespace Lattana.Bot.Esecutori
 {
     public static class EsecutoreInfo
     {

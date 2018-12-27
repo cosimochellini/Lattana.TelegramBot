@@ -1,4 +1,4 @@
-﻿namespace Telegram.Bot.Examples.Echo.Generatore
+﻿namespace Lattana.Bot.Generatore
 {
     public static class GeneratorePano
     {

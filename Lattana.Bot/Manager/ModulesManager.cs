@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Telegram.Bot.Examples.Echo.Models;
+using Lattana.Bot.Models;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Manager
+namespace Lattana.Bot.Manager
 {
     public static class ModulesManager
     {

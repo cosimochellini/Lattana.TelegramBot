@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Telegram.Bot.Examples.Echo.Models
+namespace Lattana.Bot.Models
 {
     public class Condition
     {

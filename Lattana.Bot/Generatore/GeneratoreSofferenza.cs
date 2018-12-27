@@ -1,7 +1,8 @@
 ﻿using System;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Generatore
+namespace Lattana.Bot.Generatore
 {
     public static class GeneratoreSofferenza
     {

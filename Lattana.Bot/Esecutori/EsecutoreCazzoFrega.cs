@@ -1,7 +1,7 @@
 ﻿using System;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Esecutori
+namespace Lattana.Bot.Esecutori
 {
     public static class EsecutoreCazzoFrega
     {

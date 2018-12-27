@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Telegram.Bot.Examples.Echo.Manager
+namespace Lattana.Bot.Manager
 {
     public static class StringOperator
     {

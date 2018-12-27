@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Telegram.Bot.Examples.Echo.Istance;
-using Telegram.Bot.Examples.Echo.Manager;
+using Lattana.Bot.Istance;
+using Lattana.Bot.Manager;
 using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Examples.Echo.Esecutori
+namespace Lattana.Bot.Esecutori
 {
     public static class EsecutorePunisci
     {
