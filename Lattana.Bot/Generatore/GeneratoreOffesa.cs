@@ -52,13 +52,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "cosimo":
                 case "chello":
                 case "kelinic":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Uno con il nome a cazzo tipo " + messaggio.From.FirstName + " farebbe meglio a stare zitto");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Uno con il nome a cazzo tipo " + messaggio.From.FirstName + " farebbe meglio a stare zitto");
                     return;
                 case "giulio":
                 case "guidotti":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Non mi sembra il caso di offendere giulio, è già messo male per conto suo");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "E poi lui abita dentro di me, non ho voglia di sentirlo soffrire");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Come se lui non soffrisse abbastanza");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Non mi sembra il caso di offendere giulio, è già messo male per conto suo");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "E poi lui abita dentro di me, non ho voglia di sentirlo soffrire");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Come se lui non soffrisse abbastanza");
                     return;
 
                 case "ruocco":
@@ -66,7 +66,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "ruocchino":
                 case "federico":
                 case "tocchino":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Con grande piacere");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Con grande piacere");
                     break;
 
                 case "lattana":
@@ -74,12 +74,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "tana":
                 case "lattanabot":
                 case "lattanaBot":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Hahahaha " + messaggio.From.FirstName + " sei veramente un cretino");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Hahahaha " + messaggio.From.FirstName + " sei veramente un cretino");
                     return;
 
             }
 
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaOffesa(comanando[1], new Random().Next(0, contatoreOffese)));
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaOffesa(comanando[1], new Random().Next(0, contatoreOffese)));
         }
 
 

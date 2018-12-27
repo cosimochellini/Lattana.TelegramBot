@@ -13,7 +13,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             
             try
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
                          "Versione: " + versione + " (RC) \r\n" +
                           "Sito progetto \r\n" +
                           "Proverbio \r\n" +

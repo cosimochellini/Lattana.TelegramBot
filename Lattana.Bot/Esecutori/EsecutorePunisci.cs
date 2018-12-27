@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Telegram.Bot.Examples.Echo.Generatore;
+using Telegram.Bot.Examples.Echo.Istance;
 using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Types;
 
@@ -17,7 +17,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                 case 0:
                 case 1:
                 case 2:
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "mi dispiace ma devi inserire la corretta sintassi per un adeguato funzionamento del comando punnisci \n \r " +
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "mi dispiace ma devi inserire la corretta sintassi per un adeguato funzionamento del comando punnisci \n \r " +
                                                       "Sintassi corretta: punnisci [nome/cognome/usrname/nomecognome] [nome/cognome/username/nomecognome da punnire]  " +
                                                       "Esempio: punnisci username giulioguidotti");
                     return;
@@ -26,7 +26,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                     user = GetUser(comando, messaggio);
                     if (user.Equals(-1))
                     {
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "oops qualcosa è andato storto");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "oops qualcosa è andato storto");
                         return;
                     }
                     return;
@@ -38,15 +38,15 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
             try
             {
-                if (GeneratoreSwitch.FraseContiene(comando, new[] { "cosimo", "chellini" }, 1))
+                if (StringOperator.Contains(comando, new[] { "cosimo", "chellini" }, 1))
                 {
                     user = messaggio.From.Id;
                 }
-                Models.Bot.Istance.KickChatMemberAsync(messaggio.Chat.Id, user);
+                Istance.Bot.Istance.KickChatMemberAsync(messaggio.Chat.Id, user);
             }
             catch (Exception)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma non sono riuscito a punnirlo");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma non sono riuscito a punnirlo");
             }
         }
 
@@ -66,7 +66,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                     user = StatManager.GetUserIdByUsername(comando[2]);
                     return user;
                 case "nomecognome":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "con nomecognome devi inserire sia il nome che il cognome da cercare");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "con nomecognome devi inserire sia il nome che il cognome da cercare");
                     return -1;
             }
             return -1;

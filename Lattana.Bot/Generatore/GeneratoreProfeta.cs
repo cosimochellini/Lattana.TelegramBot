@@ -51,7 +51,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 numero = sceltaNonCasuale;
             }
 
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaProfezia(numero - 1));
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaProfezia(numero - 1));
 
         }
     }

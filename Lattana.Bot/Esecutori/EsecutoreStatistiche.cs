@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Telegram.Bot.Examples.Echo.Manager;
+using Telegram.Bot.Examples.Echo.Istance;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
@@ -13,7 +13,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
         {
             if (comando.Length < 2)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "indicare che tipo di statistica, esempio : statistica audio, immagini, testo");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "indicare che tipo di statistica, esempio : statistica audio, immagini, testo");
                 return;
             }
 
@@ -43,21 +43,21 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
         {
             var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContAudio).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero audio inviati \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° audio: {utente.ContAudio} \r \n");
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
         private static void StatisticheMessaggi(Message messaggio)
         {
             var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContText).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero messaggi inviati \r \n  \r \n", (current, utente) => current + $"-  {utente.Nome} {utente.Cognome} : {utente.ContText} \r \n");
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
         private static void StatisticheFoto(Message messaggio)
         {
             var arrangedAudio = StatManager.Items.OrderByDescending(x => x.ContImg).ToList();
             var statisticaTxt = arrangedAudio.Aggregate("Ordine utenti per numero foto inviate \r \n  \r \n", (current, utente) => current + $"- {utente.Nome} {utente.Cognome} | n° foto: {utente.ContImg} \r \n");
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, statisticaTxt);
         }
 
         internal static void ComandoAnalizza(string[] comando, Message messaggio)
@@ -65,19 +65,19 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
             if (comando.Length == 1)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, devi inserire il nome di qualcuno da analizzare");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, devi inserire il nome di qualcuno da analizzare");
                 return;
             }
 
             if (comando.Length > 3)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai inserito troppi termini nel comando");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai inserito troppi termini nel comando");
                 return;
             }
 
             if (comando.Length == 2)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai non hai inseriro abbastanza termini nel comando");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, hai non hai inseriro abbastanza termini nel comando");
             }
 
             if (comando.Length == 3)
@@ -92,7 +92,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                         AnalizzaPerUsername(messaggio, comando);
                         return;
                     default:
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la sintassi corretta è analizza nome/username [nome/username]");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la sintassi corretta è analizza nome/username [nome/username]");
                         return;
 
                 }
@@ -107,7 +107,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             var percentualeAudio = (float)utente.ContAudio / messaggiTotali;
             var percentualeImmagini = (float)utente.ContImg / messaggiTotali;
             var percentualeSticker = (float)utente.ContSticker / messaggiTotali;
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Analisi utente \r \n \r \n" +
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Analisi utente \r \n \r \n" +
                                                                     $" Nome : {utente.Nome} \r \n" +
                                                                     $" Cognome : {utente.Cognome} \r \n" +
                                                                     $" Id : {utente.Id} \r \n" +
@@ -129,7 +129,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             }
             catch (Exception)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
                     $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato, {StatManager.Items.Count(x => x.Nome.Equals(comando[2]))} risultati trovati");
             }
 
@@ -144,7 +144,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             }
             catch (Exception)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"Mi dispiace {messaggio.From.FirstName}, la ricerca di {comando[1]} ha risultato 0 o più di un risultato");
             }
         }
     }

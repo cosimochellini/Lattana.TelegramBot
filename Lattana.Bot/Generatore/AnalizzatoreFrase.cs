@@ -1,5 +1,6 @@
 ﻿using System;
 using Telegram.Bot.Examples.Echo.Esecutori;
+using Telegram.Bot.Examples.Echo.Istance;
 using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Types;
 
@@ -21,7 +22,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "amen":
                 case "ammen":
                 case "pregghiera":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, preghiera);
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, preghiera);
                     return true;
 
                 case "insulta":
@@ -33,7 +34,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "musica":
                 case "maestro":
                 case "labamba":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
                     return true;
                 case "paolo":
                 case "bitta":
@@ -73,20 +74,20 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                     return true;
 
                 case "vaffanculo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te, testa di merda (con amore <3) ");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te, testa di merda (con amore <3) ");
                     return true;
 
                 case "giulia":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "<3");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "<3");
                     return true;
 
                 case "ping":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "pong");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "pong");
                     return true;
 
                 case "pong":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "ping");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "ping");
                     return true;
 
                 case "profezia":
@@ -98,14 +99,14 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "mw3":
                 case "barum":
                 case "djruocco":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, "https://d3uepj124s5rcx.cloudfront.net/items/0C2p3y3A3y3E371Q2L39/Dj%20Ruocco.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, "https://d3uepj124s5rcx.cloudfront.net/items/0C2p3y3A3y3E371Q2L39/Dj%20Ruocco.mp3");
                     return true;
 
                 case "poherino":
                 case "poherino?":
                 case "poerino?":
                 case "poerino":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Briuuuuuuuuutooooooooooooooooooooooo pooooheeeeeeeeriiiiiiiino no perché  siiiiiiii diiiice");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Briuuuuuuuuutooooooooooooooooooooooo pooooheeeeeeeeriiiiiiiino no perché  siiiiiiii diiiice");
                     return true;
 
                 case "audio":
@@ -118,11 +119,11 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "paio":
                 case "paioled":
                 case "si":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
                     return true;
 
                 case "no":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/no.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/no.ogg");
                     return true;
 
                 case "statistica":
@@ -134,7 +135,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                     return true;
                 case "statsalva":
                     if (StatManager.SalvaStatistiche())
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "salvataggio riuscito :D");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "salvataggio riuscito :D");
                     return true;
             }
             return false;
@@ -151,7 +152,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "sgrezzi":
                 case "sgrezi":
                 case "sciupi":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/la%20sciali.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/la%20sciali.ogg");
                     return true;
 
                 case "bang":
@@ -161,57 +162,57 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "beng":
                 case "bengh":
                 case "pum":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/bang.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/bang.ogg");
                     return true;
 
                 case "auguri":
                 case "augurii":
                 case "auguriii":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Auguriiiiii anche da parte miaa XDD");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Auguriiiiii anche da parte miaa XDD");
                     return true;
 
                 case "domma":
                 case "donma":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
                     return true;
 
                 case "briuto":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " beelo");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " beelo");
                     return true;
 
                 case "beelo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " briuto");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " briuto");
                     return true;
 
                 case "bëhlo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Brühto");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Brühto");
                     return true;
 
                 case "bëlo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Brüto");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Brüto");
                     return true;
 
                 case "bruto":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " belo");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " belo");
                     return true;
 
                 case "belo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "bruto");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "bruto");
                     return true;
 
                 case "brühto":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Bëhlo");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " Bëhlo");
                     return true;
 
                 case "brüto":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " bëlo");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, " bëlo");
                     return true;
 
                 case "pano":
                 case "pano?":
                 case "panuozzo":
                 case "panuozzo?":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, GeneratorePano.CreaPano(new Random().Next(0, contPano)));
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, GeneratorePano.CreaPano(new Random().Next(0, contPano)));
                     return true;
 
                 case "12345":
@@ -219,19 +220,19 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "1234":
                 case "primo":
                 case "uno":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/12345.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/12345.mp3");
                     return true;
 
                 case "sa":
                 case "saa":
                 case "saaa":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sa.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sa.ogg");
                     return true;
 
                 case "acciderbolina":
                 case "accipicchia":
                 case "cavolo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/acciderbolina.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/acciderbolina.mp3");
                     return true;
 
                 case "ahahahahah":
@@ -242,30 +243,30 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "ahahah":
                 case "ahahahah":
                 case "ahaha":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ahahah.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ahahah.mp3");
                     return true;
 
                 case "gruppo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/altro%20gruppo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/altro%20gruppo.mp3");
                     return true;
 
                 case "bella":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bella.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bella.mp3");
                     return true;
 
                 case "brava":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brava%20brava.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brava%20brava.mp3");
                     return true;
 
                 case "bruscolini":
                 case "bruce":
                 case "brus":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bruscolini" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bruscolini" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "eccitato":
                 case "godo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
                     return true;
 
                 case "barum":
@@ -277,14 +278,14 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "ruocchino":
                 case "federico":
                 case "tocchino":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/barum.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/barum.mp3");
                     return true;
 
                 case "applausi":
                 case "bravo":
                 case "complimenti":
                 case "congratulazioni":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/applausi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/applausi.mp3");
                     return true;
 
                 case "cezionale":
@@ -292,13 +293,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "eccezionale":
                 case "incredibile":
                 case "eccezio":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cezzionale%2C%20cezzio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cezzionale%2C%20cezzio.mp3");
                     return true;
 
                 case "cervellone":
                 case "inteligente":
                 case "furbo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/che%20cervellone.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/che%20cervellone.mp3");
                     return true;
 
                 case "cureggia":
@@ -306,11 +307,11 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "scorreggiare":
                 case "puzza":
                 case "puzzetta":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cureggia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cureggia.mp3");
                     return true;
 
                 case "stronzate":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dici%20solo%20stronzate.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dici%20solo%20stronzate.mp3");
                     return true;
 
                 case "dieghino":
@@ -320,7 +321,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "piegolino":
                 case "diegolino":
                 case "landi":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dieghino{new Random().Next(1, 4)}.mp3");  //todo controllare se funziona
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dieghino{new Random().Next(1, 4)}.mp3");  //todo controllare se funziona
                     return true;
 
                 case "ee":
@@ -332,30 +333,30 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "eeeeeeee":
                 case "eeeeeeeee":
                 case "eeeeeeeeee":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/eee.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/eee.mp3");
                     return true;
 
                 case "brutto":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brutto" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brutto" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "ettore":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ettore.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ettore.mp3");
                     return true;
 
                 case "mossa":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fagli%20la%20mossa.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fagli%20la%20mossa.mp3");
                     return true;
 
                 case "fenomeni":
                 case "fenomeno":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fenomeno.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fenomeno.mp3");
                     return true;
 
                 case "finalmente":
                 case "alleluia":
                 case "alleluja":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
                     return true;
 
                 case "gay":
@@ -366,12 +367,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "effemminato":
                 case "finocchio":
                 case "checca":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gay%2C%20omosessuale.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gay%2C%20omosessuale.mp3");
                     return true;
 
                 case "gnamo":
                 case "andiamo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gnamo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gnamo.mp3");
                     return true;
 
                 case "grande":
@@ -384,7 +385,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "grandeeeeeeee":
                 case "grandeeeeeeeee":
                 case "grandeeeeeeeeee":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/grande.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/grande.mp3");
                     return true;
 
                 case "hihihi":
@@ -397,7 +398,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "hihihihihihihihihihi":
                 case "hihihihihihihihihihihi":
                 case "hihihihihihihihihihihihi":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/hihihi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/hihihi.mp3");
                     return true;
 
                 case "lalala":
@@ -414,18 +415,18 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "lalalalala":
                 case "lalalalalala":
                 case "lalalalalalala":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lalalala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lalalala.mp3");
                     return true;
 
                 case "nazione":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/la%20nazione.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/la%20nazione.mp3");
                     return true;
 
                 case "fisse":
                 case "fissato":
                 case "fissazione":
                 case "fissazioni":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/le%20fisse.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/le%20fisse.mp3");
                     return true;
 
                 case "lololo":
@@ -435,40 +436,40 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "lololololololo":
                 case "lolololololololo":
                 case "lololololololololo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lololo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lololo.mp3");
                     return true;
 
                 case "certo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ma%20certo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ma%20certo.mp3");
                     return true;
 
                 case "male":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/male.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/male.mp3");
                     return true;
 
                 case "mani":
                 case "maniviglioso":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maniviglioso.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maniviglioso.mp3");
                     return true;
 
                 case "manuel":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/manuel.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/manuel.mp3");
                     return true;
 
                 case "muschio":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/muschio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/muschio.mp3");
                     return true;
 
                 case "incazzare":
                 case "inca":
                 case "arrabbiare":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20fare%20incazzare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20fare%20incazzare.mp3");
                     return true;
 
                 case "cioè":
                 case "cioé":
                 case "cioe":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cioe%20ti.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cioe%20ti.mp3");
                     return true;
 
                 case "pagare":
@@ -481,43 +482,43 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "money":
                 case "cash":
                 case "pecunia":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pagare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pagare.mp3");
                     return true;
 
                 case "pazzesco":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pazzesco.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pazzesco.mp3");
                     return true;
 
                 case "pippo":
                 case "pippolino":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pippo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pippo.mp3");
                     return true;
 
                 case "puttana":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/puttana%20maiala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/puttana%20maiala.mp3");
                     return true;
 
                 case "divertente":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/quanto%20sono%20divertente.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/quanto%20sono%20divertente.mp3");
                     return true;
 
                 case "rispondi":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/rispondi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/rispondi.mp3");
                     return true;
 
                 case "storie":
                 case "roito":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
                     return true;
 
                 case "sciabolata":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sciabolata.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sciabolata.mp3");
                     return true;
 
                 case "scossa":
                 case "vabbene":
                 case "vabene":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
                     return true;
 
                 case "shalala":
@@ -530,18 +531,18 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "rosenburg":
                 case "rosenberg":
                 case "rosenborg":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/shalala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/shalala.mp3");
                     return true;
 
                 case "scambi":
                 case "asta":
                 case "insieme":
                 case "scorretti":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siete%20degli%20scorretti.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siete%20degli%20scorretti.mp3");
                     return true;
 
                 case "silvia":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/silviaaa.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/silviaaa.mp3");
                     return true;
 
                 case "spezzarsela":
@@ -549,7 +550,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "piega":
                 case "spezzartela":
                 case "speziamo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
                     return true;
 
                 case "spezzino":
@@ -557,7 +558,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "spezza":
                 case "play":
                 case "playozzo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezzino.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezzino.mp3");
                     return true;
 
                 case "subito":
@@ -567,13 +568,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "immediatamente":
                 case "ora":
                 case "adesso":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/subito.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/subito.mp3");
                     return true;
 
                 case "succo":
                 case "succhino":
                 case "pera":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/succo%20alla%20pera.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/succo%20alla%20pera.mp3");
                     return true;
 
                 case "tegamello":
@@ -589,13 +590,13 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "incaziamo":
                 case "incazzate":
                 case "incazzano":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tegamello%20rispondi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tegamello%20rispondi.mp3");
                     return true;
 
                 case "sentito":
                 case "sentire":
                 case "sento":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20ho%20sentito.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20ho%20sentito.mp3");
                     return true;
 
                 case "odio":
@@ -605,11 +606,11 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "odiamo":
                 case "odiate":
                 case "odiano":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20odio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20odio.mp3");
                     return true;
 
                 case "tng":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tng.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tng.mp3");
                     return true;
 
                 case "top":
@@ -625,37 +626,37 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "greeeeende":
                 case "greeeeeende":
                 case "greeendeee":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/top%20grende%20buio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/top%20grende%20buio.mp3");
                     return true;
 
                 case "troia":
                 case "troio":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/troia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/troia.mp3");
                     return true;
 
                 case "uuu":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/uuu.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/uuu.mp3");
                     return true;
 
                 case "maiale":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vecchio%20maiale.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vecchio%20maiale.mp3");
                     return true;
 
                 case "violento":
                 case "violenza":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/violento.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/violento.mp3");
                     return true;
 
                 case "cacare":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vo%20a%20cacare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vo%20a%20cacare.mp3");
                     return true;
 
                 case "imbecille":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/imbecille.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/imbecille.ogg");
                     return true;
 
                 case "lego":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                     return true;
 
                 case "essol":
@@ -671,12 +672,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "piuuusiii":
                 case "piuuuusiii":
                 case "piuuuuusiiii":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/essol%20pussy.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/essol%20pussy.mp3");
                     return true;
 
                 case "zecchi":
                 case "zecconi":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/e%20zecchi%20ce.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/e%20zecchi%20ce.mp3");
                     return true;
 
                 case "daun":
@@ -684,7 +685,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "down":
                 case "doun":
                 case "deun":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/daun" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/daun" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "lista":
@@ -692,7 +693,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "listaccia":
                 case "listuccia":
                 case "listona":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lista" + new Random().Next(1, 4) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lista" + new Random().Next(1, 4) + ".mp3");
                     return true;
 
                 case "arturo":
@@ -708,7 +709,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "artuuuuuuuu":
                 case "artuuuuuuuuu":
                 case "artuuuuuuuuuu":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/artuuu.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/artuuu.ogg");
                     return true;
 
                 case "mmma":
@@ -721,7 +722,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "mmmmmmmmmaaaaaaaa":
                 case "mmmmmmmmmmmmmaaaaaaaaaaa":
 
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/mmma" + new Random().Next(1, 6) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/mmma" + new Random().Next(1, 6) + ".mp3");
                     return true;
 
                 case "wela":
@@ -733,7 +734,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "weeelaaaaa":
                 case "welaaaa":
                 case "weeelaaaaaa":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/wela" + new Random().Next(1, 5) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/wela" + new Random().Next(1, 5) + ".mp3");
                     return true;
 
                 case "pulito":
@@ -745,7 +746,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "bide":
                 case "bidet":
                 case "lavato":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pulirsiculo" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pulirsiculo" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "piedi":
@@ -756,7 +757,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "feticista":
                 case "feticismo":
                 case "fetish":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/piedi" + new Random().Next(1, 5) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/piedi" + new Random().Next(1, 5) + ".mp3");
                     return true;
 
                 case "gesu":
@@ -767,11 +768,11 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "chiodi":
                 case "inchiodalo":
                 case "croce":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/inchiodaregesu.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/inchiodaregesu.mp3");
                     return true;
 
                 case "merda":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/merda" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/merda" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "soffro":
@@ -779,12 +780,12 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "soffri":
                 case "soffrono":
                 case "soffre":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/soffro.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/soffro.ogg");
                     return true;
 
                 case "tullosai":
                 case "tullo":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tullosai" + new Random().Next(1, 3) + ".ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tullosai" + new Random().Next(1, 3) + ".ogg");
 
                     return true;
                 //fine aggiunte mie
@@ -794,33 +795,33 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "yesss":
                 case "paio":
                 case "paioled":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
                     return true;
 
                 case "balza":
-                    GeneratoreSofferenza.Sofferenza(messaggio, Models.Bot.Istance, contatoreSofferenza);
+                    GeneratoreSofferenza.Sofferenza(messaggio, Istance.Bot.Istance, contatoreSofferenza);
                     return true;
 
                 case "maiala":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maiala" + new Random().Next(1, 10) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maiala" + new Random().Next(1, 10) + ".mp3");
                     return true;
 
                 case "maialala":
                 case "maialalala":
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maialala.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maialala.ogg");
                     return true;
 
                 case "balzo":
                 case "bosco":
                 case "salto":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                     return true;
 
                 case "orso":
                 case "bear":
                 case "letargo":
                 case "orsaggine":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Dai " + messaggio.From.FirstName + ", lascia stare Gabriele, è periodo di letargo per gli orsi bruni");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Dai " + messaggio.From.FirstName + ", lascia stare Gabriele, è periodo di letargo per gli orsi bruni");
                     return true;
 
                 case "studdio":
@@ -830,7 +831,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 case "bandino":
                 case "studiare":
                 case "studdiare":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Che dite, si imbuzza tempi bui tempi di studdio?");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Che dite, si imbuzza tempi bui tempi di studdio?");
                     return true;
 
                 default:
@@ -840,134 +841,134 @@ namespace Telegram.Bot.Examples.Echo.Generatore
 
         public static bool ListaAudioImmensa(string[] comando, Message messaggio, int contGiulio)
         {
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "enrico", "papi" }, 1))
+            if (StringOperator.Contains(comando, new[] { "enrico", "papi" }, 1))
             {   
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "chi" }))
+            if (StringOperator.Contains(comando, new[] { "chi" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Sto cazzo");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Sto cazzo");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cecche", "lex" }, 2))
+            if (StringOperator.Contains(comando, new[] { "cecche", "lex" }, 2))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Dura lex.");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Dura lex.");
                 return true;
             }
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dura", "lex" }, 2))
+            if (StringOperator.Contains(comando, new[] { "dura", "lex" }, 2))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Cecche lex.");
-                return true;
-            }
-
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dio", "città", "immensità" }, 2))
-            {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Cecche lex.");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "pooh", "puh", "pu", "poo" }, 1))
+            if (StringOperator.Contains(comando, new[] { "dio", "città", "immensità" }, 2))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "seghe", "porno", "ettore", "disperazione" }, 2))
+            if (StringOperator.Contains(comando, new[] { "pooh", "puh", "pu", "poo" }, 1))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pornoettore.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "senza", "internet" }))
+            if (StringOperator.Contains(comando, new[] { "seghe", "porno", "ettore", "disperazione" }, 2))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/senzainternet.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pornoettore.ogg");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ennio", "morricone", "si", "vola", "130", "centotrenta", "autostrada" }, 2))
+            if (StringOperator.Contains(comando, new[] { "senza", "internet" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siVola.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/senzainternet.ogg");
+                return true;
+            }
+
+            if (StringOperator.Contains(comando, new[] { "ennio", "morricone", "si", "vola", "130", "centotrenta", "autostrada" }, 2))
+            {
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siVola.ogg");
                 return true;
             }
 
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "fai", "soffrire", "giulio" }))
+            if (StringOperator.Contains(comando, new[] { "fai", "soffrire", "giulio" }))
             {
-                GeneratoreSofferenza4Giulio.CreaSofferenza(messaggio, Models.Bot.Istance, new Random().Next(0, contGiulio));
+                GeneratoreSofferenza4Giulio.CreaSofferenza(messaggio, Istance.Bot.Istance, new Random().Next(0, contGiulio));
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "stasera", "non", "posso" }))
+            if (StringOperator.Contains(comando, new[] { "stasera", "non", "posso" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "stasera", "nonci" }))
+            if (StringOperator.Contains(comando, new[] { "stasera", "nonci" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "io", "non", "posso" }))
+            if (StringOperator.Contains(comando, new[] { "io", "non", "posso" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                 return true;
             }
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "stasera", "non", "posso" }))
+            if (StringOperator.Contains(comando, new[] { "stasera", "non", "posso" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
-                return true;
-            }
-
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "vengo" }))
-            {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
-                return true;
-            }
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "bruto", "bruhuto", "brutto", "briuto", "non" }, 2))
-            {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "le belo");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "ci", "sono" }))
+            if (StringOperator.Contains(comando, new[] { "non", "vengo" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
+                return true;
+            }
+            if (StringOperator.Contains(comando, new[] { "bruto", "bruhuto", "brutto", "briuto", "non" }, 2))
+            {
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "le belo");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cazzo", "duro", "ritto" }, 2))
+            if (StringOperator.Contains(comando, new[] { "non", "ci", "sono" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Bravo " + messaggio.From.FirstName + " tradisci così Lattana nel momento del bisogno?");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "sito", "nazista" }))
+            if (StringOperator.Contains(comando, new[] { "cazzo", "duro", "ritto" }, 2))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Questo è il sito dove potete vedere tutte le info sui nostri progetti https://goo.gl/e8Lpu7");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "problema", "se", "stasera", "veniamo", "da", "te", "giulio", "non", "c'è" }, 8))
+            if (StringOperator.Contains(comando, new[] { "sito", "nazista" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Volentieri, tanto lui sarà dalla silvia a fare il denutrito");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Questo è il sito dove potete vedere tutte le info sui nostri progetti https://goo.gl/e8Lpu7");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "buono", "brutto", "cattivo" }))
+            if (StringOperator.Contains(comando, new[] { "problema", "se", "stasera", "veniamo", "da", "te", "giulio", "non", "c'è" }, 8))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/buono%20brutto%20e%20cattivo.mp3");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Volentieri, tanto lui sarà dalla silvia a fare il denutrito");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "sticker", "normali" }))
+            if (StringOperator.Contains(comando, new[] { "buono", "brutto", "cattivo" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/buono%20brutto%20e%20cattivo.mp3");
+                return true;
+            }
+
+            if (StringOperator.Contains(comando, new[] { "sticker", "normali" }))
+            {
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id,
                     "1) https://goo.gl/AsLTH2 \r\n" +
                     "2) https://goo.gl/kV18vp \r\n" +
                     "3) https://goo.gl/APXoRo \r\n" +
@@ -976,227 +977,227 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "sticker", "porno" }))
+            if (StringOperator.Contains(comando, new[] { "sticker", "porno" }))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "https://goo.gl/zR1jTT");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "https://goo.gl/zR1jTT");
                 return true;
             }
 
 
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "don", "matteo" }))
+            if (StringOperator.Contains(comando, new[] { "don", "matteo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cazzo", "duro" }))
+            if (StringOperator.Contains(comando, new[] { "cazzo", "duro" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ceci", "na", "pa", "pe", "une", "pipe" }))
+            if (StringOperator.Contains(comando, new[] { "ceci", "na", "pa", "pe", "une", "pipe" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20na%20pa%20pe%20une%20pipe.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20na%20pa%20pe%20une%20pipe.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ceci", "nes", "pas", "une", "pip" }))
+            if (StringOperator.Contains(comando, new[] { "ceci", "nes", "pas", "une", "pip" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pip.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pip.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ceci", "nes", "pas", "une", "pipe" }))
+            if (StringOperator.Contains(comando, new[] { "ceci", "nes", "pas", "une", "pipe" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pipe.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pipe.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cazzo", "ritto" }))
+            if (StringOperator.Contains(comando, new[] { "cazzo", "ritto" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "faccie", "culo" }))
+            if (StringOperator.Contains(comando, new[] { "faccie", "culo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cosi%20si%20dice%20faccia%20di%20culo.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cosi%20si%20dice%20faccia%20di%20culo.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "faccia", "culo" }))
+            if (StringOperator.Contains(comando, new[] { "faccia", "culo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/faccia%20di%20culo.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/faccia%20di%20culo.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "fare", "la", "merda" }))
+            if (StringOperator.Contains(comando, new[] { "non", "fare", "la", "merda" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giano%20non%20fare%20la%20merda.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giano%20non%20fare%20la%20merda.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "giochi", "di", "sabato" }))
+            if (StringOperator.Contains(comando, new[] { "giochi", "di", "sabato" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giochi%20di%20sabato.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giochi%20di%20sabato.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "era", "l'ora" }))
+            if (StringOperator.Contains(comando, new[] { "era", "l'ora" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "mi", "riesce" }))
+            if (StringOperator.Contains(comando, new[] { "non", "mi", "riesce" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20riesce%20mandare%20gli%20audi.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20riesce%20mandare%20gli%20audi.mp3");
                 //Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, "http://nazista.altervista.org/ogg/non_mi_riesce_mandare_gli_audi.ogg", 0, true);
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "come", "stai" }))
+            if (StringOperator.Contains(comando, new[] { "come", "stai" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "va", "bene" }))
+            if (StringOperator.Contains(comando, new[] { "va", "bene" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "la", "spezza" }))
+            if (StringOperator.Contains(comando, new[] { "la", "spezza" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cazzo", "dici" }))
+            if (StringOperator.Contains(comando, new[] { "cazzo", "dici" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "tornato", "internet" }))
+            if (StringOperator.Contains(comando, new[] { "tornato", "internet" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/internet{new Random().Next(1, 3)}.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/internet{new Random().Next(1, 3)}.ogg");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cazzo", "dicendo" }))
+            if (StringOperator.Contains(comando, new[] { "cazzo", "dicendo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cascano", "braccia" }))
+            if (StringOperator.Contains(comando, new[] { "cascano", "braccia" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "cascare", "braccia" }))
+            if (StringOperator.Contains(comando, new[] { "cascare", "braccia" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dove", "vai" }))
+            if (StringOperator.Contains(comando, new[] { "dove", "vai" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "vai" }))
+            if (StringOperator.Contains(comando, new[] { "non", "vai" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "dove", "andando" }))
+            if (StringOperator.Contains(comando, new[] { "dove", "andando" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "vado" }))
+            if (StringOperator.Contains(comando, new[] { "non", "vado" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "vo" }))
+            if (StringOperator.Contains(comando, new[] { "non", "vo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ci", "vado" }))
+            if (StringOperator.Contains(comando, new[] { "ci", "vado" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "ci", "vo" }))
+            if (StringOperator.Contains(comando, new[] { "ci", "vo" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "schifo", "immagini" }))
+            if (StringOperator.Contains(comando, new[] { "schifo", "immagini" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "merda", "immagini" }))
+            if (StringOperator.Contains(comando, new[] { "merda", "immagini" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "vomitare", "immagini" }))
+            if (StringOperator.Contains(comando, new[] { "vomitare", "immagini" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "sanno", "di", "niente" }))
+            if (StringOperator.Contains(comando, new[] { "non", "sanno", "di", "niente" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "non", "sanno", "di", "nulla" }))
+            if (StringOperator.Contains(comando, new[] { "non", "sanno", "di", "nulla" }))
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "me", "il", "cazzo" }))
+            if (StringOperator.Contains(comando, new[] { "me", "il", "cazzo" }))
             {
-                Models.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/meIlCazzo.mp4");
-                return true;
-            }
-
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "camera", "caffè" }))
-            {
-                Models.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/sega.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/meIlCazzo.mp4");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "yo", "bitch", "biatch", "biach" }))
+            if (StringOperator.Contains(comando, new[] { "camera", "caffè" }))
             {
-                Models.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/yoBitch.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/sega.mp4");
                 return true;
             }
 
-            if (GeneratoreSwitch.FraseContiene(comando, new[] { "weekend", "weekends" }, 1) || GeneratoreSwitch.FraseContiene(comando, new[] { "week", "end", "ends" }))
+            if (StringOperator.Contains(comando, new[] { "yo", "bitch", "biatch", "biach" }))
             {
-                Models.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/weekEnd.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/yoBitch.mp4");
+                return true;
+            }
+
+            if (StringOperator.Contains(comando, new[] { "weekend", "weekends" }, 1) || StringOperator.Contains(comando, new[] { "week", "end", "ends" }))
+            {
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/weekEnd.mp4");
                 return true;
             }
 

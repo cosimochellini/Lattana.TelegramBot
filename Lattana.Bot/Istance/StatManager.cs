@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 using File = System.IO.File;
 
-namespace Telegram.Bot.Examples.Echo.Manager
+namespace Telegram.Bot.Examples.Echo.Istance
 {
     public static class StatManager
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Telegram.Bot.Examples.Echo.Models;
+using Telegram.Bot.Types;
 
 namespace Telegram.Bot.Examples.Echo.Manager
 {
@@ -32,13 +33,13 @@ namespace Telegram.Bot.Examples.Echo.Manager
             }
         }
 
-        public static bool CheckModules(string[] comando)
+        public static bool CheckModules(string[] comando, Message messaggio)
         {
             foreach (var module in Modules)
             {
                 if (!module.Check(comando)) continue;
 
-                module.Execute();
+                module.Execute(messaggio);
                 return true;
             }
 

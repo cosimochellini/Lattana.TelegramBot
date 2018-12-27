@@ -17,14 +17,14 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             {
                 case "fanculo":
                 case "Fanculo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
                     break;
 
                 case "Dormire":
                 case "dormire":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "idiota, non sono mica spacobot");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Io non dormo mai, al massimo riposo gli occhi");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "idiota, non sono mica spacobot");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Io non dormo mai, al massimo riposo gli occhi");
                     break;
             }
         }

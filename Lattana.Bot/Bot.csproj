@@ -103,10 +103,10 @@
     <Compile Include="Manager\IftttManager.cs" />
     <Compile Include="Manager\JsonManager.cs" />
     <Compile Include="Manager\ModulesManager.cs" />
-    <Compile Include="Manager\StatManager.cs" />
+    <Compile Include="Istance\StatManager.cs" />
+    <Compile Include="Manager\StringOperator.cs" />
     <Compile Include="Models\Action.cs" />
-    <Compile Include="Models\ArrayCaratteriIndesiderati.cs" />
-    <Compile Include="Models\Bot.cs" />
+    <Compile Include="Istance\Bot.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\UserStat.cs" />

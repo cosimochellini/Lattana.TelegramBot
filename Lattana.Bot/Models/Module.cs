@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Telegram.Bot.Examples.Echo.Manager;
+using Telegram.Bot.Types;
 
 namespace Telegram.Bot.Examples.Echo.Models
 {
@@ -6,16 +9,47 @@ namespace Telegram.Bot.Examples.Echo.Models
     {
         public List<Condition> Conditions = new List<Condition>();
 
+        public bool CheckAll = false;
+
         public List<Action> Actions = new List<Action>();
 
         public bool Check(string[] comando)
         {
-            throw new System.NotImplementedException();
+            if (CheckAll)
+            {
+                foreach (var condition in Conditions)
+                {
+                    if (!StringOperator.Contains(comando, condition.Phrases.ToArray(), condition.ConditionCounter))
+                        return false;
+                }
+                return true;
+            }
+
+            foreach (var condition in Conditions)
+            {
+                if (StringOperator.Contains(comando, condition.Phrases.ToArray(), condition.ConditionCounter))
+                    return true;
+            }
+            return false;
         }
 
-        public bool Execute()
+        public bool Execute(Message messaggio)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                foreach (var action in Actions)
+                {
+                    action.Execute(messaggio);
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
+
     }
 }

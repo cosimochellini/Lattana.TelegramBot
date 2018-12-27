@@ -8,15 +8,15 @@ namespace Telegram.Bot.Examples.Echo
         private static void Main()
         {
 
-            Models.Bot.LoadHook();
+            Istance.Bot.LoadHook();
 
             ModulesManager.LoadModules();
 
-            Models.Bot.Istance.StartReceiving();
+            Istance.Bot.Istance.StartReceiving();
 
             Console.ReadLine();
 
-            Models.Bot.Istance.StopReceiving();
+            Istance.Bot.Istance.StopReceiving();
         }
        
     }

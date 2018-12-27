@@ -103,7 +103,7 @@ namespace Telegram.Bot.Examples.Echo.Manager
 
             var files = directory.GetFiles("*.json");
 
-            return files.Select(file => file.Name);
+            return files.Select(file => file.FullName).ToList();
         }
 
     }

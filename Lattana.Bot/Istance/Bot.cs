@@ -7,7 +7,7 @@ using Telegram.Bot.Examples.Echo.Manager;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Telegram.Bot.Examples.Echo.Models
+namespace Telegram.Bot.Examples.Echo.Istance
 {
     public static class Bot
     {
@@ -35,7 +35,8 @@ namespace Telegram.Bot.Examples.Echo.Models
 
         private static void BotOnReceiveError(object sender, ReceiveErrorEventArgs receiveErrorEventArgs)
         {
-            Debugger.Break();
+            Console.WriteLine("Istanza bot già attiva, chiudere l'istanza affinche non ci siano effetti collaterali");
+            //Debugger.Break();
         }
 
         private static void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)

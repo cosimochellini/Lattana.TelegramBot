@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Telegram.Bot.Examples.Echo.Manager;
-using Telegram.Bot.Examples.Echo.Models;
 using Telegram.Bot.Types;
 
 namespace Telegram.Bot.Examples.Echo.Generatore
@@ -21,9 +19,9 @@ namespace Telegram.Bot.Examples.Echo.Generatore
             if (messaggio.Text == null)
                 return true;
 
-            var comando = PurificaStringa(messaggio.Text);
+            var comando = StringOperator.PurgeString(messaggio.Text);
 
-            if (ModulesManager.CheckModules(comando))
+            if (ModulesManager.CheckModules(comando, messaggio))
                 return true;
 
             if (AnalizzatoreFrase.ListaAudioImmensa(comando, messaggio, ContGiulio))
@@ -38,32 +36,6 @@ namespace Telegram.Bot.Examples.Echo.Generatore
             }
 
             return false;
-
-        }
-
-        public static bool FraseContiene(string[] comando, string[] vettoreParole, int numeroCondizioni = 0)
-        {
-
-            if (numeroCondizioni == 0)
-                numeroCondizioni = vettoreParole.Length;
-
-            var contatore = vettoreParole.Count(parola => comando.Any(x => x.Equals(parola)));
-
-            return contatore >= numeroCondizioni;
-        }
-
-        private static string[] PurificaStringa(string strindaDaPurificare)
-        {
-            strindaDaPurificare = ArrayCaratteriIndesiderati.PurificaStringa(strindaDaPurificare);
-
-            var arrayPurificato = strindaDaPurificare.Split(Convert.ToChar(" ")).Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-            for (var i = 0; i < arrayPurificato.Length; i++)
-            {
-                arrayPurificato[i] = arrayPurificato[i].ToLower();
-            }
-
-            return arrayPurificato;
         }
     }
 }

@@ -16,17 +16,17 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
             if (comanando[1].Equals("federico") || comanando[1].Equals("Federico") || comanando[1].Equals("ruocchino") ||
                 comanando[1].Equals("rocchino") || comanando[1].Equals("tocchino") || comanando[1].Equals("ruocco"))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "No, ruocchino non lo raccatto");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "No, ruocchino non lo raccatto");
                 return;
             }
 
             if (comanando[0].Equals("raccogli") || comanando[1].Equals("Raccogli"))
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccattare??");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccattare??");
             }
             else
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccogliere??");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, comanando[1] + ", te la vuoi raccogliere??");
             }
         }
 

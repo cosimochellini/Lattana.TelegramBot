@@ -11,19 +11,19 @@ namespace Telegram.Bot.Examples.Echo.Generatore
         {
             if (comanando.Length == 1)
             {
-                Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(new Random().Next(0, 116), 0, messaggio));
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(new Random().Next(0, 116), 0, messaggio));
             }
             else
             {
                 try
                 {
                     var numeroSelezionato = Convert.ToInt32(comanando[1]) + 1 - 1;
-                    Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(99, numeroSelezionato, messaggio));
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, GeneraLinkAudio(99, numeroSelezionato, messaggio));
                 }
                 catch (Exception)
                 {
 
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
                 }
             }
         }
@@ -151,7 +151,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
                 return selezioneVolontaria == 0 ? linkAudi[casuale - 1] : linkAudi[selezioneVolontaria];
 
 
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Mi dispiace ma hai inserito un numero non valido");
             return "";
         }
     }

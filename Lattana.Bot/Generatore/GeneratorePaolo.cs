@@ -37,7 +37,7 @@ namespace Telegram.Bot.Examples.Echo.Generatore
 
         public static void ComandoBitta(Message messaggio, int contatorePaolo)
         {
-            Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaPaolo(new Random().Next(0, contatorePaolo + 1)));
+            Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, CreaPaolo(new Random().Next(0, contatorePaolo + 1)));
         }
     }
 }

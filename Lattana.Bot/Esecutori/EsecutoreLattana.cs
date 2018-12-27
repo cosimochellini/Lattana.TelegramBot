@@ -9,7 +9,7 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
             if (comanando.Length <= 2)
             {
-                Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " perchè nomini il mio nome invano?");
+                Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " perchè nomini il mio nome invano?");
                 return;
 
             }
@@ -24,22 +24,22 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
                 case "accogli":
                     if (comanando.Length < 3)
                     {
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Da sempre, lattana accoglie chiunque");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Da sempre, lattana accoglie chiunque");
                     }
                     else
                     {
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Benvenuto " + comanando[2] + " in lattana, io so accogliere, ma so anche punire");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Benvenuto " + comanando[2] + " in lattana, io so accogliere, ma so anche punire");
                     }
                     return;
                 case "Mostra":
                 case "mostra":
                     if (comanando.Length < 3)
                     {
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Molto interessante, però, hai visto la vastità del cazzo che me ne frega?");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Molto interessante, però, hai visto la vastità del cazzo che me ne frega?");
                     }
                     else
                     {
-                        Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Ok " + comanando[2] + " ma almeno hai visto l'immensità del cazzo che me ne frega?");
+                        Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Ok " + comanando[2] + " ma almeno hai visto l'immensità del cazzo che me ne frega?");
                     }
                     return;
 
@@ -49,8 +49,8 @@ namespace Telegram.Bot.Examples.Echo.Esecutori
 
                 case "vaffanculo":
                 case "Vaffanculo":
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
-                    Models.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, "Abbiamo un simpaticone fra di noi, non è vero?");
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, messaggio.From.FirstName + " vacci te con tre tappi in culo (con amore <3) ");
                     break;
             }
 
