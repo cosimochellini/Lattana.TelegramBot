@@ -1,15 +1,14 @@
-﻿using System;
-using Lattana.Bot.Esecutori;
+﻿using Lattana.Bot.Esecutori;
 using Lattana.Bot.Istance;
 using Lattana.Bot.Manager;
+using Lattana.Bot.Models;
+using System;
 using Telegram.Bot.Types;
 
 namespace Lattana.Bot.Generatore
 {
     public static class AnalizzatoreFrase
     {
-        private const string UrlBase = "http://nazista.altervista.org";
-
         public static bool Switch(Message messaggio, string[] comando, int contatoreOffese, int contatorePaolo, int contatoreProfezia)
         {
             const string preghiera = "Lattana nostra, che sei in via Lungo l'Affrico 4, sia santificato il tuo nome, venga  il tuo regno," +
@@ -34,7 +33,7 @@ namespace Lattana.Bot.Generatore
                 case "musica":
                 case "maestro":
                 case "labamba":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/mooseca.ogg");
                     return true;
                 case "paolo":
                 case "bitta":
@@ -44,6 +43,12 @@ namespace Lattana.Bot.Generatore
                 case "lattana":
                     EsecutoreLattana.ComandoLattana(comando, messaggio);
                     return true;
+
+                case "updatemodules":
+                    ModulesManager.LoadModules();
+                    Istance.Bot.Istance.SendTextMessageAsync(messaggio.Chat.Id, $"moduli caricati correttamente : {ModulesManager.Modules.Count}");
+                    return true;
+
                 case "analizza":
                 case "ispeziona":
                     EsecutoreStatistiche.ComandoAnalizza(comando, messaggio);
@@ -119,11 +124,11 @@ namespace Lattana.Bot.Generatore
                 case "paio":
                 case "paioled":
                 case "si":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/yes.ogg");
                     return true;
 
                 case "no":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/no.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/no.ogg");
                     return true;
 
                 case "statistica":
@@ -152,7 +157,7 @@ namespace Lattana.Bot.Generatore
                 case "sgrezzi":
                 case "sgrezi":
                 case "sciupi":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/la%20sciali.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/la%20sciali.ogg");
                     return true;
 
                 case "bang":
@@ -162,7 +167,7 @@ namespace Lattana.Bot.Generatore
                 case "beng":
                 case "bengh":
                 case "pum":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/bang.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/bang.ogg");
                     return true;
 
                 case "auguri":
@@ -173,7 +178,7 @@ namespace Lattana.Bot.Generatore
 
                 case "domma":
                 case "donma":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
                     return true;
 
                 case "briuto":
@@ -220,19 +225,19 @@ namespace Lattana.Bot.Generatore
                 case "1234":
                 case "primo":
                 case "uno":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/12345.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/12345.mp3");
                     return true;
 
                 case "sa":
                 case "saa":
                 case "saaa":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sa.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/sa.ogg");
                     return true;
 
                 case "acciderbolina":
                 case "accipicchia":
                 case "cavolo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/acciderbolina.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/acciderbolina.mp3");
                     return true;
 
                 case "ahahahahah":
@@ -243,30 +248,30 @@ namespace Lattana.Bot.Generatore
                 case "ahahah":
                 case "ahahahah":
                 case "ahaha":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ahahah.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ahahah.mp3");
                     return true;
 
                 case "gruppo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/altro%20gruppo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/altro%20gruppo.mp3");
                     return true;
 
                 case "bella":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bella.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/bella.mp3");
                     return true;
 
                 case "brava":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brava%20brava.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/brava%20brava.mp3");
                     return true;
 
                 case "bruscolini":
                 case "bruce":
                 case "brus":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/bruscolini" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/bruscolini" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "eccitato":
                 case "godo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cazzo%20duro.mp3");
                     return true;
 
                 case "barum":
@@ -278,14 +283,14 @@ namespace Lattana.Bot.Generatore
                 case "ruocchino":
                 case "federico":
                 case "tocchino":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/barum.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/barum.mp3");
                     return true;
 
                 case "applausi":
                 case "bravo":
                 case "complimenti":
                 case "congratulazioni":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/applausi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/applausi.mp3");
                     return true;
 
                 case "cezionale":
@@ -293,13 +298,13 @@ namespace Lattana.Bot.Generatore
                 case "eccezionale":
                 case "incredibile":
                 case "eccezio":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cezzionale%2C%20cezzio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cezzionale%2C%20cezzio.mp3");
                     return true;
 
                 case "cervellone":
                 case "inteligente":
                 case "furbo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/che%20cervellone.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/che%20cervellone.mp3");
                     return true;
 
                 case "cureggia":
@@ -307,11 +312,11 @@ namespace Lattana.Bot.Generatore
                 case "scorreggiare":
                 case "puzza":
                 case "puzzetta":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cureggia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cureggia.mp3");
                     return true;
 
                 case "stronzate":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dici%20solo%20stronzate.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dici%20solo%20stronzate.mp3");
                     return true;
 
                 case "dieghino":
@@ -321,7 +326,7 @@ namespace Lattana.Bot.Generatore
                 case "piegolino":
                 case "diegolino":
                 case "landi":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dieghino{new Random().Next(1, 4)}.mp3");  //todo controllare se funziona
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dieghino{new Random().Next(1, 4)}.mp3");  //todo controllare se funziona
                     return true;
 
                 case "ee":
@@ -333,30 +338,30 @@ namespace Lattana.Bot.Generatore
                 case "eeeeeeee":
                 case "eeeeeeeee":
                 case "eeeeeeeeee":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/eee.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/eee.mp3");
                     return true;
 
                 case "brutto":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/brutto" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/brutto" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "ettore":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ettore.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ettore.mp3");
                     return true;
 
                 case "mossa":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fagli%20la%20mossa.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fagli%20la%20mossa.mp3");
                     return true;
 
                 case "fenomeni":
                 case "fenomeno":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fenomeno.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fenomeno.mp3");
                     return true;
 
                 case "finalmente":
                 case "alleluia":
                 case "alleluja":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/finalmente%2C%20alleluia.mp3");
                     return true;
 
                 case "gay":
@@ -367,12 +372,12 @@ namespace Lattana.Bot.Generatore
                 case "effemminato":
                 case "finocchio":
                 case "checca":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gay%2C%20omosessuale.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/gay%2C%20omosessuale.mp3");
                     return true;
 
                 case "gnamo":
                 case "andiamo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/gnamo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/gnamo.mp3");
                     return true;
 
                 case "grande":
@@ -385,7 +390,7 @@ namespace Lattana.Bot.Generatore
                 case "grandeeeeeeee":
                 case "grandeeeeeeeee":
                 case "grandeeeeeeeeee":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/grande.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/grande.mp3");
                     return true;
 
                 case "hihihi":
@@ -398,7 +403,7 @@ namespace Lattana.Bot.Generatore
                 case "hihihihihihihihihihi":
                 case "hihihihihihihihihihihi":
                 case "hihihihihihihihihihihihi":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/hihihi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/hihihi.mp3");
                     return true;
 
                 case "lalala":
@@ -415,18 +420,18 @@ namespace Lattana.Bot.Generatore
                 case "lalalalala":
                 case "lalalalalala":
                 case "lalalalalalala":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lalalala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/lalalala.mp3");
                     return true;
 
                 case "nazione":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/la%20nazione.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/la%20nazione.mp3");
                     return true;
 
                 case "fisse":
                 case "fissato":
                 case "fissazione":
                 case "fissazioni":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/le%20fisse.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/le%20fisse.mp3");
                     return true;
 
                 case "lololo":
@@ -436,40 +441,40 @@ namespace Lattana.Bot.Generatore
                 case "lololololololo":
                 case "lolololololololo":
                 case "lololololololololo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lololo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/lololo.mp3");
                     return true;
 
                 case "certo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ma%20certo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ma%20certo.mp3");
                     return true;
 
                 case "male":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/male.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/male.mp3");
                     return true;
 
                 case "mani":
                 case "maniviglioso":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maniviglioso.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/maniviglioso.mp3");
                     return true;
 
                 case "manuel":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/manuel.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/manuel.mp3");
                     return true;
 
                 case "muschio":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/muschio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/muschio.mp3");
                     return true;
 
                 case "incazzare":
                 case "inca":
                 case "arrabbiare":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20fare%20incazzare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/non%20mi%20fare%20incazzare.mp3");
                     return true;
 
                 case "cioè":
                 case "cioé":
                 case "cioe":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cioe%20ti.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cioe%20ti.mp3");
                     return true;
 
                 case "pagare":
@@ -482,43 +487,43 @@ namespace Lattana.Bot.Generatore
                 case "money":
                 case "cash":
                 case "pecunia":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pagare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/pagare.mp3");
                     return true;
 
                 case "pazzesco":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pazzesco.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/pazzesco.mp3");
                     return true;
 
                 case "pippo":
                 case "pippolino":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pippo.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/pippo.mp3");
                     return true;
 
                 case "puttana":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/puttana%20maiala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/puttana%20maiala.mp3");
                     return true;
 
                 case "divertente":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/quanto%20sono%20divertente.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/quanto%20sono%20divertente.mp3");
                     return true;
 
                 case "rispondi":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/rispondi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/rispondi.mp3");
                     return true;
 
                 case "storie":
                 case "roito":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
                     return true;
 
                 case "sciabolata":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/sciabolata.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/sciabolata.mp3");
                     return true;
 
                 case "scossa":
                 case "vabbene":
                 case "vabene":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/scossa%2C%20va%20bene.mp3");
                     return true;
 
                 case "shalala":
@@ -531,18 +536,18 @@ namespace Lattana.Bot.Generatore
                 case "rosenburg":
                 case "rosenberg":
                 case "rosenborg":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/shalala.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/shalala.mp3");
                     return true;
 
                 case "scambi":
                 case "asta":
                 case "insieme":
                 case "scorretti":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siete%20degli%20scorretti.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/siete%20degli%20scorretti.mp3");
                     return true;
 
                 case "silvia":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/silviaaa.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/silviaaa.mp3");
                     return true;
 
                 case "spezzarsela":
@@ -550,7 +555,7 @@ namespace Lattana.Bot.Generatore
                 case "piega":
                 case "spezzartela":
                 case "speziamo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
                     return true;
 
                 case "spezzino":
@@ -558,7 +563,7 @@ namespace Lattana.Bot.Generatore
                 case "spezza":
                 case "play":
                 case "playozzo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezzino.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/spezzino.mp3");
                     return true;
 
                 case "subito":
@@ -568,13 +573,13 @@ namespace Lattana.Bot.Generatore
                 case "immediatamente":
                 case "ora":
                 case "adesso":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/subito.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/subito.mp3");
                     return true;
 
                 case "succo":
                 case "succhino":
                 case "pera":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/succo%20alla%20pera.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/succo%20alla%20pera.mp3");
                     return true;
 
                 case "tegamello":
@@ -590,13 +595,13 @@ namespace Lattana.Bot.Generatore
                 case "incaziamo":
                 case "incazzate":
                 case "incazzano":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tegamello%20rispondi.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/tegamello%20rispondi.mp3");
                     return true;
 
                 case "sentito":
                 case "sentire":
                 case "sento":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20ho%20sentito.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ti%20ho%20sentito.mp3");
                     return true;
 
                 case "odio":
@@ -606,11 +611,11 @@ namespace Lattana.Bot.Generatore
                 case "odiamo":
                 case "odiate":
                 case "odiano":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ti%20odio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ti%20odio.mp3");
                     return true;
 
                 case "tng":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tng.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/tng.mp3");
                     return true;
 
                 case "top":
@@ -626,37 +631,37 @@ namespace Lattana.Bot.Generatore
                 case "greeeeende":
                 case "greeeeeende":
                 case "greeendeee":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/top%20grende%20buio.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/top%20grende%20buio.mp3");
                     return true;
 
                 case "troia":
                 case "troio":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/troia.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/troia.mp3");
                     return true;
 
                 case "uuu":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/uuu.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/uuu.mp3");
                     return true;
 
                 case "maiale":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vecchio%20maiale.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/vecchio%20maiale.mp3");
                     return true;
 
                 case "violento":
                 case "violenza":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/violento.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/violento.mp3");
                     return true;
 
                 case "cacare":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/vo%20a%20cacare.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/vo%20a%20cacare.mp3");
                     return true;
 
                 case "imbecille":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/imbecille.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/imbecille.ogg");
                     return true;
 
                 case "lego":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                     return true;
 
                 case "essol":
@@ -672,12 +677,12 @@ namespace Lattana.Bot.Generatore
                 case "piuuusiii":
                 case "piuuuusiii":
                 case "piuuuuusiiii":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/essol%20pussy.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/essol%20pussy.mp3");
                     return true;
 
                 case "zecchi":
                 case "zecconi":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/e%20zecchi%20ce.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/e%20zecchi%20ce.mp3");
                     return true;
 
                 case "daun":
@@ -685,7 +690,7 @@ namespace Lattana.Bot.Generatore
                 case "down":
                 case "doun":
                 case "deun":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/daun" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/daun" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "lista":
@@ -693,7 +698,7 @@ namespace Lattana.Bot.Generatore
                 case "listaccia":
                 case "listuccia":
                 case "listona":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/lista" + new Random().Next(1, 4) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/lista" + new Random().Next(1, 4) + ".mp3");
                     return true;
 
                 case "arturo":
@@ -709,7 +714,7 @@ namespace Lattana.Bot.Generatore
                 case "artuuuuuuuu":
                 case "artuuuuuuuuu":
                 case "artuuuuuuuuuu":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/artuuu.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/artuuu.ogg");
                     return true;
 
                 case "mmma":
@@ -722,7 +727,7 @@ namespace Lattana.Bot.Generatore
                 case "mmmmmmmmmaaaaaaaa":
                 case "mmmmmmmmmmmmmaaaaaaaaaaa":
 
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/mmma" + new Random().Next(1, 6) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/mmma" + new Random().Next(1, 6) + ".mp3");
                     return true;
 
                 case "wela":
@@ -734,7 +739,7 @@ namespace Lattana.Bot.Generatore
                 case "weeelaaaaa":
                 case "welaaaa":
                 case "weeelaaaaaa":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/wela" + new Random().Next(1, 5) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/wela" + new Random().Next(1, 5) + ".mp3");
                     return true;
 
                 case "pulito":
@@ -746,7 +751,7 @@ namespace Lattana.Bot.Generatore
                 case "bide":
                 case "bidet":
                 case "lavato":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pulirsiculo" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/pulirsiculo" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "piedi":
@@ -757,7 +762,7 @@ namespace Lattana.Bot.Generatore
                 case "feticista":
                 case "feticismo":
                 case "fetish":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/piedi" + new Random().Next(1, 5) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/piedi" + new Random().Next(1, 5) + ".mp3");
                     return true;
 
                 case "gesu":
@@ -768,11 +773,11 @@ namespace Lattana.Bot.Generatore
                 case "chiodi":
                 case "inchiodalo":
                 case "croce":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/inchiodaregesu.mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/inchiodaregesu.mp3");
                     return true;
 
                 case "merda":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/merda" + new Random().Next(1, 3) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/merda" + new Random().Next(1, 3) + ".mp3");
                     return true;
 
                 case "soffro":
@@ -780,12 +785,12 @@ namespace Lattana.Bot.Generatore
                 case "soffri":
                 case "soffrono":
                 case "soffre":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/soffro.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/soffro.ogg");
                     return true;
 
                 case "tullosai":
                 case "tullo":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/tullosai" + new Random().Next(1, 3) + ".ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/tullosai" + new Random().Next(1, 3) + ".ogg");
 
                     return true;
                 //fine aggiunte mie
@@ -795,7 +800,7 @@ namespace Lattana.Bot.Generatore
                 case "yesss":
                 case "paio":
                 case "paioled":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/yes.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/yes.ogg");
                     return true;
 
                 case "balza":
@@ -803,12 +808,12 @@ namespace Lattana.Bot.Generatore
                     return true;
 
                 case "maiala":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maiala" + new Random().Next(1, 10) + ".mp3");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/maiala" + new Random().Next(1, 10) + ".mp3");
                     return true;
 
                 case "maialala":
                 case "maialalala":
-                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/maialala.ogg");
+                    Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/maialala.ogg");
                     return true;
 
                 case "balzo":
@@ -842,8 +847,8 @@ namespace Lattana.Bot.Generatore
         public static bool ListaAudioImmensa(string[] comando, Message messaggio, int contGiulio)
         {
             if (StringOperator.Contains(comando, new[] { "enrico", "papi" }, 1))
-            {   
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/Audio/mooseca.ogg");
+            {
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/Audio/mooseca.ogg");
                 return true;
             }
 
@@ -866,31 +871,31 @@ namespace Lattana.Bot.Generatore
 
             if (StringOperator.Contains(comando, new[] { "dio", "città", "immensità" }, 2))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dioCitta.ogg");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "pooh", "puh", "pu", "poo" }, 1))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dioCitta.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dioCitta.ogg");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "seghe", "porno", "ettore", "disperazione" }, 2))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/pornoettore.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/pornoettore.ogg");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "senza", "internet" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/senzainternet.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/senzainternet.ogg");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ennio", "morricone", "si", "vola", "130", "centotrenta", "autostrada" }, 2))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/siVola.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/siVola.ogg");
                 return true;
             }
 
@@ -943,8 +948,8 @@ namespace Lattana.Bot.Generatore
 
             if (StringOperator.Contains(comando, new[] { "cazzo", "duro", "ritto" }, 2))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
@@ -962,7 +967,7 @@ namespace Lattana.Bot.Generatore
 
             if (StringOperator.Contains(comando, new[] { "buono", "brutto", "cattivo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/buono%20brutto%20e%20cattivo.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/buono%20brutto%20e%20cattivo.mp3");
                 return true;
             }
 
@@ -987,217 +992,216 @@ namespace Lattana.Bot.Generatore
 
             if (StringOperator.Contains(comando, new[] { "don", "matteo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/don%20matteo%2C%20donma%2C%20domma.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cazzo", "duro" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ceci", "na", "pa", "pe", "une", "pipe" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20na%20pa%20pe%20une%20pipe.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ceci%20na%20pa%20pe%20une%20pipe.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ceci", "nes", "pas", "une", "pip" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pip.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ceci%20nes%20pas%20une%20pip.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ceci", "nes", "pas", "une", "pipe" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/ceci%20nes%20pas%20une%20pipe.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/ceci%20nes%20pas%20une%20pipe.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cazzo", "ritto" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cazzo%20duro.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cazzo%20duro.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "faccie", "culo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/cosi%20si%20dice%20faccia%20di%20culo.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/cosi%20si%20dice%20faccia%20di%20culo.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "faccia", "culo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/faccia%20di%20culo.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/faccia%20di%20culo.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "fare", "la", "merda" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giano%20non%20fare%20la%20merda.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/giano%20non%20fare%20la%20merda.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "giochi", "di", "sabato" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/giochi%20di%20sabato.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/giochi%20di%20sabato.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "era", "l'ora" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/finalmente%2C%20alleluia.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/finalmente%2C%20alleluia.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "mi", "riesce" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/non%20mi%20riesce%20mandare%20gli%20audi.mp3");
-                //Models.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, "http://nazista.altervista.org/ogg/non_mi_riesce_mandare_gli_audi.ogg", 0, true);
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/non%20mi%20riesce%20mandare%20gli%20audi.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "come", "stai" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/roito%20della%20natura%2C%20guarda%20come%20tu%20stai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "va", "bene" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/scossa%2C%20va%20bene.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/scossa%2C%20va%20bene.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "la", "spezza" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/spezarsela%2C%20spezzatela%2C%20se%20la%20spezza.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cazzo", "dici" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "tornato", "internet" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/internet{new Random().Next(1, 3)}.ogg");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/internet{new Random().Next(1, 3)}.ogg");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cazzo", "dicendo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/checazzodici" + new Random().Next(1, 4) + ".mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cascano", "braccia" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/checazzodici3.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "cascare", "braccia" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/checazzodici3.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/checazzodici3.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "dove", "vai" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "vai" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "dove", "andando" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "vado" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "vo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ci", "vado" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "ci", "vo" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/dove%20vai.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/dove%20vai.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "schifo", "immagini" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "merda", "immagini" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "vomitare", "immagini" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "sanno", "di", "niente" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "non", "sanno", "di", "nulla" }))
             {
-                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{UrlBase}/audi/fanno%20cagare%20quelle%20immagini.mp3");
+                Istance.Bot.Istance.SendVoiceAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/audi/fanno%20cagare%20quelle%20immagini.mp3");
                 return true;
             }
             if (StringOperator.Contains(comando, new[] { "me", "il", "cazzo" }))
             {
-                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/meIlCazzo.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/VideoNote/meIlCazzo.mp4");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "camera", "caffè" }))
             {
-                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/sega.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/VideoNote/sega.mp4");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "yo", "bitch", "biatch", "biach" }))
             {
-                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/yoBitch.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/VideoNote/yoBitch.mp4");
                 return true;
             }
 
             if (StringOperator.Contains(comando, new[] { "weekend", "weekends" }, 1) || StringOperator.Contains(comando, new[] { "week", "end", "ends" }))
             {
-                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{UrlBase}/VideoNote/weekEnd.mp4");
+                Istance.Bot.Istance.SendVideoNoteAsync(messaggio.Chat.Id, $"{Constant.BaseUrl}/VideoNote/weekEnd.mp4");
                 return true;
             }
 

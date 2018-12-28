@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Lattana.Bot.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Lattana.Bot.Models;
 using Telegram.Bot.Types;
 
 namespace Lattana.Bot.Manager
@@ -16,9 +16,12 @@ namespace Lattana.Bot.Manager
 
         public static void LoadModules()
         {
+
             Directory.CreateDirectory(FolderPath);
 
             var modules = JsonManager.GetAllJson(FolderPath);
+
+            Modules = new List<Module>();
 
             foreach (var path in modules)
             {

@@ -35,9 +35,9 @@ namespace Lattana.Bot.Models
 
         }
 
-        private string BindContent(string content)
+        private static string BindContent(string content)
         {
-            return content.Replace("#baseurl", "").Replace("", "");
+            return content.Replace("#baseurl", Constant.BaseUrl);
         }
 
     }
